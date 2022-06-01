@@ -1,112 +1,118 @@
+function result(text) {
+    console.log(text)
+}
+
 function getSequence(conclusion) {
     const adviceLine = $('#adviceLine');
-    let advicePattern = $(`<div class="stepBlock d-none" id="step1">
-        <div class="alert alert-info d-inline-flex" role="alert"></div>
+    let advicePattern = $(`<div class="alert alert-info d-inline-flex me-1" role="alert" id="text">DDD</div>`)
+    /*let advicePattern = $(`<div class="stepBlock d-none">
+        <div class="alert alert-info d-inline-flex me-1" role="alert" id="text">DDD</div>
         <i class="bi bi-arrow-right-square fs-4"></i></div>`)
-    let sequence = {
+*/
+    return {
         context: this,
-        step1: function () {
-            let context = this;
-            $('#step1').toggleClass('d-none d-inline')
-            return {
-                yes: () => context.step2(),
-                no: () => context.step3(),
-                question: 'Источник найден?',
-                conclusion,
-                context
-            }
+        step1: {
+            run: function () {
+                advicePattern.clone().html('ЭГДС').appendTo($('#adviceLine'))
+                $('#question').html('Источник найден?')
+                console.log("STAGE 1")
+            },
+            yes: () => result("Верхний отдел"),
+            no: () =>  sequence.step2,
+            conclusion,
+
         },
-        step2: function () {
-            let context = this;
-            $('#step2').toggleClass('d-none d-inline')
-            return {
-                yes: () => context.step1(),
-                no: () => context.step2(),
-                question: 'Источник найден?',
-                conclusion,
-                context
-            }
+        step2: {
+            run: function () {
+                advicePattern.clone().html('Колоноскопия').appendTo($('#adviceLine'))
+                $('#question').html('Источник найден?')
+                console.log("STAGE 2")
+            },
+            yes: () => result("Нижний отдел"),
+            no: () => sequence.step3,
+            conclusion,
+
         },
-        step3: function () {
-            let context = this;
-            $('#step3').toggleClass('d-none d-inline')
-            return {
-                yes: () => context.step1(),
-                no: () => context.step2(),
-                question: 'Кровотечение продолжается?',
-                conclusion,
-                context
-            }
+        step3: {
+            run: function () {
+                /*if(!conclusion.explicit){
+                    sequence.step5.run()
+                    return
+                }*/
+                $('#question').html('Кровотечение продолжается?')
+                console.log("STAGE 3")
+            },
+            yes: () => {
+                return sequence.step4
+            },
+            no: () => sequence.step5,
+            conclusion,
         },
-        step4: function () {
-            let context = this;
-            $('#step4').toggleClass('d-none d-inline')
-            return {
-                yes: () => {
-                    context.step5()
-                    return "step5"
-                },
-                no: () => {
-                    context.step6()
-                    return "step6"
-                },
-                question: 'Источник найден?',
-                conclusion,
-                context
-            }
+        step4: {
+            run: function () {
+                /*if(!conclusion.explicit){
+                    sequence.step5.run()
+                    return
+                }*/
+                advicePattern.clone()
+                    .html('КТ-ангиография и/или Инструментально-ассистированная энтероскопия и/или Сцинтиграфия и/или Хирургическое вмешательство')
+                    .appendTo($('#adviceLine'))
+                $('#question').html('Источник найден?')
+                console.log("STAGE 4")
+            },
+            yes: () => result('Средний отдел'),
+            no: () =>  sequence.step5,
+            conclusion,
         },
-        step5: function () {
-            let context = this;
-            $('#step5').toggleClass('d-none d-inline')
-            return {
-                yes: () => context.step1(),
-                no: () => context.step2(),
-                question: 'Имеется стриктура?',
-                conclusion,
-                context
-            }
+        step5: {
+            run: function () {
+                advicePattern.clone().html('Rg с пассажем бария или КТЭ или МРЭ').appendTo($('#adviceLine'))
+                $('#question').html('Имеется стриктура?')
+                console.log("STAGE 5")
+            },
+            yes: () => sequence.step6,
+            no: () => sequence.step7,
+            conclusion,
         },
-        step6: function () {
-            let context = this;
-            $('#step6').toggleClass('d-none d-inline')
-            return {
-                yes: () => context.step1(),
-                no: () => context.step2(),
-                question: 'источник найден?',
-                conclusion,
-                context
-            }
+        step6: {
+            run: function () {
+                advicePattern.clone()
+                    .html('Инструментально-ассистированная энтероскопия и/или Хирургическое вмешательство')
+                    .appendTo($('#adviceLine'))
+                $('#questionBlock').toggleClass('d-inline d-none')
+                console.log("STAGE 6")
+                result('Средний отдел')
+                conclusion.localization = 'Средний отдел'
+            },
+            yes: () => null,
+            no: () => sequence.step2,
+            conclusion,
         },
-        step7: function () {
-            let context = this;
-            $('#step7').toggleClass('d-none d-inline')
-            return {
-                yes: () => context.step1(),
-                no: () => context.step2(),
-                question: 'Источник найден?',
-                conclusion,
-                context
-            }
+        step7: {
+            run: function () {
+                advicePattern.clone()
+                    .html('ВКЭ')
+                    .appendTo($('#adviceLine'));
+                $('#question').html('источник найден?')
+                console.log("STAGE 7")
+            },
+            yes: () => sequence.step8,
+            no: () => result('Консервативное наблюдение'),
+            conclusion,
+
         },
-        step8: function () {
-            let context = this;
-            $('#step8').toggleClass('d-none d-inline')
-            return {
-                yes: () => context.step1(),
-                no: () => context.step2(),
-                question: 'Источник найден?',
-                conclusion,
-                context
-            }
+        step8: {
+            run: function () {
+                /*advicePattern.clone()
+                    .html('ВКЭ').appendTo($('#adviceLine'));*/
+                /*$('#question').html('источник найден?')*/
+                console.log("STAGE 8")
+            },
+            yes: () => result('Консервативное наблюдение'),
+            no: () => sequence.step6,
+            conclusion,
+
         },
     };
-    /*if (conclusion.explicit) {
-        sequence = Object.keys(sequence).filter(key => key !== 'step1' || key !== 'step4')
-            .reduce((obj, key) => {
-                obj[key] = sequence[key];
-                return obj;
-            }, {});
-    }*/
-    return sequence;
 }
 

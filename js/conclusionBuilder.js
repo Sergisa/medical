@@ -22,6 +22,11 @@ let coefficientsForMIDDLE = {
     coffeeVomit: -18.471,
     bloodVomit: -1.265
 }
+let hardness = {
+    1: "легкой",
+    2: "средней",
+    3: "тяжёлой"
+}
 
 function localizationResolver(signs) {
     let upProbability = Math.exp(-(
@@ -85,10 +90,7 @@ function conclusionBuilder() {
         localization: "",
         reason: "",
         andExplicit(indexes) {
-            if (indexes.bloodVomit || indexes.coffeeVomit) {
-                this.explicit = true;
-            }
-            if (indexes.melena || indexes.hematohesia) {
+            if (indexes.bloodVomit || indexes.coffeeVomit || indexes.melena || indexes.hematohesia) {
                 this.explicit = true;
             }
             if (indexes.collaptoidState && indexes.gastrointestinalUcler && indexes.stickySweat) {
@@ -104,21 +106,25 @@ function conclusionBuilder() {
         },
         andBloodLossHardnessLevel(bloodSigns) {
             console.log("Определяю тяжесть кровопотери по данным: ", bloodSigns)
-            if (bloodSigns.erythrocytes > 3.5 &&
+            if (
+                bloodSigns.erythrocytes > 3.5 &&
                 bloodSigns.hemoglobin > 100 &&
                 bloodSigns.pulse <= 80 &&
                 bloodSigns.bloodPressure > 110 &&
                 bloodSigns.hematocrit > 30
             ) {
                 this.bloodLossHardness = 'лёгкой'
-            } else if (bloodSigns.erythrocytes >= 2.5 && bloodSigns.erythrocytes <= 3.5 &&
-                bloodSigns.hemoglobin >= 83 && bloodSigns.hemoglobin <= 100 &&
-                bloodSigns.pulse >= 80 && bloodSigns.pulse <= 100 &&
-                bloodSigns.bloodPressure >= 90 && bloodSigns.bloodPressure <= 110 &&
-                bloodSigns.hematocrit >= 25 && bloodSigns.hematocrit <= 30
+            } else if (
+                (bloodSigns.erythrocytes >= 2.5 && bloodSigns.erythrocytes <= 3.5) &&
+                (bloodSigns.hemoglobin >= 83 && bloodSigns.hemoglobin <= 100) &&
+                (bloodSigns.pulse >= 80 && bloodSigns.pulse <= 100) &&
+                (bloodSigns.bloodPressure >= 90 && bloodSigns.bloodPressure <= 110) &&
+                (bloodSigns.hematocrit >= 25 && bloodSigns.hematocrit <= 30)
             ) {
+                console.log("средняя по ГОРБАШКО")
                 this.bloodLossHardness = 'средней'
-            } else if (bloodSigns.erythrocytes < 2.5 &&
+            } else if (
+                bloodSigns.erythrocytes < 2.5 &&
                 bloodSigns.hemoglobin < 83 &&
                 bloodSigns.pulse > 100 &&
                 bloodSigns.bloodPressure < 90 &&
@@ -129,14 +135,13 @@ function conclusionBuilder() {
             return this;
         },
         andBleedingHardnessLevel(signs) {
-            let signsCount = signs.age > 60 +
+            let signsCount = (signs.age > 60) +
+                (signs.pulse > 100) +
+                (signs.bloodArterialPressure < 100) +
+                (signs.hemoglobin < 100) +
                 signs.coffeeVomit +
-                signs.melena <= 80 +
+                signs.melena +
                 signs.lossConsciousness +
-                signs.pulse > 100 +
-                signs.bloodArterialPressure < 100 +
-                signs.hemoglobin < 100 +
-                signs.coffeeVomit +
                 signs.additionalIllness
             if (signsCount >= 4) {
                 this.bleedHardness = 'тяжёлой'
@@ -169,7 +174,7 @@ function conclusionBuilder() {
                 .append(() => {
                     return this.localization ? `, локализованное в <b>${this.localization}</b> отделах ЖКТ` : '.'
                 }).append(() => {
-                    return this.bloodLossHardness ? `, <b>${this.bloodLossHardness}</b> степени тяжести.` : '.'
+                    return this.bloodLossHardness ? `, <b>${this.bloodLossHardness}</b> степени${this.bloodLossHardness === 'легкой' || this.bloodLossHardness === 'средней' ? ' тяжести.' : '.'}` : '.'
                 }).append(() => {
                     //return this.reason ? `, источником которого послужили : <b>${this.reason}</b>` : '.'
                 })

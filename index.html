@@ -5,6 +5,7 @@
     <title>Title</title>
     <link href="bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap-icons.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         .main-image {
@@ -26,6 +27,11 @@
         #question {
             color: var(--bs-indigo);
             font-weight: bold;
+            background-color: #CFD8DC !important;
+        }
+
+        .bg-light {
+
         }
     </style>
 </head>
@@ -181,25 +187,29 @@
         </div>
         <div class="preConclusion">
             Предварительное заключение
+            <div id="ORIT"></div>
             <div></div>
         </div>
     </form>
     <div class="row">
         <div class="col-md-12">
-            <button type="button" class="btn btn-primary float-end mt-2" data-bs-toggle="modal"
-                    data-bs-target="#additionalResearch">
-                Ввести данные эндоскопического исследования
-            </button>
+
         </div>
     </div>
     <div class="row">
         <div class="col-12">
             <div class="border border-2 rounded shadow p-3 mt-3 d-none" id="helpSequence">
-                Предсказания
-                <div id="question" class="d-inline-flex question badge bg-light fs-6"></div>
-                <button id="yes" class="btn btn-primary">Да</button>
-                <button id="no" class="btn btn-primary">Нет</button>
-                <div class="col-12" id="adviceLine"></div>
+                Рекомендация
+                <button type="button" class="btn btn-primary float-end mt-2 float-end" data-bs-toggle="modal"
+                        data-bs-target="#additionalResearch">
+                    Ввести данные эндоскопического исследования
+                </button>
+                <div class="col-12 mt-2 d-inline" id="adviceLine"></div>
+                <div id="questionBlock" class="d-inline">
+                    <div id="question" class="d-inline-flex question badge bg-light fs-6"></div>
+                    <button id="yes" class="btn btn-sm btn-primary me-1">Да</button>
+                    <button id="no" class="btn btn-sm btn-primary me-1">Нет</button>
+                </div>
             </div>
         </div>
     </div>
@@ -314,9 +324,7 @@
 <script src="js/sequence.js"></script>
 <script>
     const modalAdditionalResearch = new bootstrap.Modal('#additionalResearch');
-    let sequenceStage = 'step1';
-
-    let conclusion, sequence;
+    let sequenceStage, conclusion, sequence;
 
     function makeConclusion() {
         let conclusion = conclusionBuilder()
@@ -342,28 +350,37 @@
 
     function startHelpSequence() {
         $('#helpSequence').removeClass('d-none')
-        if (conclusion.bloodLossHardness === 'тяжёлое') {
-            $('#step2 .alert i').removeClass('d-none')
+        $('#adviceLine').empty()
+        if (conclusion.bleedHardness === 'тяжёлой' && conclusion.explicit) {
+            $('#ORIT').html('<b>Рекумендуется направление в ОРИТ</b>')
+        } else {
+            $('#ORIT').html('')
         }
 
         if (conclusion.localizationPredict === 'верхних') {
-            sequenceStage = 'step2';
+            sequenceStage = sequence.step1;
         } else if (conclusion.localizationPredict === 'нижних') {
-            sequenceStage = 'step3';
+            sequenceStage = sequence.step2;
         } else if (conclusion.localizationPredict === 'средних') {
-            sequenceStage = 'step4';
+            //TODO: Дополнительно проверить на скрытость явность
+            if(conclusion.explicit){
+                sequenceStage = sequence.step3;
+            }else{
+                sequenceStage = sequence.step5;
+            }
         }
-        console.log("стартовая стадия", sequenceStage, sequence)
-        $('#question').html(sequence[sequenceStage]().question);
+        sequenceStage.run()
+        //$('#question').html(sequenceStage().question);
     }
 
     function shiftSequence(answer) {
         if (answer === 1) {//yes
-            $('#question').html(sequence[sequenceStage]().question);
-            sequenceStage = sequence[sequenceStage]().yes();
+            sequenceStage = sequenceStage.yes();
         } else if (answer === 2) { //no
-            sequenceStage = sequence[sequenceStage]().no();
+            sequenceStage = sequenceStage.no();
         }
+        if (sequenceStage) sequenceStage.run();
+        //$('#question').html(stageRes.question);
     }
 
 

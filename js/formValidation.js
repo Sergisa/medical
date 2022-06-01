@@ -2,7 +2,7 @@
     'use strict'
 
     function checkDecimalValidity(field, event) {
-        if (!/\d+[,.]+\d+/.test(field.value)) {
+        if (!/^\d+[,.]+\d+$/.test(field.value)) {
             console.error("Неверное значение ")
             field.setCustomValidity("Введите десятичное значение")
             event.preventDefault()
