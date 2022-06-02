@@ -107,28 +107,28 @@ function conclusionBuilder() {
         andBloodLossHardnessLevel(bloodSigns) {
             console.log("Определяю тяжесть кровопотери по данным: ", bloodSigns)
             if (
-                bloodSigns.erythrocytes > 3.5 &&
-                bloodSigns.hemoglobin > 100 &&
-                bloodSigns.pulse <= 80 &&
-                bloodSigns.bloodPressure > 110 &&
-                bloodSigns.hematocrit > 30
+                (bloodSigns.erythrocytes > 3.5) +
+
+                (bloodSigns.pulse <= 80) +
+                (bloodSigns.bloodPressure > 110) +
+                (bloodSigns.hematocrit > 30) >= 2 &&
+                (bloodSigns.hemoglobin > 100)
             ) {
                 this.bloodLossHardness = 'лёгкой'
             } else if (
-                (bloodSigns.erythrocytes >= 2.5 && bloodSigns.erythrocytes <= 3.5) &&
-                (bloodSigns.hemoglobin >= 83 && bloodSigns.hemoglobin <= 100) &&
-                (bloodSigns.pulse >= 80 && bloodSigns.pulse <= 100) &&
-                (bloodSigns.bloodPressure >= 90 && bloodSigns.bloodPressure <= 110) &&
-                (bloodSigns.hematocrit >= 25 && bloodSigns.hematocrit <= 30)
+                (bloodSigns.erythrocytes >= 2.5 && bloodSigns.erythrocytes <= 3.5) +
+                (bloodSigns.pulse >= 80 && bloodSigns.pulse <= 100) +
+                (bloodSigns.bloodPressure >= 90 && bloodSigns.bloodPressure <= 110) +
+                (bloodSigns.hematocrit >= 25 && bloodSigns.hematocrit <= 30) >= 2 &&
+                (bloodSigns.hemoglobin >= 83 && bloodSigns.hemoglobin <= 100)
             ) {
-                console.log("средняя по ГОРБАШКО")
                 this.bloodLossHardness = 'средней'
             } else if (
-                bloodSigns.erythrocytes < 2.5 &&
-                bloodSigns.hemoglobin < 83 &&
-                bloodSigns.pulse > 100 &&
-                bloodSigns.bloodPressure < 90 &&
-                bloodSigns.hematocrit < 25
+                (bloodSigns.erythrocytes < 2.5) +
+                (bloodSigns.pulse > 100) +
+                (bloodSigns.bloodPressure < 90) +
+                (bloodSigns.hematocrit < 25) >= 2 &&
+                (bloodSigns.hemoglobin < 83)
             ) {
                 this.bloodLossHardness = 'тяжёлой'
             }
