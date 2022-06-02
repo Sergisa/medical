@@ -174,7 +174,11 @@ function conclusionBuilder() {
                 .append(() => {
                     return this.localization ? `, локализованное в <b>${this.localization}</b> отделах ЖКТ` : '.'
                 }).append(() => {
-                    return this.bloodLossHardness ? `, <b>${this.bloodLossHardness}</b> степени${this.bloodLossHardness === 'легкой' || this.bloodLossHardness === 'средней' ? ' тяжести.' : '.'}` : '.'
+                    if ((this.bloodLossHardness === 'лёгкой') || (this.bloodLossHardness === 'средней')) {
+                        return this.bloodLossHardness ? `, <b>${this.bloodLossHardness}</b> степени тяжести` : '.'
+                    } else if (this.bloodLossHardness === 'тяжёлой') {
+                        return this.bloodLossHardness ? `, <b>${this.bloodLossHardness}</b> степени` : '.'
+                    }
                 }).append(() => {
                     //return this.reason ? `, источником которого послужили : <b>${this.reason}</b>` : '.'
                 })
