@@ -380,6 +380,7 @@
     function shiftSequence(answer) {
         if (answer === 1) {//yes
             sequenceStage = sequenceStage.yes();
+            $("html, body").animate({scrollTop: $(document).height()}, 1000);
         } else if (answer === 2) { //no
             sequenceStage = sequenceStage.no();
         }
