@@ -1,14 +1,17 @@
-function result(text) {
-    console.log(text)
+function result(index) {
+    $('#questionBlock').toggleClass('d-inline d-none')
+    console.log(index)
+    conclusion.localization = index;
+    console.log("RESULT:", conclusion)
+
+    $('.postConclusion').html(conclusionBuilder(conclusion).getTag().clone().toggleClass('alert-info alert-primary'))
+    $('.postConclusion').parent().toggleClass('d-none d-block')
+    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+
 }
 
 function getSequence(conclusion) {
-    const adviceLine = $('#adviceLine');
     let advicePattern = $(`<div class="alert alert-info d-inline-flex me-1" role="alert" id="text">DDD</div>`)
-    /*let advicePattern = $(`<div class="stepBlock d-none">
-        <div class="alert alert-info d-inline-flex me-1" role="alert" id="text">DDD</div>
-        <i class="bi bi-arrow-right-square fs-4"></i></div>`)
-*/
     return {
         context: this,
         step1: {
@@ -17,10 +20,9 @@ function getSequence(conclusion) {
                 $('#question').html('Источник найден?')
                 console.log("STAGE 1")
             },
-            yes: () => result("Верхний отдел"),
-            no: () =>  sequence.step2,
+            yes: () => result(1),
+            no: () => sequence.step2,
             conclusion,
-
         },
         step2: {
             run: function () {
@@ -28,10 +30,9 @@ function getSequence(conclusion) {
                 $('#question').html('Источник найден?')
                 console.log("STAGE 2")
             },
-            yes: () => result("Нижний отдел"),
+            yes: () => result(3),
             no: () => sequence.step3,
             conclusion,
-
         },
         step3: {
             run: function () {
@@ -42,9 +43,7 @@ function getSequence(conclusion) {
                 $('#question').html('Кровотечение продолжается?')
                 console.log("STAGE 3")
             },
-            yes: () => {
-                return sequence.step4
-            },
+            yes: () => sequence.step4,
             no: () => sequence.step5,
             conclusion,
         },
@@ -60,8 +59,8 @@ function getSequence(conclusion) {
                 $('#question').html('Источник найден?')
                 console.log("STAGE 4")
             },
-            yes: () => result('Средний отдел'),
-            no: () =>  sequence.step5,
+            yes: () => result(2),
+            no: () => sequence.step5,
             conclusion,
         },
         step5: {
@@ -79,10 +78,8 @@ function getSequence(conclusion) {
                 advicePattern.clone()
                     .html('Инструментально-ассистированная энтероскопия и/или Хирургическое вмешательство')
                     .appendTo($('#adviceLine'))
-                $('#questionBlock').toggleClass('d-inline d-none')
                 console.log("STAGE 6")
-                result('Средний отдел')
-                conclusion.localization = 'Средний отдел'
+                result(2)
             },
             yes: () => null,
             no: () => sequence.step2,
@@ -99,7 +96,6 @@ function getSequence(conclusion) {
             yes: () => sequence.step8,
             no: () => result('Консервативное наблюдение'),
             conclusion,
-
         },
         step8: {
             run: function () {
@@ -111,7 +107,6 @@ function getSequence(conclusion) {
             yes: () => result('Консервативное наблюдение'),
             no: () => sequence.step6,
             conclusion,
-
         },
     };
 }

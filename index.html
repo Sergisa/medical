@@ -121,7 +121,7 @@
             <div class="col-6">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="gastrointestinalUcler" value="option2">
-                    <label class="form-check-label" for="gastrointestinalUcler">Язвы ЖКТ в анамнезе</label>
+                    <label class="form-check-label" for="gastrointestinalUcler">Язвы в ЖКТ в анамнезе</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="anamnesisGastrointestinalUpperBleeding"
@@ -210,6 +210,13 @@
                     <button id="yes" class="btn btn-sm btn-primary me-1">Да</button>
                     <button id="no" class="btn btn-sm btn-primary me-1">Нет</button>
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="border border-2 rounded shadow p-3 mt-3 d-none">
+                <div class="postConclusion"></div>
             </div>
         </div>
     </div>
@@ -329,14 +336,13 @@
     function makeConclusion() {
         let conclusion = conclusionBuilder()
             .andBloodLossHardnessLevel(collectData())
-            .andBleedingHardnessLevel(collectData())
+            .andDRICNecessity(collectData())
             .andExplicit(collectData())
             .predictLocalization(collectData())
             .andResolveReason(collectData())
         console.log(conclusion)
-        $('.preConclusion div').html(
-            conclusion.getTag()
-        )
+        $('.preConclusion div').html(conclusion.getTag().clone())
+        window.conclusion = conclusion;
         return conclusion.getConclusion();
     }
 
@@ -351,26 +357,24 @@
     function startHelpSequence() {
         $('#helpSequence').removeClass('d-none')
         $('#adviceLine').empty()
-        if (conclusion.bleedHardness === 'тяжёлой' && conclusion.explicit) {
+        if (conclusion.bleedHardness === 3 && conclusion.explicit) {
             $('#ORIT').html('<b>Рекумендуется направление в ОРИТ</b>')
         } else {
             $('#ORIT').html('')
         }
 
-        if (conclusion.localizationPredict === 'верхних') {
+        if (conclusion.localizationPredict === 1) {
             sequenceStage = sequence.step1;
-        } else if (conclusion.localizationPredict === 'нижних') {
+        } else if (conclusion.localizationPredict === 2) {
             sequenceStage = sequence.step2;
-        } else if (conclusion.localizationPredict === 'средних') {
-            //TODO: Дополнительно проверить на скрытость явность
-            if(conclusion.explicit){
+        } else if (conclusion.localizationPredict === 3) {
+            if (conclusion.explicit) {
                 sequenceStage = sequence.step3;
-            }else{
+            } else {
                 sequenceStage = sequence.step5;
             }
         }
         sequenceStage.run()
-        //$('#question').html(sequenceStage().question);
     }
 
     function shiftSequence(answer) {
@@ -380,7 +384,6 @@
             sequenceStage = sequenceStage.no();
         }
         if (sequenceStage) sequenceStage.run();
-        //$('#question').html(stageRes.question);
     }
 
 
@@ -396,6 +399,7 @@
             conclusion = makeConclusion();
             sequence = getSequence(conclusion)
             startHelpSequence();
+            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
         }
         return false;
     })

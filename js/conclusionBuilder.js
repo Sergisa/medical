@@ -27,6 +27,11 @@ let hardness = {
     2: "средней",
     3: "тяжёлой"
 }
+let localizationDefinition = {
+    1: "верхних",
+    2: "средних",
+    3: "нижних"
+}
 
 function localizationResolver(signs) {
     let upProbability = Math.exp(-(
@@ -54,7 +59,7 @@ function localizationResolver(signs) {
     upProbability = (1 / (1 + upProbability));
     middleProbability = (1 / (1 + middleProbability));
     let downProbability = 1 - (upProbability + middleProbability)
-    const localizations = ['верхних', 'средних', 'нижних'];
+    const localizations = [1, 2, 3];
     return {
         upProbability,
         middleProbability,
@@ -81,25 +86,29 @@ function bleedReasonResolver(signs) {
     }
 }
 
-function conclusionBuilder() {
-
+function conclusionBuilder(conclusion) {
     return {
-        explicit: null,
-        bloodLossHardness: "",
-        bleedHardness: "",
-        localization: "",
-        reason: "",
+        explicit: conclusion === undefined ? null : conclusion.explicit,
+        bloodLossHardness: conclusion === undefined ? '' : conclusion.bloodLossHardness,
+        bleedHardness: conclusion === undefined ? '' : conclusion.bleedHardness,
+        localization: conclusion === undefined ? '' : conclusion.localization,
+        reason: conclusion === undefined ? '' : conclusion.reason,
         andExplicit(indexes) {
+            console.log('Определяю явность')
             if (indexes.bloodVomit || indexes.coffeeVomit || indexes.melena || indexes.hematohesia) {
+                console.log('EXPLICIT')
                 this.explicit = true;
             }
             if (indexes.collaptoidState && indexes.gastrointestinalUcler && indexes.stickySweat) {
+                console.log('NOT EXPLICIT')
                 this.explicit = false;
             }
             if (indexes.paleSkin && indexes.gastrointestinalUcler && indexes.hemoglobinFalls) {
+                console.log('NOT EXPLICIT')
                 this.explicit = false;
             }
             if (indexes.hiddenBleeding) {
+                console.log('NOT EXPLICIT')
                 this.explicit = false;
             }
             return this;
@@ -108,13 +117,12 @@ function conclusionBuilder() {
             console.log("Определяю тяжесть кровопотери по данным: ", bloodSigns)
             if (
                 (bloodSigns.erythrocytes > 3.5) +
-
                 (bloodSigns.pulse <= 80) +
                 (bloodSigns.bloodPressure > 110) +
                 (bloodSigns.hematocrit > 30) >= 2 &&
                 (bloodSigns.hemoglobin > 100)
             ) {
-                this.bloodLossHardness = 'лёгкой'
+                this.bloodLossHardness = 1
             } else if (
                 (bloodSigns.erythrocytes >= 2.5 && bloodSigns.erythrocytes <= 3.5) +
                 (bloodSigns.pulse >= 80 && bloodSigns.pulse <= 100) +
@@ -122,7 +130,7 @@ function conclusionBuilder() {
                 (bloodSigns.hematocrit >= 25 && bloodSigns.hematocrit <= 30) >= 2 &&
                 (bloodSigns.hemoglobin >= 83 && bloodSigns.hemoglobin <= 100)
             ) {
-                this.bloodLossHardness = 'средней'
+                this.bloodLossHardness = 2
             } else if (
                 (bloodSigns.erythrocytes < 2.5) +
                 (bloodSigns.pulse > 100) +
@@ -130,11 +138,11 @@ function conclusionBuilder() {
                 (bloodSigns.hematocrit < 25) >= 2 &&
                 (bloodSigns.hemoglobin < 83)
             ) {
-                this.bloodLossHardness = 'тяжёлой'
+                this.bloodLossHardness = 3
             }
             return this;
         },
-        andBleedingHardnessLevel(signs) {
+        andDRICNecessity(signs) {
             let signsCount = (signs.age > 60) +
                 (signs.pulse > 100) +
                 (signs.bloodArterialPressure < 100) +
@@ -144,7 +152,7 @@ function conclusionBuilder() {
                 signs.lossConsciousness +
                 signs.additionalIllness
             if (signsCount >= 4) {
-                this.bleedHardness = 'тяжёлой'
+                this.bleedHardness = 3
             }
             return this;
         },
@@ -172,12 +180,12 @@ function conclusionBuilder() {
         getTag() {
             return $(`<div class="alert alert-info my-2" role="alert">ЖКК <b>${this.explicit ? 'явное' : 'скрытое'}</b></div>`)
                 .append(() => {
-                    return this.localization ? `, локализованное в <b>${this.localization}</b> отделах ЖКТ` : '.'
+                    return this.localization ? `, локализованное в <b>${localizationDefinition[this.localization]}</b> отделах ЖКТ` : '.'
                 }).append(() => {
-                    if ((this.bloodLossHardness === 'лёгкой') || (this.bloodLossHardness === 'средней')) {
-                        return this.bloodLossHardness ? `, <b>${this.bloodLossHardness}</b> степени тяжести` : '.'
-                    } else if (this.bloodLossHardness === 'тяжёлой') {
-                        return this.bloodLossHardness ? `, <b>${this.bloodLossHardness}</b> степени` : '.'
+                    if ((this.bloodLossHardness === 1) || (this.bloodLossHardness === 2)) {
+                        return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени тяжести` : '.'
+                    } else if (this.bloodLossHardness === 3) {
+                        return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени` : '.'
                     }
                 }).append(() => {
                     //return this.reason ? `, источником которого послужили : <b>${this.reason}</b>` : '.'
