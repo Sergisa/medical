@@ -363,11 +363,11 @@
             $('#ORIT').html('')
         }
 
-        if (conclusion.localizationPredict === 1) {
+        if (conclusion.localizationPredict === 1) { // up
             sequenceStage = sequence.step1;
-        } else if (conclusion.localizationPredict === 2) {
+        } else if (conclusion.localizationPredict === 3) { //down
             sequenceStage = sequence.step2;
-        } else if (conclusion.localizationPredict === 3) {
+        } else if (conclusion.localizationPredict === 2) { //middle
             if (conclusion.explicit) {
                 sequenceStage = sequence.step3;
             } else {
