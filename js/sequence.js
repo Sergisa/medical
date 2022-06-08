@@ -1,3 +1,5 @@
+let linkPattern = `<br><a href="#" type="button" class="" data-bs-toggle="modal" data-bs-target="#additionalResearch">Ввести данные эндоскопического исследования</a>`;
+
 function result(index) {
     $('#questionBlock').toggleClass('d-inline d-none')
     console.log(index)
@@ -18,12 +20,15 @@ function result(index) {
 }
 
 function getSequence(conclusion) {
-    let advicePattern = $(`<div class="alert alert-info d-inline-flex me-1" role="alert" id="text">DDD</div>`)
+    let advicePattern = $(`<div class="alert alert-info d-inline-block me-1" role="alert" id="text">DDD</div>`)
     return {
         context: this,
         step1: {
             run: function () {
-                advicePattern.clone().html('ЭГДС').appendTo($('#adviceLine'))
+                advicePattern.clone()
+                    .html('ЭГДС')
+                    .append(linkPattern)
+                    .appendTo($('#adviceLine'))
                 $('#question').html('Источник найден?')
                 console.log("STAGE 1")
             },
@@ -33,7 +38,11 @@ function getSequence(conclusion) {
         },
         step2: {
             run: function () {
-                advicePattern.clone().html('Колоноскопия').appendTo($('#adviceLine'))
+                advicePattern
+                    .clone()
+                    .html('Колоноскопия')
+                    .append(linkPattern)
+                    .appendTo($('#adviceLine'))
                 $('#question').html('Источник найден?')
                 console.log("STAGE 2")
             },
@@ -96,6 +105,7 @@ function getSequence(conclusion) {
             run: function () {
                 advicePattern.clone()
                     .html('ВКЭ')
+                    .append(linkPattern)
                     .appendTo($('#adviceLine'));
                 $('#question').html('источник найден?')
                 console.log("STAGE 7")
