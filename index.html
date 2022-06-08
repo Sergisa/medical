@@ -371,17 +371,35 @@
                 sequenceStage = sequence.step5;
             }
         }
-        sequenceStage.run()
+        if (sequenceStage) sequenceStage.run()
     }
 
     function shiftSequence(answer) {
-        if (answer === 1) {//yes
-            sequenceStage = sequenceStage.yes();
-            $("html, body").animate({scrollTop: $(document).height()}, 1000);
-        } else if (answer === 2) { //no
-            sequenceStage = sequenceStage.no();
+        //TODO: OPTIMIZE
+        console.log('СОСТОЯНИЕ:', sequence)
+        if (sequenceStage.research) {
+            if (collectData().hasResearchData()) {
+                console.log("Данные исследования есть")
+                if (answer === 1) {//yes
+                    sequenceStage = sequenceStage.yes();
+                    $("html, body").animate({scrollTop: $(document).height()}, 1000);
+                } else if (answer === 2) { //no
+                    sequenceStage = sequenceStage.no();
+                }
+                if (sequenceStage) sequenceStage.run();
+            } else {
+                alert("Введите данные исследования")
+            }
+        }else{
+            console.log("Данные исследования НЕ НУЖНЫ")
+            if (answer === 1) {//yes
+                sequenceStage = sequenceStage.yes();
+                $("html, body").animate({scrollTop: $(document).height()}, 1000);
+            } else if (answer === 2) { //no
+                sequenceStage = sequenceStage.no();
+            }
+            if (sequenceStage) sequenceStage.run();
         }
-        if (sequenceStage) sequenceStage.run();
     }
 
 
@@ -397,7 +415,7 @@
             conclusion = makeConclusion();
             sequence = getSequence(conclusion)
             startHelpSequence();
-            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+            $("html, body").animate({scrollTop: $(document).height()}, 1000);
         }
         return false;
     })

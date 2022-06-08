@@ -1,4 +1,4 @@
-let linkPattern = `<br><a href="#" type="button" class="" data-bs-toggle="modal" data-bs-target="#additionalResearch">Ввести данные эндоскопического исследования</a>`;
+let linkPattern = `<br><a href="#" type="button" class="text-black" data-bs-toggle="modal" data-bs-target="#additionalResearch">Ввести данные эндоскопического исследования</a>`;
 
 function result(index) {
     $('#questionBlock').toggleClass('d-inline d-none')
@@ -34,6 +34,7 @@ function getSequence(conclusion) {
             },
             yes: () => result(1),
             no: () => sequence.step2,
+            research: true,
             conclusion,
         },
         step2: {
@@ -48,27 +49,21 @@ function getSequence(conclusion) {
             },
             yes: () => result(3),
             no: () => sequence.step3,
+            research: true,
             conclusion,
         },
         step3: {
             run: function () {
-                /*if(!conclusion.explicit){
-                    sequence.step5.run()
-                    return
-                }*/
                 $('#question').html('Кровотечение продолжается?')
                 console.log("STAGE 3")
             },
             yes: () => sequence.step4,
             no: () => sequence.step5,
+            research: false,
             conclusion,
         },
         step4: {
             run: function () {
-                /*if(!conclusion.explicit){
-                    sequence.step5.run()
-                    return
-                }*/
                 advicePattern.clone()
                     .html('КТ-ангиография и/или Инструментально-ассистированная энтероскопия и/или Сцинтиграфия и/или Хирургическое вмешательство')
                     .appendTo($('#adviceLine'))
@@ -77,6 +72,7 @@ function getSequence(conclusion) {
             },
             yes: () => result(2),
             no: () => sequence.step5,
+            research: false,
             conclusion,
         },
         step5: {
@@ -87,6 +83,7 @@ function getSequence(conclusion) {
             },
             yes: () => sequence.step6,
             no: () => sequence.step7,
+            research: false,
             conclusion,
         },
         step6: {
@@ -99,6 +96,7 @@ function getSequence(conclusion) {
             },
             yes: () => null,
             no: () => sequence.step2,
+            research: false,
             conclusion,
         },
         step7: {
@@ -112,17 +110,16 @@ function getSequence(conclusion) {
             },
             yes: () => sequence.step8,
             no: () => result('Консервативное наблюдение'),
+            research: true,
             conclusion,
         },
         step8: {
             run: function () {
-                /*advicePattern.clone()
-                    .html('ВКЭ').appendTo($('#adviceLine'));*/
-                /*$('#question').html('источник найден?')*/
                 console.log("STAGE 8")
             },
             yes: () => result('Консервативное наблюдение'),
             no: () => sequence.step6,
+            research: false,
             conclusion,
         },
     };
