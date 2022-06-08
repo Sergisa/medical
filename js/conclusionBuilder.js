@@ -33,6 +33,16 @@ let localizationDefinition = {
     3: "нижних"
 }
 
+let reasonsList = {
+    1: "варикозное расширение вен ЖКТ",
+    2: "дивертикулы ЖКТ",
+    3: "эрозивно-язвенные поражения тонкой/толстой кишки",
+    4: "эрозивно-язвенные поражения верхних отделов ЖКТ",
+    5: "сосудистые мальформации ЖКТ",
+    6: "целиакия",
+    7: "опухолевые заболевания ЖКТ",
+}
+
 function localizationResolver(signs) {
     let upProbability = Math.exp(-(
         coefficientsForUP.freeCoefficient +
@@ -70,29 +80,29 @@ function localizationResolver(signs) {
 
 function bleedReasonResolver(signs) {
     if (signs.v34 || signs.v35) {
-        return "варикозное расширение вен ЖКТ"
+        return 1
     } else if (signs.v25 || signs.v27) {
-        return "дивертикулы ЖКТ";
+        return 2;
     } else if (signs.v21 || signs.v23 || signs.v25 || signs.v30 || signs.v31 || signs.v32 || signs.v33) {
-        return "эрозивно-язвенные поражения тонкой/толстой кишки";
+        return 3;
     } else if (signs.v21 || signs.v23 || signs.v24 || signs.v28 || signs.v32 || signs.v33) {
-        return "эрозивно-язвенные поражения верхних отделов ЖКТ";
+        return 4;
     } else if (signs.v28 || signs.v29 || signs.v34) {
-        return "сосудистые мальформации ЖКТ"
+        return 5
     } else if (signs.v22 || signs.v31) {
-        return "целиакия";
+        return 6;
     } else {
-        return "опухолевые заболевания ЖКТ";
+        return 7;
     }
 }
 
 function conclusionBuilder(conclusion) {
     return {
         explicit: conclusion === undefined ? null : conclusion.explicit,
-        bloodLossHardness: conclusion === undefined ? '' : conclusion.bloodLossHardness,
-        bleedHardness: conclusion === undefined ? '' : conclusion.bleedHardness,
-        localization: conclusion === undefined ? '' : conclusion.localization,
-        reason: conclusion === undefined ? '' : conclusion.reason,
+        bloodLossHardness: conclusion === undefined ? 0 : conclusion.bloodLossHardness,
+        bleedHardness: conclusion === undefined ? 0 : conclusion.bleedHardness,
+        localization: conclusion === undefined ? 0 : conclusion.localization,
+        reason: conclusion === undefined ? 0 : conclusion.reason,
         andExplicit(indexes) {
             console.log('Определяю явность')
             if (indexes.bloodVomit || indexes.coffeeVomit || indexes.melena || indexes.hematohesia) {
@@ -165,6 +175,7 @@ function conclusionBuilder(conclusion) {
             return this;
         },
         andResolveReason(signs) {
+            console.log('Определяю причины', signs)
             this.reason = bleedReasonResolver(signs)
             return this;
         },
@@ -175,6 +186,7 @@ function conclusionBuilder(conclusion) {
                 bloodLossHardness: that.bloodLossHardness,
                 bleedHardness: that.bleedHardness,
                 localizationPredict: that.localization,
+                reason: that.reason,
             }
         },
         getTag() {
@@ -187,8 +199,6 @@ function conclusionBuilder(conclusion) {
                     } else if (this.bloodLossHardness === 3) {
                         return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени` : '.'
                     }
-                }).append(() => {
-                    //return this.reason ? `, источником которого послужили : <b>${this.reason}</b>` : '.'
                 })
         }
     }

@@ -4,9 +4,16 @@ function result(index) {
     conclusion.localization = index;
     console.log("RESULT:", conclusion)
 
-    $('.postConclusion').html(conclusionBuilder(conclusion).getTag().clone().toggleClass('alert-info alert-primary'))
+    $('.postConclusion').html(
+        conclusionBuilder(conclusion)
+            .andResolveReason(collectData())
+            .getTag()
+            .clone()
+            .append(`, источником которого послужили : <b>${reasonsList[conclusion.reason]}</b>`)
+            .toggleClass('alert-info alert-primary')
+    )
     $('.postConclusion').parent().toggleClass('d-none d-block')
-    $("html, body").animate({ scrollTop: $(document).height() }, 1000);
+    $("html, body").animate({scrollTop: $(document).height()}, 1000);
 
 }
 
