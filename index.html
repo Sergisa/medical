@@ -17,10 +17,6 @@
             font-weight: bold;
             background-color: #CFD8DC !important;
         }
-
-        .bg-light {
-
-        }
     </style>
 </head>
 <body>
@@ -325,7 +321,6 @@
             .andExplicit(collectData())
             .predictLocalization(collectData())
             .andResolveReason(collectData())
-        console.log(conclusion)
         $('.preConclusion div').html(conclusion.getTag().clone())
         window.conclusion = conclusion;
         return conclusion.getConclusion();
