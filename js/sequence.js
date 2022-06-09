@@ -65,13 +65,14 @@ function getSequence() {
             run: function () {
                 advicePattern.clone()
                     .html('КТ-ангиография и/или Инструментально-ассистированная энтероскопия и/или Сцинтиграфия и/или Хирургическое вмешательство')
+                    .append(linkPattern)
                     .appendTo($('#adviceLine'))
                 $('#question').html('Источник найден?')
                 console.log("STAGE 4")
             },
             yes: () => result(2),
             no: () => sequence.step5,
-            research: false,
+            research: true,
         },
         step5: {
             run: function () {
@@ -87,13 +88,14 @@ function getSequence() {
             run: function () {
                 advicePattern.clone()
                     .html('Инструментально-ассистированная энтероскопия и/или Хирургическое вмешательство')
+                    .append(linkPattern)
                     .appendTo($('#adviceLine'))
                 console.log("STAGE 6")
                 result(2)
             },
             yes: () => null,
             no: () => sequence.step2,
-            research: false,
+            research: true,
         },
         step7: {
             run: function () {
