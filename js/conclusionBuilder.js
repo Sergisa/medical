@@ -103,15 +103,11 @@ function conclusionBuilder(conclusion) {
                 console.log('EXPLICIT')
                 this.explicit = true;
             }
-            if (indexes.collaptoidState && indexes.gastrointestinalUcler && indexes.stickySweat) {
-                console.log('NOT EXPLICIT')
-                this.explicit = false;
-            }
-            if (indexes.paleSkin && indexes.gastrointestinalUcler && indexes.hemoglobinFalls) {
-                console.log('NOT EXPLICIT')
-                this.explicit = false;
-            }
-            if (indexes.hiddenBleeding) {
+            if (
+                (indexes.collaptoidState && indexes.gastrointestinalUcler && indexes.stickySweat) ||
+                (indexes.paleSkin && indexes.gastrointestinalUcler && indexes.hemoglobinFalls) ||
+                (indexes.hiddenBleeding)
+            ) {
                 console.log('NOT EXPLICIT')
                 this.explicit = false;
             }
