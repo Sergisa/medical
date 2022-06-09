@@ -15,8 +15,7 @@ function result(index) {
             .toggleClass('alert-info alert-primary')
     )
     $('.postConclusion').parent().toggleClass('d-none d-block')
-    $("html, body").animate({scrollTop: $(document).height()}, 1000);
-
+    $.moveBottom()
 }
 
 function getSequence(conclusion) {

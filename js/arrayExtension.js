@@ -10,3 +10,8 @@ Array.prototype.maxIndex = function () {
 Array.prototype.minIndex = function () {
     return this.indexOf(Math.min.apply(null, this))
 }
+$.moveBottom = function (speed) {
+    $("html, body").animate({
+        scrollTop: $(document).height()
+    }, speed ?? 1000);
+}

@@ -321,9 +321,9 @@
 </body>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery3.6.0.min.js"></script>
 <script src="js/arrayExtension.js"></script>
 <script src="js/conclusionBuilder.js"></script>
-<script src="js/jquery3.6.0.min.js"></script>
 <script src="js/formValidation.js"></script>
 <script src="js/sequence.js"></script>
 <script>
@@ -375,30 +375,18 @@
     }
 
     function shiftSequence(answer) {
-        //TODO: OPTIMIZE
-        console.log('СОСТОЯНИЕ:', sequence)
-        if (sequenceStage.research) {
-            if (collectData().hasResearchData()) {
-                console.log("Данные исследования есть")
-                if (answer === 1) {//yes
-                    sequenceStage = sequenceStage.yes();
-                    $("html, body").animate({scrollTop: $(document).height()}, 1000);
-                } else if (answer === 2) { //no
-                    sequenceStage = sequenceStage.no();
-                }
-                if (sequenceStage) sequenceStage.run();
-            } else {
-                alert("Введите данные исследования")
-            }
-        }else{
-            console.log("Данные исследования НЕ НУЖНЫ")
+        console.log('ТЕКУЩЕЕ СОСТОЯНИЕ:', sequenceStage)
+        if (collectData().hasResearchData() || !sequenceStage.research) {
+            console.log("Данные исследования не нужны")
             if (answer === 1) {//yes
                 sequenceStage = sequenceStage.yes();
-                $("html, body").animate({scrollTop: $(document).height()}, 1000);
+                $.moveBottom()
             } else if (answer === 2) { //no
                 sequenceStage = sequenceStage.no();
             }
             if (sequenceStage) sequenceStage.run();
+        } else if (sequenceStage.research && !collectData().hasResearchData()) {
+            alert("Введите данные исследования")
         }
     }
 
@@ -415,7 +403,7 @@
             conclusion = makeConclusion();
             sequence = getSequence(conclusion)
             startHelpSequence();
-            $("html, body").animate({scrollTop: $(document).height()}, 1000);
+            $.moveBottom()
         }
         return false;
     })
