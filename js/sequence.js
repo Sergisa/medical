@@ -1,22 +1,27 @@
 let linkPattern = `<br><a href="#" type="button" class="text-black" data-bs-toggle="modal" data-bs-target="#additionalResearch">Ввести данные эндоскопического исследования</a>`;
 
-function result(index) {
+function result(localizationIndex) {
     $('#questionBlock').toggleClass('d-inline d-none')
     console.log("RESULT:", conclusion)
-    $('.postConclusion').html(
-        conclusionBuilder(conclusion)
-            .setLocalization(index)
-            .andResolveReason(collectData())
-            .getTag()
-            .clone()
-            .append(`, источником которого послужили : <b>${reasonsList[conclusion.reason]}</b>`)
-            .toggleClass('alert-info alert-primary')
-    )
-    $('.postConclusion').parent().toggleClass('d-none d-block')
+    if (localizationIndex === 0) { // терапия
+        $('.postConclusion').html(
+            $(`<div class="alert alert-info my-2" role="alert">Консервативная терапия/наблюдение</div>`)
+        ).parent().toggleClass('d-none d-block')
+    } else {
+        $('.postConclusion').html(
+            conclusionBuilder(conclusion)
+                .setLocalization(localizationIndex)
+                .andResolveReason(collectData())
+                .getTag()
+                .clone()
+                .append(`, источником которого послужили : <b>${reasonsList[conclusion.reason]}</b>`)
+                .toggleClass('alert-info alert-primary')
+        ).parent().toggleClass('d-none d-block')
+    }
     $.moveBottom()
 }
 
-function getSequence(conclusion) {
+function getSequence() {
     let advicePattern = $(`<div class="alert alert-info d-inline-block me-1" role="alert" id="text">DDD</div>`)
     return {
         context: this,
@@ -32,7 +37,6 @@ function getSequence(conclusion) {
             yes: () => result(1),
             no: () => sequence.step2,
             research: true,
-            conclusion,
         },
         step2: {
             run: function () {
@@ -47,7 +51,6 @@ function getSequence(conclusion) {
             yes: () => result(3),
             no: () => sequence.step3,
             research: true,
-            conclusion,
         },
         step3: {
             run: function () {
@@ -57,7 +60,6 @@ function getSequence(conclusion) {
             yes: () => sequence.step4,
             no: () => sequence.step5,
             research: false,
-            conclusion,
         },
         step4: {
             run: function () {
@@ -70,7 +72,6 @@ function getSequence(conclusion) {
             yes: () => result(2),
             no: () => sequence.step5,
             research: false,
-            conclusion,
         },
         step5: {
             run: function () {
@@ -81,7 +82,6 @@ function getSequence(conclusion) {
             yes: () => sequence.step6,
             no: () => sequence.step7,
             research: false,
-            conclusion,
         },
         step6: {
             run: function () {
@@ -94,7 +94,6 @@ function getSequence(conclusion) {
             yes: () => null,
             no: () => sequence.step2,
             research: false,
-            conclusion,
         },
         step7: {
             run: function () {
@@ -106,18 +105,16 @@ function getSequence(conclusion) {
                 console.log("STAGE 7")
             },
             yes: () => sequence.step8,
-            no: () => result('Консервативное наблюдение'),
+            no: () => result(0),
             research: true,
-            conclusion,
         },
         step8: {
             run: function () {
                 console.log("STAGE 8")
             },
-            yes: () => result('Консервативное наблюдение'),
+            yes: () => result(0),
             no: () => sequence.step6,
             research: false,
-            conclusion,
         },
     };
 }
