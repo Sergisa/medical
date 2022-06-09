@@ -43,29 +43,23 @@ let reasonsList = {
     7: "опухолевые заболевания ЖКТ",
 }
 
+function solveFor(coefficients, signs) {
+    return Math.exp(-(
+        coefficients.freeCoefficient +
+        (coefficients.hemoglobin * signs.hemoglobin) +
+        (signs.gender === 'female' ? coefficients.female : coefficients.male) +
+        (signs.hematohesia ? coefficients.hematohesia : 0) +
+        (signs.anamnesisGastrointestinalUpperBleeding ? coefficients.anamnesisGastrointestinalUpperBleeding : 0) +
+        (signs.anamnesisGastrointestinalUndefinedBleeding ? coefficients.anamnesisGastrointestinalUndefinedBleeding : 0) +
+        (signs.melena ? coefficients.melena : 0) +
+        (signs.coffeeVomit ? coefficients.coffeeVomit : 0) +
+        (signs.bloodVomit ? coefficients.bloodVomit : 0)
+    ));
+}
+
 function localizationResolver(signs) {
-    let upProbability = Math.exp(-(
-        coefficientsForUP.freeCoefficient +
-        (coefficientsForUP.hemoglobin * signs.hemoglobin) +
-        (signs.gender === 'female' ? coefficientsForUP.female : coefficientsForUP.male) +
-        (signs.hematohesia ? coefficientsForUP.hematohesia : 0) +
-        (signs.anamnesisGastrointestinalUpperBleeding ? coefficientsForUP.anamnesisGastrointestinalUpperBleeding : 0) +
-        (signs.anamnesisGastrointestinalUndefinedBleeding ? coefficientsForUP.anamnesisGastrointestinalUndefinedBleeding : 0) +
-        (signs.melena ? coefficientsForUP.melena : 0) +
-        (signs.coffeeVomit ? coefficientsForUP.coffeeVomit : 0) +
-        (signs.bloodVomit ? coefficientsForUP.bloodVomit : 0)
-    ));
-    let middleProbability = Math.exp(-(
-        coefficientsForMIDDLE.freeCoefficient +
-        (coefficientsForMIDDLE.hemoglobin * signs.hemoglobin) +
-        (signs.gender === 'female' ? coefficientsForMIDDLE.female : coefficientsForMIDDLE.male) +
-        (signs.hematohesia ? coefficientsForMIDDLE.hematohesia : 0) +
-        (signs.anamnesisGastrointestinalUpperBleeding ? coefficientsForMIDDLE.anamnesisGastrointestinalUpperBleeding : 0) +
-        (signs.anamnesisGastrointestinalUndefinedBleeding ? coefficientsForMIDDLE.anamnesisGastrointestinalUndefinedBleeding : 0) +
-        (signs.melena ? coefficientsForMIDDLE.melena : 0) +
-        (signs.coffeeVomit ? coefficientsForMIDDLE.coffeeVomit : 0) +
-        (signs.bloodVomit ? coefficientsForMIDDLE.bloodVomit : 0)
-    ));
+    let upProbability = solveFor(coefficientsForUP, signs)
+    let middleProbability = solveFor(coefficientsForMIDDLE, signs)
     upProbability = (1 / (1 + upProbability));
     middleProbability = (1 / (1 + middleProbability));
     let downProbability = 1 - (upProbability + middleProbability)
