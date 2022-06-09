@@ -2,12 +2,10 @@ let linkPattern = `<br><a href="#" type="button" class="text-black" data-bs-togg
 
 function result(index) {
     $('#questionBlock').toggleClass('d-inline d-none')
-    console.log(index)
-    conclusion.localization = index;
     console.log("RESULT:", conclusion)
-
     $('.postConclusion').html(
         conclusionBuilder(conclusion)
+            .setLocalization(index)
             .andResolveReason(collectData())
             .getTag()
             .clone()
