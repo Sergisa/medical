@@ -364,17 +364,19 @@
 
     function shiftSequence(answer) {
         console.log('ТЕКУЩЕЕ СОСТОЯНИЕ:', sequenceStage)
-        if (collectData().hasResearchData() || !sequenceStage.research) {
-            console.log("Данные исследования не нужны")
-            if (answer === 1) {//yes
+        if (answer === 1) {//yes
+            if (collectData().hasResearchData() || !sequenceStage.research) {
+                console.log("Данные исследования не нужны")
                 sequenceStage = sequenceStage.yes();
                 $.moveBottom()
-            } else if (answer === 2) { //no
-                sequenceStage = sequenceStage.no();
+
+                if (sequenceStage) sequenceStage.run();
+            } else if (sequenceStage.research && !collectData().hasResearchData()) {
+                alert("Введите данные исследования")
             }
+        } else if (answer === 2) { //no
+            sequenceStage = sequenceStage.no();
             if (sequenceStage) sequenceStage.run();
-        } else if (sequenceStage.research && !collectData().hasResearchData()) {
-            alert("Введите данные исследования")
         }
     }
 
