@@ -36,7 +36,6 @@ function collectData() {
         erythrocytes: parseFloat($('#erythrocytes').val().replaceAll(',', '.')),
         hemoglobin: parseFloat($('#hemoglobin').val()),
         pulse: parseFloat($('#pulse').val()),
-        bloodPressure: parseFloat($('#bloodArterialPressure').val()),
         hematocrit: parseFloat($('#hematocrit').val()),
 
         age: parseFloat($('#age').val()),
@@ -75,7 +74,21 @@ function collectData() {
         v34: $('#sign34').is(':checked'),
         v35: $('#sign35').is(':checked'),
         hasResearchData: function () {
-            return this.v21 || this.v22 || this.v23 || this.v24 || this.v25 || this.v26 || this.v27 || this.v28 || this.v29 || this.v30 || this.v31 || this.v32 || this.v33 || this.v34 || this.v35
+            return this.v21 ||
+                this.v22 ||
+                this.v23 ||
+                this.v24 ||
+                this.v25 ||
+                this.v26 ||
+                this.v27 ||
+                this.v28 ||
+                this.v29 ||
+                this.v30 ||
+                this.v31 ||
+                this.v32 ||
+                this.v33 ||
+                this.v34 ||
+                this.v35
         }
     }
 }
