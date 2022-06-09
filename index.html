@@ -337,7 +337,7 @@
     function startHelpSequence() {
         $('#helpSequence').removeClass('d-none')
         $('#adviceLine').empty()
-        if (conclusion.bleedHardness === 3 && conclusion.explicit) {
+        if (conclusion.DRICNecessity === 3 && conclusion.explicit) {
             $('#ORIT').html('<b>Рекумендуется направление в ОРИТ</b>')
         } else {
             $('#ORIT').html('')

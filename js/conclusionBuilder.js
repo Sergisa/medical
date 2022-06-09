@@ -94,7 +94,7 @@ function conclusionBuilder(conclusion) {
     return {
         explicit: conclusion === undefined ? null : conclusion.explicit,
         bloodLossHardness: conclusion === undefined ? 0 : conclusion.bloodLossHardness,
-        bleedHardness: conclusion === undefined ? 0 : conclusion.bleedHardness,
+        DRICNecessity: conclusion === undefined ? 0 : conclusion.DRICNecessity,
         localization: conclusion === undefined ? 0 : conclusion.localization,
         reason: conclusion === undefined ? 0 : conclusion.reason,
         andExplicit(indexes) {
@@ -143,16 +143,15 @@ function conclusionBuilder(conclusion) {
             return this;
         },
         andDRICNecessity(signs) {
-            let signsCount = (signs.age > 60) +
+            if ((signs.age > 60) +
                 (signs.pulse > 100) +
                 (signs.bloodArterialPressure < 100) +
                 (signs.hemoglobin < 100) +
                 signs.coffeeVomit +
                 signs.melena +
                 signs.lossConsciousness +
-                signs.additionalIllness
-            if (signsCount >= 4) {
-                this.bleedHardness = 3
+                signs.additionalIllness >= 4) {
+                this.DRICNecessity = 3
             }
             return this;
         },
@@ -174,7 +173,7 @@ function conclusionBuilder(conclusion) {
             return {
                 explicit: that.explicit,
                 bloodLossHardness: that.bloodLossHardness,
-                bleedHardness: that.bleedHardness,
+                DRICNecessity: that.DRICNecessity,
                 localizationPredict: that.localization,
                 reason: that.reason,
             }
