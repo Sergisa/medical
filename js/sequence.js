@@ -94,7 +94,7 @@ function getSequence() {
                 result(2)
             },
             yes: () => null,
-            no: () => sequence.step2,
+            no: () => null,
             research: true,
         },
         step7: {
@@ -112,6 +112,7 @@ function getSequence() {
         },
         step8: {
             run: function () {
+                // TODO: Никто не знает что тут должно быть
                 console.log("STAGE 8")
             },
             yes: () => result(0),
