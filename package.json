@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "js-minify": "terser js/arrayExtension.js js/conclusionBuilder.js js/formValidation.js js/sequence.js -o dist/bundle.min.js -c -m",
+    "js-minify-prod": "terser js/arrayExtension.js js/conclusionBuilder.js js/formValidation.js js/sequence.js -o dist/bundle.min.js -c ecma=5,ie8=true,drop_console=true -m",
+    "js-minify-dev": "terser js/arrayExtension.js js/conclusionBuilder.js js/formValidation.js js/sequence.js -o dist/bundle.min.js",
     "help-terser": "terser --help"
   },
   "author": "",
