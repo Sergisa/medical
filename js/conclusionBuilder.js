@@ -166,7 +166,7 @@ function conclusionBuilder(conclusion) {
         },
         andResolveReason(signs) {
             console.log('Определяю причины', signs)
-            this.reason = bleedReasonResolver(signs)
+            this.reason = bleedReasonResolver.call(this, signs)
             return this;
         },
         getConclusion() {
