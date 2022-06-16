@@ -2,14 +2,14 @@
     'use strict'
 
     function checkDecimalValidity(field, event) {
-        if (!/^\d+[,.]+\d+$/.test(field.value)) {
-            console.error("Неверное значение ")
+        if (!/^\d+([,.]+\d+)+$/.test(field.value)) {
+            console.error("Неверное значение")
             field.setCustomValidity("Введите десятичное значение")
             event.preventDefault()
             event.stopPropagation()
             return false
         } else {
-            console.log("Нет ошибки EDIT")
+            console.log("Нет ошибки")
             field.setCustomValidity("");
         }
     }
