@@ -92,3 +92,15 @@ function collectData() {
         }
     }
 }
+
+function collectFinalData() {
+    return {
+        r1: $('#r1').is(':checked'),
+        r2: $('#r2').is(':checked'),
+        r3: $('#r3').is(':checked'),
+        r4: $('#r4').is(':checked'),
+        hasData: function () {
+            return this.r1 || this.r2 || this.r3 || this.r4;
+        }
+    }
+}

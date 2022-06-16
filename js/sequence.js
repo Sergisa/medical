@@ -112,7 +112,7 @@ function getSequence() {
         },
         step8: {
             run: function () {
-                // TODO: Никто не знает что тут должно быть
+                modalReasonsList.show();
                 console.log("STAGE 8")
             },
             yes: () => result(0),
