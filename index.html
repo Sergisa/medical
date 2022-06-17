@@ -391,7 +391,6 @@
     }
 
     function shiftSequence(answer) {
-        console.log('ТЕКУЩЕЕ СОСТОЯНИЕ:', sequenceStage)
         if (answer === 1) {//yes
             if (collectData().hasResearchData() || !sequenceStage.research) {
                 console.log("Данные исследования не нужны")
@@ -413,8 +412,7 @@
         modalAdditionalResearch.hide();
     });
     document.getElementById('reasonsListSave').addEventListener('click', function () {
-        /*TODO: симуляция нажатия на да или нет [CODE]: shiftSequence(1|2)*/
-        collectFinalData()
+        shiftSequence(collectFinalData().hasChecked() ? 1 : 2)
         modalReasonsList.hide();
     });
     document.getElementById('aprioriForm').addEventListener('submit', function (event) {

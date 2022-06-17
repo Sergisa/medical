@@ -101,6 +101,9 @@ function collectFinalData() {
         r4: $('#r4').is(':checked'),
         hasData: function () {
             return this.r1 || this.r2 || this.r3 || this.r4;
+        },
+        hasChecked: function () {
+            return this.hasData();
         }
     }
 }
