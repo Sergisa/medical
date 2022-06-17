@@ -1,4 +1,16 @@
 let linkPattern = `<br><a href="#" type="button" class="text-black" data-bs-toggle="modal" data-bs-target="#additionalResearch">Ввести данные эндоскопического исследования</a>`;
+let advicePattern = $(`<div class="alert alert-info d-inline-block me-1" role="alert" id="text">EMPTY</div>`)
+
+function adviceResearch(researchName, needDataEdit) {
+    advicePattern.clone()
+        .html('ЭГДС')
+        .append(needDataEdit ? linkPattern : null)
+        .appendTo($('#adviceLine'))
+}
+
+function showQuestion(question) {
+    $('#question').html(question)
+}
 
 function result(localizationIndex) {
     $('#questionBlock').toggleClass('d-inline d-none')
@@ -22,17 +34,13 @@ function result(localizationIndex) {
 }
 
 function getSequence() {
-    let advicePattern = $(`<div class="alert alert-info d-inline-block me-1" role="alert" id="text">DDD</div>`)
     return {
         context: this,
         step1: {
             run: function () {
-                advicePattern.clone()
-                    .html('ЭГДС')
-                    .append(linkPattern)
-                    .appendTo($('#adviceLine'))
-                $('#question').html('Источник найден?')
-                console.log("STAGE 1")
+                adviceResearch('ЭГДС', true)
+                showQuestion('Источник найден?')
+                console.info("STAGE 1")
             },
             yes: () => result(1),
             no: () => sequence.step2,
@@ -40,13 +48,9 @@ function getSequence() {
         },
         step2: {
             run: function () {
-                advicePattern
-                    .clone()
-                    .html('Колоноскопия')
-                    .append(linkPattern)
-                    .appendTo($('#adviceLine'))
-                $('#question').html('Источник найден?')
-                console.log("STAGE 2")
+                adviceResearch('Колоноскопия', true)
+                showQuestion('Источник найден?')
+                console.info("STAGE 2")
             },
             yes: () => result(3),
             no: () => sequence.step3,
@@ -54,8 +58,8 @@ function getSequence() {
         },
         step3: {
             run: function () {
-                $('#question').html('Кровотечение продолжается?')
-                console.log("STAGE 3")
+                showQuestion('Кровотечение продолжается?')
+                console.info("STAGE 3")
             },
             yes: () => sequence.step4,
             no: () => sequence.step5,
@@ -63,12 +67,9 @@ function getSequence() {
         },
         step4: {
             run: function () {
-                advicePattern.clone()
-                    .html('КТ-ангиография и/или Инструментально-ассистированная энтероскопия и/или Сцинтиграфия и/или Хирургическое вмешательство')
-                    .append(linkPattern)
-                    .appendTo($('#adviceLine'))
-                $('#question').html('Источник найден?')
-                console.log("STAGE 4")
+                adviceResearch('КТ-ангиография и/или Инструментально-ассистированная энтероскопия и/или Сцинтиграфия и/или Хирургическое вмешательство', true)
+                showQuestion('Источник найден?')
+                console.info("STAGE 4")
             },
             yes: () => result(2),
             no: () => sequence.step5,
@@ -76,9 +77,9 @@ function getSequence() {
         },
         step5: {
             run: function () {
-                advicePattern.clone().html('Rg с пассажем бария или КТЭ или МРЭ').appendTo($('#adviceLine'))
-                $('#question').html('Имеется стриктура?')
-                console.log("STAGE 5")
+                adviceResearch('Rg с пассажем бария или КТЭ или МРЭ')
+                showQuestion('Имеется стриктура?')
+                console.info("STAGE 5")
             },
             yes: () => sequence.step6,
             no: () => sequence.step7,
@@ -86,11 +87,8 @@ function getSequence() {
         },
         step6: {
             run: function () {
-                advicePattern.clone()
-                    .html('Инструментально-ассистированная энтероскопия и/или Хирургическое вмешательство')
-                    .append(linkPattern)
-                    .appendTo($('#adviceLine'))
-                console.log("STAGE 6")
+                adviceResearch('Инструментально-ассистированная энтероскопия и/или Хирургическое вмешательство', true)
+                console.info("STAGE 6")
                 result(2)
             },
             yes: () => null,
@@ -99,12 +97,9 @@ function getSequence() {
         },
         step7: {
             run: function () {
-                advicePattern.clone()
-                    .html('ВКЭ')
-                    .append(linkPattern)
-                    .appendTo($('#adviceLine'));
-                $('#question').html('источник найден?')
-                console.log("STAGE 7")
+                adviceResearch('ВКЭ', true)
+                showQuestion('источник найден?')
+                console.info("STAGE 7")
             },
             yes: () => sequence.step8,
             no: () => result(0),
@@ -113,7 +108,7 @@ function getSequence() {
         step8: {
             run: function () {
                 modalReasonsList.show();
-                console.log("STAGE 8")
+                console.info("STAGE 8")
             },
             yes: () => result(0),
             no: () => sequence.step6,
