@@ -8,6 +8,10 @@ function adviceResearch(researchName, needDataEdit) {
         .appendTo($('#adviceLine'))
 }
 
+function info(message) {
+    console.info(`%c ${message}`, 'color:#4CAF50; font-weight: bolder')
+}
+
 function showQuestion(question) {
     $('#question').html(question)
 }
@@ -40,7 +44,7 @@ function getSequence() {
             run: function () {
                 adviceResearch('ЭГДС', true)
                 showQuestion('Источник найден?')
-                console.info("STAGE 1")
+                info("STAGE 1")
             },
             yes: () => result(1),
             no: () => sequence.step2,
@@ -50,7 +54,7 @@ function getSequence() {
             run: function () {
                 adviceResearch('Колоноскопия', true)
                 showQuestion('Источник найден?')
-                console.info("STAGE 2")
+                info("STAGE 2")
             },
             yes: () => result(3),
             no: () => sequence.step3,
@@ -59,7 +63,7 @@ function getSequence() {
         step3: {
             run: function () {
                 showQuestion('Кровотечение продолжается?')
-                console.info("STAGE 3")
+                info("STAGE 3")
             },
             yes: () => sequence.step4,
             no: () => sequence.step5,
@@ -69,7 +73,7 @@ function getSequence() {
             run: function () {
                 adviceResearch('КТ-ангиография и/или Инструментально-ассистированная энтероскопия и/или Сцинтиграфия и/или Хирургическое вмешательство', true)
                 showQuestion('Источник найден?')
-                console.info("STAGE 4")
+                info("STAGE 4")
             },
             yes: () => result(2),
             no: () => sequence.step5,
@@ -79,7 +83,7 @@ function getSequence() {
             run: function () {
                 adviceResearch('Rg с пассажем бария или КТЭ или МРЭ')
                 showQuestion('Имеется стриктура?')
-                console.info("STAGE 5")
+                info("STAGE 5")
             },
             yes: () => sequence.step6,
             no: () => sequence.step7,
@@ -88,7 +92,7 @@ function getSequence() {
         step6: {
             run: function () {
                 adviceResearch('Инструментально-ассистированная энтероскопия и/или Хирургическое вмешательство', true)
-                console.info("STAGE 6")
+                info("STAGE 6")
                 result(2)
             },
             yes: () => null,
@@ -99,7 +103,7 @@ function getSequence() {
             run: function () {
                 adviceResearch('ВКЭ', true)
                 showQuestion('источник найден?')
-                console.info("STAGE 7")
+                info("STAGE 7")
             },
             yes: () => sequence.step8,
             no: () => result(0),
@@ -108,7 +112,7 @@ function getSequence() {
         step8: {
             run: function () {
                 modalReasonsList.show();
-                console.info("STAGE 8")
+                info("STAGE 8")
             },
             yes: () => result(0),
             no: () => sequence.step6,
