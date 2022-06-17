@@ -386,18 +386,7 @@
         } else {
             $('#ORIT').html('')
         }
-
-        if (conclusion.localizationPredict === 1) { // up
-            sequenceStage = sequence.step1;
-        } else if (conclusion.localizationPredict === 3) { //down
-            sequenceStage = sequence.step2;
-        } else if (conclusion.localizationPredict === 2) { //middle
-            if (conclusion.explicit) {
-                sequenceStage = sequence.step3;
-            } else {
-                sequenceStage = sequence.step5;
-            }
-        }
+        sequenceStage = sequence.step1;
         if (sequenceStage) sequenceStage.run()
     }
 
