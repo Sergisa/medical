@@ -3,7 +3,7 @@ let advicePattern = $(`<div class="alert alert-info d-inline-block me-1" role="a
 
 function adviceResearch(researchName, needDataEdit) {
     advicePattern.clone()
-        .html('ЭГДС')
+        .html(researchName)
         .append(needDataEdit ? linkPattern : null)
         .appendTo($('#adviceLine'))
 }
