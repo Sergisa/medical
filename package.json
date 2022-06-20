@@ -7,14 +7,21 @@
     "test": "jest",
     "js-minify-prod": "terser js/arrayExtension.js js/conclusionBuilder.js js/formValidation.js js/sequence.js -o dist/bundle.min.js -c ecma=5,ie8=true,drop_console=true -m",
     "js-minify-dev": "terser js/arrayExtension.js js/conclusionBuilder.js js/formValidation.js js/sequence.js -o dist/bundle.min.js",
-    "help-terser": "terser --help"
+    "css": "sass scss/bs-index.scss:css/output.css --load-path node_modules",
+    "css-min": "sass scss/bs-index.scss:css/output.min.css --load-path node_modules --style=compressed",
+    "css-icons": "sass scss/bs-icons.scss:css/bs-icons.min.css --load-path node_modules --style=compressed",
+    "help-terser": "terser --help",
+    "help-sass": "sass --help"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "jest": "^28.1.0"
+    "bootstrap": "^5.1.3",
+    "bootstrap-icons": "^1.8.3"
   },
   "devDependencies": {
+    "jest": "^28.1.0",
+    "sass": "^1.52.3",
     "terser": "^5.14.1"
   }
 }
