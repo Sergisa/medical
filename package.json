@@ -7,7 +7,7 @@
     "test": "jest",
     "js-minify-prod": "terser src/js/arrayExtension.js src/js/conclusionBuilder.js src/js/formValidation.js src/js/sequence.js -o dist/js/bundle.min.js -c ecma=5,ie8=true,drop_console=true -m",
     "js-minify-dev": "terser src/js/arrayExtension.js src/js/conclusionBuilder.js src/js/formValidation.js src/js/sequence.js -o dist/js/bundle.min.js",
-    "css": "sass src/scss/bs-index.scss:dist/css/output.css --load-path node_modules",
+    "css": "npm run css-min && npm run css-icons",
     "css-min": "sass src/scss/bs-index.scss:dist/css/output.min.css --load-path node_modules --style=compressed",
     "css-icons": "sass src/scss/bs-icons.scss:dist/css/bs-icons.min.css --load-path node_modules --style=compressed",
     "help-terser": "terser --help",
