@@ -118,6 +118,51 @@ function getSequence() {
             no: () => sequence.step6,
             research: false,
         },
+        step9: {
+            run: function () {
+                modalReasonsList.show();
+                info("STAGE 8")
+            },
+            yes: () => result(0),
+            no: () => sequence.step6,
+            research: false,
+        },
+        step10: {
+            run: function () {
+                modalReasonsList.show();
+                info("STAGE 8")
+            },
+            yes: () => result(0),
+            no: () => sequence.step6,
+            research: false,
+        },
+        step11: {
+            run: function () {
+                modalReasonsList.show();
+                info("STAGE 8")
+            },
+            yes: () => result(0),
+            no: () => sequence.step6,
+            research: false,
+        },
+        step12: {
+            run: function () {
+                modalReasonsList.show();
+                info("STAGE 8")
+            },
+            yes: () => result(0),
+            no: () => sequence.step6,
+            research: false,
+        },
+        step13: {
+            run: function () {
+                modalReasonsList.show();
+                info("STAGE 8")
+            },
+            yes: () => result(0),
+            no: () => sequence.step6,
+            research: false,
+        },
     };
 }
 
