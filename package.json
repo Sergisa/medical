@@ -9,7 +9,7 @@
     "js-minify-dev": "terser src/js/arrayExtension.js src/js/conclusionBuilder.js src/js/formValidation.js src/js/sequence.js src/js/testDriver.js -o dist/js/bundle.min.js",
     "css": "npm run css-min && npm run css-icons",
     "css-min": "sass src/scss/bs-index.scss:dist/css/output.min.css --load-path node_modules --style=compressed",
-    "css-icons": "sass src/scss/bs-icons.scss:dist/css/bs-icons.min.css --load-path node_modules --style=compressed",
+    "css-icons": "sass src/scss/bs-icons.scss:dist/css/bs-icons.min.css --load-path node_modules --style=compressed --no-quiet",
     "help-terser": "terser --help",
     "help-sass": "sass --help"
   },

@@ -24,25 +24,33 @@ $Clouds: #ECF0F1;
 $Silver: #BDC3C7;
 $Concrete: #95A5A6;
 $Asbestos: #7F8C8D;
-
-$blue: #2980b9;
-$red: #e74c3c;
-$orange: #f39c12;
-$yellow: #f1c40f;
-$green: #27ae60;
-$teal: #16a085;
-$cyan: #2980b9;
-$primary: #16a085 !default;
-$dark: #2c3e50 !default;
-
+$enable-shadows:false;
 //$body-bg: $WetAsphalt;
 @import "bootstrap/scss/functions";
+
+
+$blue: $BelizeHole;
+$red: $Alizarin;
+$orange: $Orange;
+$yellow: $SunFlower;
+$green: $Nephritis;
+$teal: $GreenSea;
+$cyan: $BelizeHole;
+
+$primary: $Turquoise;
+$secondary: $BelizeHole;
+$success: $Nephritis;
+$info: $GreenSea;
+$warning: $Orange;
+$danger: $Pomegranate;
+$light: $Clouds;
+$dark: $MidnightBlue;
+
 $form-check-input-width: 1.1em;
 $form-check-input-width: 1.1em;
 $form-check-input-border: none;
 $form-check-input-border-radius: 4px;
 $form-check-input-bg: $Silver;
-$form-check-input-focus-box-shadow: none;
 
 $input-border-radius: 6px;
 $input-color: #495057;
@@ -51,9 +59,14 @@ $input-border-width: 2px;
 
 $input-focus-border-color: $Turquoise;
 $input-focus-color: #495057;
-$input-focus-box-shadow: none;
 $body-color: $WetAsphalt;
+$btn-focus-box-shadow: none;
+$btn-active-box-shadow: none;
+//$btn-box-shadow: none;
+//$input-btn-focus-box-shadow: none;
 @import "bootstrap/scss/variables";
+$form-check-input-focus-box-shadow: none;
+$input-focus-box-shadow: none;
 $form-check-input-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 10l3 3l6-6'/></svg>");
 $form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-input-checked-color}'/></svg>");
 #aprioriForm {
