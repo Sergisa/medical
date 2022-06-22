@@ -1,4 +1,5 @@
 function fillTestData() {
+    $('#aprioriForm').get(0).reset();
     $('#erythrocytes').val(5.4);
     $('#hemoglobin').val(124);
     $('#pulse').val(50);
