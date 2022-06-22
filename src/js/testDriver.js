@@ -6,7 +6,7 @@ function fillTestData() {
     $('#hematocrit').val(34);
     $('#age').val(36);
     $('#bloodArterialPressure').val(120);
-    $('#lossConsciousness').attr('checked', true);
-    $('#anamnesisGastrointestinalUndefinedBleeding').attr('checked', true);
-    $('input#male').attr('checked', true);
+    $('#lossConsciousness').get(0).checked = true;
+    $('#anamnesisGastrointestinalUndefinedBleeding').get(0).checked = true;
+    $('input#male').get(0).checked = true;
 }
