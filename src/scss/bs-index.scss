@@ -24,7 +24,7 @@ $Clouds: #ECF0F1;
 $Silver: #BDC3C7;
 $Concrete: #95A5A6;
 $Asbestos: #7F8C8D;
-$enable-shadows:false;
+$enable-shadows: false;
 //$body-bg: $WetAsphalt;
 @import "bootstrap/scss/functions";
 
@@ -46,23 +46,31 @@ $danger: $Pomegranate;
 $light: $Clouds;
 $dark: $MidnightBlue;
 
+/**CHECKBOX**/
 $form-check-input-width: 1.1em;
 $form-check-input-width: 1.1em;
 $form-check-input-border: none;
 $form-check-input-border-radius: 4px;
 $form-check-input-bg: $Silver;
 
+/*TEXT INPUT*/
 $input-border-radius: 6px;
 $input-color: #495057;
 $input-border-color: transparent;
 $input-border-width: 2px;
-
 $input-focus-border-color: $Turquoise;
+
 $input-focus-color: #495057;
-$body-color: $WetAsphalt;
 $btn-focus-width: 0;
 $form-check-input-focus-box-shadow: none;
 $input-focus-box-shadow: none;
+
+/*ALERT*/
+$alert-bg-scale: -65%;
+
+/*BODY*/
+$body-color: $WetAsphalt;
+
 @import "bootstrap/scss/variables";
 $form-check-input-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 10l3 3l6-6'/></svg>");
 $form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-input-checked-color}'/></svg>");
