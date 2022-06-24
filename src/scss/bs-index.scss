@@ -80,6 +80,7 @@ $form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://w
 }
 
 @import "bootstrap/scss/mixins";
+@import "mixins/buttons";
 @import "bootstrap/scss/utilities";
 @import "bootstrap/scss/root";
 @import "bootstrap/scss/reboot";
