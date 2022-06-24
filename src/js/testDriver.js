@@ -1,3 +1,16 @@
+$('<button></button>', {
+    class: "test btn btn-info",
+    id: 'testButton',
+    text: 'T',
+    type: 'button'
+}).css({
+    position: 'absolute',
+    color: '#2c3e50',
+    fontWeight: 'bolder',
+    top: '8px',
+    right: '8px'
+}).appendTo(location.host !== "sergisa.smrtp.ru" ? $('#aprioriForm').css('position', 'relative') : null).click(fillTestData)
+
 function fillTestData() {
     $('#aprioriForm').get(0).reset();
     $('#erythrocytes').val(5.4);
