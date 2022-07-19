@@ -39,7 +39,6 @@ function result(localizationIndex) {
 
 function getSequence() {
     return {
-        context: this,
         step1: {
             run: function () {
                 adviceResearch('ЭГДС', true)
@@ -163,6 +162,33 @@ function getSequence() {
             no: () => sequence.step6,
             research: false,
         },
+        upVerify: {
+            run: function () {
+                modalReasonsList.show();
+                info("STAGE 8")
+            },
+            yes: () => result(0),
+            no: () => sequence.step6,
+            research: false,
+        },
+        middleVerify: {
+            run: function () {
+                modalReasonsList.show();
+                info("STAGE 8")
+            },
+            yes: () => result(0),
+            no: () => sequence.step6,
+            research: false,
+        },
+        downVerify: {
+            run: function () {
+                modalReasonsList.show();
+                info("STAGE 8")
+            },
+            yes: () => result(0),
+            no: () => sequence.step6,
+            research: false,
+        }
     };
 }
 

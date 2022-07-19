@@ -384,6 +384,11 @@
         } else {
             $('#ORIT').html('')
         }
+        if (conclusion.explicit) {
+            sequenceStage = sequence.step3;
+        } else {
+            sequenceStage = sequence.step5;
+        }
         sequenceStage = sequence.step1;
         if (sequenceStage) sequenceStage.run()
     }
