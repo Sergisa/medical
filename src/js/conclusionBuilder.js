@@ -34,13 +34,15 @@ let localizationDefinition = {
 }
 
 let reasonsList = {
-    1: "варикозное расширение вен ЖКТ",
-    2: "дивертикулы ЖКТ",
-    3: "эрозивно-язвенные поражения тонкой/толстой кишки", // если средний нижний отдел
-    4: "эрозивно-язвенные поражения верхних отделов ЖКТ", // если верхний отдел
-    5: "сосудистые мальформации ЖКТ",
-    6: "целиакия",
-    7: "опухолевые заболевания ЖКТ",
+    1: "Геморрой неуточненный",
+    2: "Дивертикулярная болезнь",
+    3: "Эрозивно-язвенные поражения тонкой/толстой кишки", // если средний нижний отдел
+    4: "Эрозивно-язвенные поражения верхних отделов ЖКТ", // если верхний отдел
+    5: "Ангиоэктазии/телеангиоэктазии/венозные мальформации",
+    6: "Целиакия",
+    7: "Свищ между крупным сосудом и просветом ЖКТ",
+    8: "Синдром Меллори-Вейса",
+    9: "Опухолевые заболевания ЖКТ",
 }
 
 function solveFor(coefficients, signs) {
@@ -74,28 +76,56 @@ function localizationResolver(signs) {
 
 function bleedReasonResolver(signs) {
     console.log(this);
-    if (signs.v34 || signs.v35) {
+    if (signs.v45 || signs.v46) {
         return 1
-    } else if (signs.v25 || signs.v27) {
+    } else if (signs.v36 || signs.v38) {
         return 2;
-    } else if (signs.v21 || signs.v23 || signs.v25 || signs.v30 || signs.v31 || signs.v32 || signs.v33) {
+    } else if (signs.v32 || signs.v34 || signs.v36 || signs.v41 || signs.v42 || signs.v43 || signs.v44) {
         return 3;
-    } else if (signs.v21 || signs.v23 || signs.v24 || signs.v28 || signs.v32 || signs.v33) {
+    } else if (signs.v32 || signs.v34 || signs.v35 || signs.v39 || signs.v43 || signs.v44) {
         return 4;
-    } else if (signs.v28 || signs.v29 || signs.v34) {
-        return 5
-    } else if (signs.v22 || signs.v31) {
+    } else if (signs.v39 || signs.v40 || signs.v45) {
+        return 5;
+    } else if (signs.v33 || signs.v42) {
         return 6;
-    } else {
+    } else if (signs.v47) {
         return 7;
+    } else if (signs.v48) {
+        return 8;
+    } else {
+        return 9;
     }
+}
+
+function riskResolver(signs) {
+    let levelCount = 0;
+    if (signs.age >= 60 && signs.age <= 79) {
+        levelCount += 1;
+    } else if (signs.age >= 80) {
+        levelCount += 2;
+    }
+
+    if (signs.bloodArterialPressure >= 100) {
+        levelCount += signs.pulse > 100 ? 1 : 0;
+    } else if (signs.bloodArterialPressure < 100 && signs.pulse >= 100) {
+        levelCount += 2;
+    }
+
+    if (signs.chronicHeartFailure || signs.cardiacIschemia) levelCount += 2;
+    if (signs.kidneyFailure || signs.liverFailure || signs.metastaticCancer) levelCount += 3
+
+    if (bleedReasonResolver(signs) === 8) levelCount += 0
+    //else if(bleedReasonResolver(signs) === )  Злокачественные новообразования желудочно-кишечного тракта
+    else levelCount += 1
+
+    return levelCount;
 }
 
 function conclusionBuilder(conclusion) {
     return {
+        risk: conclusion === undefined ? null : conclusion.risk,
         explicit: conclusion === undefined ? null : conclusion.explicit,
         bloodLossHardness: conclusion === undefined ? 0 : conclusion.bloodLossHardness,
-        DRICNecessity: conclusion === undefined ? 0 : conclusion.DRICNecessity,
         localization: conclusion === undefined ? 0 : conclusion.localization,
         reason: conclusion === undefined ? 0 : conclusion.reason,
         andExplicit(indexes) {
@@ -143,17 +173,8 @@ function conclusionBuilder(conclusion) {
             }
             return this;
         },
-        andDRICNecessity(signs) {
-            if ((signs.age > 60) +
-                (signs.pulse > 100) +
-                (signs.bloodArterialPressure < 100) +
-                (signs.hemoglobin < 100) +
-                signs.coffeeVomit +
-                signs.melena +
-                signs.lossConsciousness +
-                signs.additionalIllness >= 4) {
-                this.DRICNecessity = 3
-            }
+        andResolveRocalRiskLevel(signs) {
+            this.risk = riskResolver(signs);
             return this;
         },
         predictLocalization(signs) {
@@ -174,7 +195,6 @@ function conclusionBuilder(conclusion) {
             return {
                 explicit: that.explicit,
                 bloodLossHardness: that.bloodLossHardness,
-                DRICNecessity: that.DRICNecessity,
                 localizationPredict: that.localization,
                 reason: that.reason,
             }
@@ -185,10 +205,14 @@ function conclusionBuilder(conclusion) {
                     return this.localization ? `, локализованное в <b>${localizationDefinition[this.localization]}</b> отделах ЖКТ` : '.'
                 }).append(() => {
                     if ((this.bloodLossHardness === 1) || (this.bloodLossHardness === 2)) {
-                        return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени тяжести` : '.'
+                        return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени тяжести, ` : '.'
                     } else if (this.bloodLossHardness === 3) {
-                        return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени` : '.'
+                        return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени, ` : '.'
                     }
+                }).append(() => {
+                    if (this.risk >= 0 && this.risk <= 2) return 'с <b>минимальным</b> риском рецедива';
+                    else if (this.risk >= 3 && this.risk <= 7) return 'с <b>высоким</b> риском рецедива';
+                    //else (this.risk > 0 && this.risk < 2) ? 'низким' : 'высоким';
                 })
         }
     }

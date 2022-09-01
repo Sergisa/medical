@@ -43,7 +43,16 @@ function collectData() {
         melena: $('#melena').is(':checked'),
         lossConsciousness: $('#lossConsciousness').is(':checked'),
         bloodArterialPressure: parseFloat($('#bloodArterialPressure').val()),
-        additionalIllness: $('#additionalIllness').is(':checked'),
+
+        chronicHeartFailure: $('#chronicHeartFailure').is(':checked') ,
+        cardiacIschemia: $('#cardiacIschemia').is(':checked') ,
+        kidneyFailure: $('#kidneyFailure').is(':checked') ,
+        liverFailure: $('#liverFailure').is(':checked') ,
+        metastaticCancer: $('#metastaticCancer').is(':checked') ,
+        pathologicalChanges: $('#pathologicalChanges').is(':checked') ,
+        aorticProsthesis: $('#aorticProsthesis').is(':checked') ,
+        heartDefects: $('#heartDefects').is(':checked') ,
+        heartValvesProsthesis: $('#heartValvesProsthesis').is(':checked') ,
 
         bloodVomit: $('#bloodVomit').is(':checked'),
         hematohesia: $('#hematohesia').is(':checked'),
@@ -58,37 +67,49 @@ function collectData() {
         anamnesisGastrointestinalUpperBleeding: $('#anamnesisGastrointestinalUpperBleeding').is(':checked'),
         anamnesisGastrointestinalUndefinedBleeding: $('#anamnesisGastrointestinalUndefinedBleeding').is(':checked'),
 
-        v21: $('#sign21').is(':checked'),
-        v22: $('#sign22').is(':checked'),
-        v23: $('#sign23').is(':checked'),
-        v24: $('#sign24').is(':checked'),
-        v25: $('#sign25').is(':checked'),
-        v26: $('#sign26').is(':checked'),
-        v27: $('#sign27').is(':checked'),
-        v28: $('#sign28').is(':checked'),
-        v29: $('#sign29').is(':checked'),
-        v30: $('#sign30').is(':checked'),
-        v31: $('#sign31').is(':checked'),
         v32: $('#sign32').is(':checked'),
         v33: $('#sign33').is(':checked'),
         v34: $('#sign34').is(':checked'),
         v35: $('#sign35').is(':checked'),
+        v36: $('#sign36').is(':checked'),
+        v37: $('#sign37').is(':checked'),
+        v38: $('#sign38').is(':checked'),
+        v39: $('#sign39').is(':checked'),
+        v40: $('#sign40').is(':checked'),
+        v41: $('#sign41').is(':checked'),
+        v42: $('#sign42').is(':checked'),
+        v43: $('#sign43').is(':checked'),
+        v44: $('#sign44').is(':checked'),
+        v45: $('#sign45').is(':checked'),
+        v46: $('#sign46').is(':checked'),
+        v47: $('#sign47').is(':checked'),
+        v48: $('#sign48').is(':checked'),
+
+        asa1:$('#ASA1').is(':checked'),
+        asa2:$('#ASA2').is(':checked'),
+        asa3:$('#ASA3').is(':checked'),
+        asa4:$('#ASA4').is(':checked'),
+        asa5:$('#ASA5').is(':checked'),
+        asa6:$('#ASA6').is(':checked'),
+        e:$('#E').is(':checked'),
         hasResearchData: function () {
-            return this.v21 ||
-                this.v22 ||
-                this.v23 ||
-                this.v24 ||
-                this.v25 ||
-                this.v26 ||
-                this.v27 ||
-                this.v28 ||
-                this.v29 ||
-                this.v30 ||
-                this.v31 ||
-                this.v32 ||
+            return this.v32 ||
                 this.v33 ||
                 this.v34 ||
-                this.v35
+                this.v35 ||
+                this.v36 ||
+                this.v37 ||
+                this.v38 ||
+                this.v39 ||
+                this.v40 ||
+                this.v41 ||
+                this.v42 ||
+                this.v43 ||
+                this.v44 ||
+                this.v45 ||
+                this.v46 ||
+                this.v47 ||
+                this.v48
         }
     }
 }
