@@ -1,4 +1,4 @@
-$('<button></button>', {
+let testButton = $('<button></button>', {
     class: "test btn btn-info",
     id: 'testButton',
     text: 'T',
@@ -9,7 +9,14 @@ $('<button></button>', {
     fontWeight: 'bolder',
     top: '8px',
     right: '8px'
-}).appendTo(location.host !== "sergisa.smrtp.ru" ? $('#aprioriForm').css('position', 'relative') : null).click(fillTestData)
+});
+testButton.appendTo(location.host !== "sergisa.smrtp.ru" ? $('#aprioriForm').css('position', 'relative') : null).click(fillTestData)
+$(document).keypress(function (event) {
+    if (event.originalEvent.key === 'T' && event.originalEvent.shiftKey) {
+        testButton.appendTo($('#aprioriForm').css('position', 'relative')).click(fillTestData)
+    }
+});
+
 
 function fillTestData() {
     $('#aprioriForm').get(0).reset();
