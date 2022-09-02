@@ -56,6 +56,7 @@ function collectData() {
 
         bloodVomit: $('#bloodVomit').is(':checked'),
         hematohesia: $('#hematohesia').is(':checked'),
+        blackFeces: $('#blackFeces').is(':checked'),
         collaptoidState: $('#collaptoidState').is(':checked'),
         gastrointestinalUcler: $('#gastrointestinalUcler').is(':checked'),
         paleSkin: $('#paleSkin').is(':checked'),
@@ -84,6 +85,7 @@ function collectData() {
         v46: $('#sign46').is(':checked'),
         v47: $('#sign47').is(':checked'),
         v48: $('#sign48').is(':checked'),
+        v49: $('#sign49').is(':checked'),
 
         asa1:$('#ASA1').is(':checked'),
         asa2:$('#ASA2').is(':checked'),

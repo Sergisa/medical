@@ -1,10 +1,10 @@
 let linkPattern = `<br><a href="#" type="button" class="text-black" data-bs-toggle="modal" data-bs-target="#additionalResearch">Ввести данные эндоскопического исследования</a>`;
-let advicePattern = $(`<div class="alert alert-info d-inline-block me-1" role="alert" id="text">EMPTY</div>`)
+let advicePattern = $(`<div class="alert alert-info d-block me-1" role="alert" id="text">EMPTY</div>`)
 
-function adviceResearch(researchName, needDataEdit) {
+function adviceResearch(researchName, needDataModal) {
     advicePattern.clone()
         .html(researchName)
-        .append(needDataEdit ? linkPattern : null)
+        .append(needDataModal ? linkPattern : null)
         .appendTo($('#adviceLine'))
 }
 
@@ -41,108 +41,106 @@ function getSequence() {
     return {
         step1: {
             run: function () {
-                adviceResearch('ЭГДС', true)
-                showQuestion('Источник найден?')
+                showQuestion('ЖКК тяжелое?')
                 info("STAGE 1")
             },
-            yes: () => result(1),
-            no: () => sequence.step2,
-            research: true,
+            yes: () => sequence.step2,
+            no: () => sequence.step4,
+            needsResearchData: false,
         },
         step2: {
             run: function () {
-                adviceResearch('Колоноскопия', true)
-                showQuestion('Источник найден?')
+                adviceResearch('Начало интенсивной терапии/реанимационных мероприятий', false)
+                showQuestion('Присутствует гематохезия?')
                 info("STAGE 2")
             },
-            yes: () => result(3),
-            no: () => sequence.step3,
-            research: true,
+            yes: () => sequence.step3,
+            no: () => sequence.step4,
+            needsResearchData: false,
         },
         step3: {
             run: function () {
-                showQuestion('Кровотечение продолжается?')
+                adviceResearch('КТ-ангиография', true)
+                showQuestion('Источник найден?')
                 info("STAGE 3")
             },
-            yes: () => sequence.step4,
-            no: () => sequence.step5,
-            research: false,
+            yes: () => sequence.step5,
+            no: () => sequence.step4,
+            needsResearchData: true,
         },
         step4: {
             run: function () {
-                adviceResearch('КТ-ангиография и/или Инструментально-ассистированная энтероскопия и/или Сцинтиграфия и/или Диагностическая лапароскопия/лапаратомия', true)
+                adviceResearch('Эзофагогастродуоденоскопия', true)
                 showQuestion('Источник найден?')
                 info("STAGE 4")
             },
-            yes: () => result(2),
-            no: () => sequence.step5,
-            research: true,
+            yes: () => sequence.step5,
+            no: () => sequence.step6,
+            needsResearchData: true,
         },
         step5: {
             run: function () {
-                adviceResearch('Ангиография или КТ-энтерография или Гидро-МРТ кишечника')
-                showQuestion('Имеется стриктура?')
+                showQuestion('В верхнем отделе?')
                 info("STAGE 5")
             },
-            yes: () => sequence.step6,
-            no: () => sequence.step7,
-            research: false,
+            yes: () => result(1),
+            no: () => sequence.step9,
+            needsResearchData: false,
         },
         step6: {
             run: function () {
-                adviceResearch('Инструментально-ассистированная энтероскопия и/или Диагностическая лапароскопия/лапаратомия', true)
+                adviceResearch('Колоноскопия', true)
                 info("STAGE 6")
-                result(2)
+                showQuestion('Источник найден?')
             },
-            yes: () => null,
-            no: () => null,
-            research: true,
+            yes: () => sequence.step8,
+            no: () => conclusion.explicit ? sequence.step7 : sequence.step13,
+            needsResearchData: true,
         },
         step7: {
             run: function () {
-                adviceResearch('ВКЭ', true)
-                showQuestion('источник найден?')
+                showQuestion('Кровотечение продолжается клинически?')
                 info("STAGE 7")
             },
-            yes: () => sequence.step8,
-            no: () => result(0),
-            research: true,
+            yes: () => sequence.step12,
+            no: () => sequence.step13,
+            needsResearchData: false,
         },
         step8: {
             run: function () {
-                modalReasonsList.show();
+                showQuestion('В нижнем отделе?');
                 info("STAGE 8")
             },
-            yes: () => result(0),
-            no: () => sequence.step6,
-            research: false,
+            yes: () => result(3),
+            no: () => sequence.step9,
+            needsResearchData: false,
         },
         step9: {
             run: function () {
-                modalReasonsList.show();
+                showQuestion('В среднем отделе?');
                 info("STAGE 8")
             },
-            yes: () => result(0),
-            no: () => sequence.step6,
-            research: false,
+            yes: () => result(2),
+            no: () => sequence.step10,
+            needsResearchData: false,
         },
         step10: {
             run: function () {
-                modalReasonsList.show();
+                showQuestion('В нижнем отделе?');
                 info("STAGE 8")
             },
-            yes: () => result(0),
-            no: () => sequence.step6,
-            research: false,
+            yes: () => result(3),
+            no: () => sequence.step11,
+            needsResearchData: false,
         },
         step11: {
             run: function () {
                 modalReasonsList.show();
                 info("STAGE 8")
             },
-            yes: () => result(0),
-            no: () => sequence.step6,
-            research: false,
+            yes: () => result(1),
+            no: () => result(0),
+            needsResearchData: false,
         },
         step12: {
             run: function () {
@@ -151,43 +149,17 @@ function getSequence() {
             },
             yes: () => result(0),
             no: () => sequence.step6,
-            research: false,
+            needsResearchData: false,
         },
         step13: {
             run: function () {
-                modalReasonsList.show();
+                //⚫⚪
+                adviceResearch('МР-энтерография • КТ-энтерография', true)
                 info("STAGE 8")
             },
             yes: () => result(0),
             no: () => sequence.step6,
-            research: false,
-        },
-        upVerify: {
-            run: function () {
-                modalReasonsList.show();
-                info("STAGE 8")
-            },
-            yes: () => result(0),
-            no: () => sequence.step6,
-            research: false,
-        },
-        middleVerify: {
-            run: function () {
-                modalReasonsList.show();
-                info("STAGE 8")
-            },
-            yes: () => result(0),
-            no: () => sequence.step6,
-            research: false,
-        },
-        downVerify: {
-            run: function () {
-                modalReasonsList.show();
-                info("STAGE 8")
-            },
-            yes: () => result(0),
-            no: () => sequence.step6,
-            research: false,
+            needsResearchData: false,
         }
     };
 }

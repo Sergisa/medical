@@ -99,24 +99,30 @@ function bleedReasonResolver(signs) {
 
 function riskResolver(signs) {
     let levelCount = 0;
+    //Возраст
     if (signs.age >= 60 && signs.age <= 79) {
         levelCount += 1;
     } else if (signs.age >= 80) {
         levelCount += 2;
     }
-
+    //ШОК
     if (signs.bloodArterialPressure >= 100) {
         levelCount += signs.pulse > 100 ? 1 : 0;
     } else if (signs.bloodArterialPressure < 100 && signs.pulse >= 100) {
         levelCount += 2;
     }
 
+    //сопутствующие заболевания
     if (signs.chronicHeartFailure || signs.cardiacIschemia) levelCount += 2;
     if (signs.kidneyFailure || signs.liverFailure || signs.metastaticCancer) levelCount += 3
 
+    //Диагноз
     if (bleedReasonResolver(signs) === 8) levelCount += 0
     //else if(bleedReasonResolver(signs) === )  Злокачественные новообразования желудочно-кишечного тракта
     else levelCount += 1
+
+    //Признаки кровотечения
+    if (signs.v49) levelCount += 2;
 
     return levelCount;
 }
@@ -130,15 +136,11 @@ function conclusionBuilder(conclusion) {
         reason: conclusion === undefined ? 0 : conclusion.reason,
         andExplicit(indexes) {
             console.log('Определяю явность')
-            if (indexes.bloodVomit || indexes.coffeeVomit || indexes.melena || indexes.hematohesia) {
+            if (indexes.bloodVomit || indexes.coffeeVomit || indexes.melena || indexes.hematohesia || indexes.blackFeces) {
                 console.log('EXPLICIT')
                 this.explicit = true;
             }
-            if (
-                (indexes.collaptoidState && indexes.gastrointestinalUcler && indexes.stickySweat) ||
-                (indexes.paleSkin && indexes.gastrointestinalUcler && indexes.hemoglobinFalls) ||
-                (indexes.hiddenBleeding)
-            ) {
+            if (!(indexes.bloodVomit || indexes.coffeeVomit || indexes.melena || indexes.hematohesia || indexes.blackFeces)) {
                 console.log('NOT EXPLICIT')
                 this.explicit = false;
             }
@@ -210,8 +212,10 @@ function conclusionBuilder(conclusion) {
                         return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени, ` : '.'
                     }
                 }).append(() => {
-                    if (this.risk >= 0 && this.risk <= 2) return 'с <b>минимальным</b> риском рецедива';
-                    else if (this.risk >= 3 && this.risk <= 7) return 'с <b>высоким</b> риском рецедива';
+                    if (this.localization === 1) {
+                        if (this.risk >= 0 && this.risk <= 2) return 'с <b>минимальным</b> риском рецедива';
+                        else if (this.risk >= 3 && this.risk <= 7) return 'с <b>высоким</b> риском рецедива';
+                    }
                     //else (this.risk > 0 && this.risk < 2) ? 'низким' : 'высоким';
                 })
         }
