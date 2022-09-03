@@ -24,6 +24,12 @@ function result(localizationIndex) {
         $('.postConclusion').html(
             $(`<div class="alert alert-info my-2" role="alert">Консервативная терапия/наблюдение</div>`)
         ).parent().toggleClass('d-none d-block')
+    } else if (localizationIndex === -1) {//не установлено
+        $('.postConclusion').html(`<div class="alert alert-info my-2" role="alert">
+            Локализация источника ЖКК не установлена
+            <div class='d-block text-dark'>
+            <i class='bi bi-info-lg'></i>рекомендуется возвратиться к началу алгоритма (с указанием явности/скрытости и степени тяжести)</div></div>`)
+            .parent().toggleClass('d-none d-block')
     } else {
         $('.postConclusion').html(
             conclusionBuilder(conclusion)
@@ -31,6 +37,12 @@ function result(localizationIndex) {
                 .andResolveReason(collectData())
                 .getTag()
                 .clone()
+                .append(() => {
+                    if (conclusion.localization === 1) {
+                        if (conclusion.risk >= 0 && conclusion.risk <= 2) return 'с <b>низким</b> риском рецедива';
+                        else if (conclusion.risk >= 3 && conclusion.risk <= 7) return 'с <b>высоким</b> риском рецедива';
+                    }
+                })
                 .append(`, источником которого послужили : <b>${reasonsList[conclusion.reason]}</b>`)
                 .toggleClass('alert-info alert-primary')
         ).parent().toggleClass('d-none d-block')
@@ -58,7 +70,11 @@ function getSequence(conclusion, signs) {
         },
         step3: {
             run: function () {
-                adviceResearch('КТ-ангиография', true)
+                adviceResearch(
+                    'КТ-ангиография',
+                    true,
+                    "Европейские рекомендации 2021 г. по диагностике и лечению явного кровотечения из нижних отделов ЖКТ гласят, что пациентам с нестабильной гемодинамикой и подозрением на продолжающееся кровотечение необходимо пройти компьютерную томографическую ангиографию перед эндоскопическим или рентгенологическим лечением, чтобы определить место кровотечения."
+                )
                 showQuestion('Источник найден?')
                 info("STAGE 3")
             },
@@ -87,7 +103,11 @@ function getSequence(conclusion, signs) {
         },
         step6: {
             run: function () {
-                adviceResearch('Колоноскопия', true)
+                adviceResearch(
+                    'Колоноскопия',
+                    true,
+                    "Если в анамнезе или при объективном обследовании выявлены патологические изменения панкреато-билиарной зоны, то рекомендуется исключить гемобилию и спленопанкреатическую фистулу (\"hemosuccus pancreaticus\")"
+                )
                 info("STAGE 6")
                 showQuestion('Источник найден?')
             },
@@ -137,12 +157,14 @@ function getSequence(conclusion, signs) {
                 info("STAGE 11")
             },
             yes: () => result(1),
-            no: () => result(0),
+            no: () => result(-1),
             needsResearchData: false,
         },
         step12: {//FIXME: неявный переход
             run: function () {
-                adviceResearch('КТ-энтерография • Инструментально-ассистированная энтероскопия • Ангиография • Диагностическая лапароскопия/лапаротомия • Сцинтиграфия', true)
+                adviceResearch('КТ-энтерография • Инструментально-ассистированная энтероскопия • Ангиография • Диагностическая лапароскопия/лапаротомия • Сцинтиграфия',
+                    true,
+                    "Если присутствуют в анамнезе факторы риска в виде протезирования аорты по поводу аневризмы/пороки развития сердца/протезирование сердечных клапанов, то не исключено, что кровотечение из фистулы или ангиоэктазии")
                 showQuestion('В среднем отделе?');
                 info("STAGE 12")
             },
@@ -153,7 +175,10 @@ function getSequence(conclusion, signs) {
         step13: {
             run: function () {
                 //⚫⚪
-                adviceResearch('МР-энтерография • КТ-энтерография', true)
+                adviceResearch(
+                    'МР-энтерография • КТ-энтерография',
+                    true,
+                    "рекомендуется провести видеокапсульную эндоскопию, предварительно исключив клинико-инструментальные признаки нарушения пассажа содержимого по кишке")
                 info("STAGE 13")
             },
             yes: () => result(0),

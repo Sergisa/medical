@@ -118,7 +118,7 @@ function riskResolver(signs) {
 
     //Диагноз
     if (bleedReasonResolver(signs) === 8) levelCount += 0
-    //else if(bleedReasonResolver(signs) === )  Злокачественные новообразования желудочно-кишечного тракта
+    if (signs.v37) levelCount += 2;//нерегулярность слизистой
     else levelCount += 1
 
     //Признаки кровотечения
@@ -213,6 +213,7 @@ function conclusionBuilder(conclusion) {
                 bloodLossHardness: that.bloodLossHardness,
                 localizationPredict: that.localization,
                 reason: that.reason,
+                risk: that.risk
             }
         },
         getTag() {
@@ -225,12 +226,6 @@ function conclusionBuilder(conclusion) {
                     } else if (this.bloodLossHardness === 3) {
                         return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени, ` : '.'
                     }
-                }).append(() => {
-                    if (this.localization === 1) {
-                        if (this.risk >= 0 && this.risk <= 2) return 'с <b>минимальным</b> риском рецедива';
-                        else if (this.risk >= 3 && this.risk <= 7) return 'с <b>высоким</b> риском рецедива';
-                    }
-                    //else (this.risk > 0 && this.risk < 2) ? 'низким' : 'высоким';
                 })
         }
     }
