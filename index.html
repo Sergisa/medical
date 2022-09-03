@@ -80,7 +80,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="collaptoidState" value="option1">
                     <label class="form-check-label" for="collaptoidState">Коллаптоидное состояние</label>
@@ -108,8 +108,14 @@
                     <label class="form-check-label" for="hematohesia">Гематохезия</label>
                     <div class="form-text">Кровь в стуле</div>
                 </div>
+                <div class="form-check" title="Кровь в стуле">
+                    <input class="form-check-input" type="checkbox" id="blackFeces" value="option2">
+                    <label class="form-check-label" for="blackFeces">
+                        Черный оформленный кал при пальцевом исследовании прямой кишки
+                    </label>
+                </div>
             </div>
-            <div class="col-6">
+            <div class="col-md-6">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="gastrointestinalUcler" value="option2">
                     <label class="form-check-label" for="gastrointestinalUcler">Язвы в ЖКТ в анамнезе</label>
@@ -127,10 +133,15 @@
                         ЖКК в анамнезе в неустановленном отделе ЖКТ
                     </label>
                 </div>
-
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="additionalIllness" value="option2">
+                    <label class="form-check-label" for="additionalIllness">
+                        Сопутствующие заболевания в стадии суб- и декомпенсации, требующие неотложных лечебных
+                        мероприятий или непосредственно угрожающие жизни больного
+                    </label>
+                </div>
             </div>
         </div>
-
         <div class="row">
             <div class="col-auto">
                 <input class="form-control" type="number" id="hematocrit" min="0" step="1" required>
@@ -221,7 +232,7 @@
                 Физический статус пациента по классификации ASA
             </p>
             <hr class="mb-3">
-            <div class="col-3">
+            <div class="col-md-4">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="ASA1" value="">
                     <label class="form-check-label" for="ASA1">ASA I</label>
@@ -239,7 +250,7 @@
                     <div class="form-text">Пациент с тяжелым системным заболеванием</div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-md-4">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="ASA4" value="">
                     <label class="form-check-label" for="ASA4">ASA IV</label>
@@ -253,14 +264,16 @@
                     <div class="form-text">Умирающий пациент. Операция по жизненным показаниям.</div>
                 </div>
             </div>
-            <div class="col-3">
+            <div class="col-md-4">
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="ASA6" value="">
                     <label class="form-check-label" for="ASA6">ASA VI</label>
+                    <div class="form-text">Констатирована смерть мозга</div>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" id="E" value="">
                     <label class="form-check-label" for="E">E</label>
+                    <div class="form-text">Неотложность хирургического вмешательства</div>
                 </div>
             </div>
         </div>
@@ -272,24 +285,24 @@
         </div>
         <div class="preConclusion">
             Предварительное заключение
-            <div id="ORIT"></div>
             <div></div>
         </div>
     </form>
     <div class="row">
         <div class="col-md-12">
-
         </div>
     </div>
     <div class="row">
         <div class="col-12">
             <div class="border border-2 rounded p-3 mt-3 d-none" id="helpSequence">
                 Рекомендация
-                <div class="col-12 mt-2 d-inline" id="adviceLine"></div>
-                <div id="questionBlock" class="d-inline">
-                    <div id="question" class="d-inline-flex question badge bg-light fs-6"></div>
-                    <button id="yes" class="btn btn-sm btn-secondary me-1">Да</button>
-                    <button id="no" class="btn btn-sm btn-secondary me-1">Нет</button>
+                <div class="d-block">
+                    <div class="col-12 mt-2 d-flex" id="adviceLine"></div>
+                    <div id="questionBlock" class="d-flex">
+                        <div id="question" class="d-inline-flex question badge bg-light fs-6"></div>
+                        <button id="yes" class="btn btn-sm btn-secondary me-1">Да</button>
+                        <button id="no" class="btn btn-sm btn-secondary me-1">Нет</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -452,7 +465,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="reset" class="btn btn-outline-dark" id="clearReasonsList">Очитстить</button>
+                    <button type="reset" class="btn btn-outline-dark" id="clearReasonsList">Очистить</button>
                     <button type="button" class="btn btn-primary" id="reasonsListSave">Сохранить</button>
                 </div>
             </form>
@@ -477,6 +490,7 @@
             .predictLocalization(collectData())
             .andResolveReason(collectData())
             .andResolveRocalRiskLevel(collectData())
+            .andResolveHardness(collectData())
         $('.preConclusion div').html(conclusion.getTag().clone())
         window.conclusion = conclusion;
         return conclusion.getConclusion();
@@ -499,23 +513,23 @@
             $('#ORIT').html('')
         }
         if (conclusion.explicit) {
-            sequenceStage = sequence.step3;
+            if (conclusion.hard) sequenceStage = collectData().hematohesia ? sequence.step3 : sequence.step4;
+            else sequenceStage = sequence.step4
         } else {
-            sequenceStage = sequence.step5;
+            sequenceStage = sequence.step4;
         }
-        sequenceStage = sequence.step1;
         if (sequenceStage) sequenceStage.run()
     }
 
     function shiftSequence(answer) {
         if (answer === 1) {//yes
-            if (collectData().hasResearchData() || !sequenceStage.research) {
+            if (collectData().hasResearchData() || !sequenceStage.needsResearchData) {
                 console.log("Данные исследования не нужны")
                 sequenceStage = sequenceStage.yes();
                 $.moveBottom()
 
                 if (sequenceStage) sequenceStage.run();
-            } else if (sequenceStage.research && !collectData().hasResearchData()) {
+            } else if (sequenceStage.needsResearchData && !collectData().hasResearchData()) {
                 alert("Введите данные исследования")
             }
         } else if (answer === 2) { //no
@@ -538,7 +552,7 @@
         $('#helpSequence').addClass('d-none')
         if (this.checkValidity()) {
             conclusion = makeConclusion();
-            sequence = getSequence(conclusion)
+            sequence = getSequence(conclusion, collectData())
             startHelpSequence();
             $.moveBottom()
         }
