@@ -53,6 +53,7 @@ function collectData() {
         aorticProsthesis: $('#aorticProsthesis').is(':checked') ,
         heartDefects: $('#heartDefects').is(':checked') ,
         heartValvesProsthesis: $('#heartValvesProsthesis').is(':checked') ,
+        additionalIllness: $('#additionalIllness').is(':checked'),
 
         bloodVomit: $('#bloodVomit').is(':checked'),
         hematohesia: $('#hematohesia').is(':checked'),
@@ -87,13 +88,13 @@ function collectData() {
         v48: $('#sign48').is(':checked'),
         v49: $('#sign49').is(':checked'),
 
-        asa1:$('#ASA1').is(':checked'),
-        asa2:$('#ASA2').is(':checked'),
-        asa3:$('#ASA3').is(':checked'),
-        asa4:$('#ASA4').is(':checked'),
-        asa5:$('#ASA5').is(':checked'),
-        asa6:$('#ASA6').is(':checked'),
-        e:$('#E').is(':checked'),
+        ASA1:$('#ASA1').is(':checked'),
+        ASA2:$('#ASA2').is(':checked'),
+        ASA3:$('#ASA3').is(':checked'),
+        ASA4:$('#ASA4').is(':checked'),
+        ASA5:$('#ASA5').is(':checked'),
+        ASA6:$('#ASA6').is(':checked'),
+        E:$('#E').is(':checked'),
         hasResearchData: function () {
             return this.v32 ||
                 this.v33 ||

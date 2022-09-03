@@ -132,6 +132,7 @@ function conclusionBuilder(conclusion) {
         risk: conclusion === undefined ? null : conclusion.risk,
         explicit: conclusion === undefined ? null : conclusion.explicit,
         bloodLossHardness: conclusion === undefined ? 0 : conclusion.bloodLossHardness,
+        hard: conclusion === undefined ? null : conclusion.hard,
         localization: conclusion === undefined ? 0 : conclusion.localization,
         reason: conclusion === undefined ? 0 : conclusion.reason,
         andExplicit(indexes) {
@@ -172,6 +173,19 @@ function conclusionBuilder(conclusion) {
                 (bloodSigns.hemoglobin < 83)
             ) {
                 this.bloodLossHardness = 3
+            }
+            return this;
+        },
+        andResolveHardness(signs) {
+            if ((signs.age > 60) +
+                (signs.pulse > 100) +
+                (signs.bloodArterialPressure < 100) +
+                (signs.hemoglobin < 100) +
+                signs.coffeeVomit +
+                signs.melena +
+                signs.lossConsciousness +
+                signs.additionalIllness >= 4) {
+                this.hard = true;
             }
             return this;
         },

@@ -1,10 +1,11 @@
-let linkPattern = `<br><a href="#" type="button" class="text-black" data-bs-toggle="modal" data-bs-target="#additionalResearch">Ввести данные эндоскопического исследования</a>`;
+let linkPattern = `<a href="#" type="button" class="text-black" data-bs-toggle="modal" data-bs-target="#additionalResearch">Ввести данные эндоскопического исследования</a>`;
 let advicePattern = $(`<div class="alert alert-info d-block me-1" role="alert" id="text">EMPTY</div>`)
 
-function adviceResearch(researchName, needDataModal) {
+function adviceResearch(researchName, needDataModal, additionalInfo) {
     advicePattern.clone()
-        .html(researchName)
+        .html(`<div class="lead d-inline me-2">${researchName}</div>`)
         .append(needDataModal ? linkPattern : null)
+        .append(additionalInfo ? `<div class="d-block text-dark"><i class='bi bi-info-lg'></i>${additionalInfo}</div>` : null)
         .appendTo($('#adviceLine'))
 }
 
@@ -37,11 +38,10 @@ function result(localizationIndex) {
     $.moveBottom()
 }
 
-function getSequence() {
+function getSequence(conclusion, signs) {
     return {
         step1: {
             run: function () {
-                showQuestion('ЖКК тяжелое?')
                 info("STAGE 1")
             },
             yes: () => sequence.step2,
@@ -50,8 +50,6 @@ function getSequence() {
         },
         step2: {
             run: function () {
-                adviceResearch('Начало интенсивной терапии/реанимационных мероприятий', false)
-                showQuestion('Присутствует гематохезия?')
                 info("STAGE 2")
             },
             yes: () => sequence.step3,
@@ -118,7 +116,7 @@ function getSequence() {
         step9: {
             run: function () {
                 showQuestion('В среднем отделе?');
-                info("STAGE 8")
+                info("STAGE 9")
             },
             yes: () => result(2),
             no: () => sequence.step10,
@@ -127,7 +125,7 @@ function getSequence() {
         step10: {
             run: function () {
                 showQuestion('В нижнем отделе?');
-                info("STAGE 8")
+                info("STAGE 10")
             },
             yes: () => result(3),
             no: () => sequence.step11,
@@ -135,30 +133,75 @@ function getSequence() {
         },
         step11: {
             run: function () {
-                modalReasonsList.show();
-                info("STAGE 8")
+                showQuestion('В верхнем отделе?');
+                info("STAGE 11")
             },
             yes: () => result(1),
             no: () => result(0),
             needsResearchData: false,
         },
-        step12: {
+        step12: {//FIXME: неявный переход
             run: function () {
-                modalReasonsList.show();
-                info("STAGE 8")
+                adviceResearch('КТ-энтерография • Инструментально-ассистированная энтероскопия • Ангиография • Диагностическая лапароскопия/лапаротомия • Сцинтиграфия', true)
+                showQuestion('В среднем отделе?');
+                info("STAGE 12")
             },
-            yes: () => result(0),
-            no: () => sequence.step6,
+            yes: () => result(2),
+            no: () => sequence.step10,
             needsResearchData: false,
         },
         step13: {
             run: function () {
                 //⚫⚪
                 adviceResearch('МР-энтерография • КТ-энтерография', true)
-                info("STAGE 8")
+                info("STAGE 13")
             },
             yes: () => result(0),
             no: () => sequence.step6,
+            needsResearchData: false,
+        },
+        step14: {
+            run: function () {
+                showQuestion('Источник найден?');
+                info("STAGE 14")
+            },
+            yes: () => sequence.step15,
+            no: () => sequence.step16,
+            needsResearchData: false,
+        },
+        step15: {
+            run: function () {
+                showQuestion('Достоверно (без сомнений)?');
+                info("STAGE 15")
+            },
+            yes: () => sequence.step9,
+            no: () => sequence.step6,
+            needsResearchData: false,
+        },
+        step16: {
+            run: function () {
+                showQuestion('Гемодинамика стабильна?');
+                info("STAGE 16")
+            },
+            yes: () => sequence.step6,
+            no: () => sequence.step6,
+            needsResearchData: false,
+        },
+        step17: {
+            run: function () {
+                if (conclusion.explicit) {
+                    adviceResearch('Инструментально-ассистированная энтероскопия', true)
+                } else if (!conclusion.explicit && !conclusion.hard) {
+                    adviceResearch('Инструментально-ассистированная энтероскопия • Диагностическая лапароскопия/лапаротомия • Интраоперационная энтероскопия', true)
+                } else if (!conclusion.explicit && conclusion.hard) {
+                    if (signs.ASA1 || signs.ASA3) adviceResearch('Инструментально-ассистированная энтероскопия', true)
+                    if (signs.ASA4) adviceResearch('Операция отчаяния', true)
+                }
+                showQuestion('В среднем отделе?');
+                info("STAGE 17")
+            },
+            yes: () => result(3),
+            no: () => sequence.step10,
             needsResearchData: false,
         }
     };
