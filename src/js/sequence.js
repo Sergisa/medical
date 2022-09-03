@@ -21,8 +21,10 @@ function result(localizationIndex) {
     $('#questionBlock').toggleClass('d-inline d-none')
     console.log("RESULT:", conclusion)
     if (localizationIndex === 0) { // терапия
-        $('.postConclusion').html(
-            $(`<div class="alert alert-info my-2" role="alert">Консервативная терапия/наблюдение</div>`)
+        $('.postConclusion').html(`<div class="alert alert-info my-2" role="alert">
+            Консервативная терапия/наблюдение
+            <div class='d-block text-dark'>
+            <i class='bi bi-info-lg'></i>при рецидиве кровотечения из ЖКТ рекомендуется возвратиться к началу алгоритма (с указанием явности/скрытости и степени тяжести)</div></div>`
         ).parent().toggleClass('d-none d-block')
     } else if (localizationIndex === -1) {//не установлено
         $('.postConclusion').html(`<div class="alert alert-info my-2" role="alert">
