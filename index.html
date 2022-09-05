@@ -21,6 +21,9 @@
         .ASAClass div {
             font-family: "Times New Roman", serif;
         }
+        #saveButton{
+
+        }
     </style>
 </head>
 <body>
@@ -278,7 +281,6 @@
             </div>
         </div>
         <div class="control-bottom d-flex align-items-end justify-content-end">
-            <button type="button" class="btn btn-secondary me-auto float-start" id="saveButton">Сохранить</button>
             <button type="reset" class="btn btn-outline-dark me-2">Очистить</button>
             <button type="submit" class="btn btn-primary text-break" id="preConclusion">
                 Предварительное заключение
@@ -316,6 +318,7 @@
             </div>
         </div>
     </div>
+    <button type="button" class="btn btn-secondary me-auto float-end" id="saveButton">Сохранить</button>
 </div>
 
 <div class="modal fade" id="additionalResearch" tabindex="-1" aria-labelledby="additionalResearch" aria-hidden="true">
@@ -545,13 +548,12 @@
         modalAdditionalResearch.hide();
     });
     document.getElementById('saveButton').addEventListener('click', function () {
-        alert("Пока сохранение не работет")
-        /*$.post("save.php", {
+        $.post("save.php", {
             conclusion,
             data: collectData()
-        }).success(function(data){
-
-        })*/
+        }).done(function(data){
+            console.log(data)
+        })
     });
     document.getElementById('reasonsListSave').addEventListener('click', function () {
         shiftSequence(collectFinalData().hasChecked() ? 1 : 2)
