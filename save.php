@@ -16,18 +16,19 @@ echo json_encode($_POST);
 
 function pdoSet($values)
 {
-    $set = [];
+    /*$set = [];
     foreach ($values as $key => $value) {
-
         if ($value == 'true') $value = 1;
         if (empty($value)) $value = 'null';
         $set []= "`$key`=$value";
     }
-    return implode(',', $set);
+    return implode(',', $set);*/
+
+    return "(" . implode(',', array_keys($values)) . ") VALUES (" . implode(',', array_values($values)) . ")";
 }
 
 $data = array_merge($_POST['data'], $_POST['conclusion']);
-$sql = "INSERT INTO patient SET " . pdoSet($data);
+$sql = "INSERT INTO patient " . pdoSet($data);
 
 echo "SQL" . $sql;
 $stm = $dbh->prepare($sql);
