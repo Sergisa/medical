@@ -9,10 +9,6 @@ function adviceResearch(researchName, needDataModal, additionalInfo) {
         .appendTo($('#adviceLine'))
 }
 
-function info(message) {
-    console.info(`%c ${message} `, 'color:#2ECC71; background-color:#2C3E50; font-size:14px; font-weight: bolder')
-}
-
 function showQuestion(question) {
     $('#question').html(question)
 }
@@ -40,9 +36,9 @@ function result(localizationIndex) {
                 .getTag()
                 .clone()
                 .append(() => {
-                    if (conclusion.localization === 1) {
-                        if (conclusion.risk >= 0 && conclusion.risk <= 2) return 'с <b>низким</b> риском рецедива';
-                        else if (conclusion.risk >= 3 && conclusion.risk <= 7) return 'с <b>высоким</b> риском рецедива';
+                    if (localizationIndex === 1) {
+                        if (conclusion.risk >= 0 && conclusion.risk <= 2) return ', с <b>низким</b> риском рецедива';
+                        else if (conclusion.risk >= 3 && conclusion.risk <= 7) return ', с <b>высоким</b> риском рецедива';
                     }
                 })
                 .append(`, источником которого послужили : <b>${reasonsList[conclusion.reason]}</b>`)

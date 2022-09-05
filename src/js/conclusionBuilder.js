@@ -222,9 +222,9 @@ function conclusionBuilder(conclusion) {
                     return this.localization ? `, локализованное в <b>${localizationDefinition[this.localization]}</b> отделах ЖКТ` : '.'
                 }).append(() => {
                     if ((this.bloodLossHardness === 1) || (this.bloodLossHardness === 2)) {
-                        return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени тяжести, ` : '.'
+                        return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени тяжести` : '.'
                     } else if (this.bloodLossHardness === 3) {
-                        return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени, ` : '.'
+                        return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени` : '.'
                     }
                 })
         }
