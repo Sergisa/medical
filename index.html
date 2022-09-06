@@ -21,7 +21,8 @@
         .ASAClass div {
             font-family: "Times New Roman", serif;
         }
-        #saveButton{
+
+        #saveButton {
 
         }
     </style>
@@ -543,17 +544,21 @@
         }
     }
 
+    function saveData() {
+        $.post("http://sergisa.smrtp.ru/medical/save.php", {
+            conclusion,
+            data: collectData()
+        }).done(function (data) {
+            console.log(data);
+        })
+    }
+
     document.getElementById('additionalResearchSave').addEventListener('click', function () {
         conclusion = makeConclusion();
         modalAdditionalResearch.hide();
     });
     document.getElementById('saveButton').addEventListener('click', function () {
-        $.post("save.php", {
-            conclusion,
-            data: collectData()
-        }).done(function(data){
-            console.log(data)
-        })
+        saveData()
     });
     document.getElementById('reasonsListSave').addEventListener('click', function () {
         shiftSequence(collectFinalData().hasChecked() ? 1 : 2)
