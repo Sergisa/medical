@@ -14,16 +14,16 @@ $opt = [
 $dbh = new PDO($dsn, $user, $pass, $opt);
 echo json_encode($_POST);
 
-function pdoSet($values)
+function pdoSet($values): string
 {
     $set = [];
     foreach ($values as $key => $value) {
         if ($value == 'true') $value = 1;
         if ($value == "") $value = 'null';
-        if(gettype($value)=='string') $value = "'$value'";
-        $set []= "`$key`=$value";
+        if (gettype($value) == 'string') $value = "'$value'";
+        $set [] = "`$key`=$value";
     }
-    return "SET ".implode(',', $set);
+    return "SET " . implode(',', $set);
 
 //    return "(" . implode(',', array_keys($values)) . ") VALUES (" . implode(',', array_values($values)) . ")";
 }
