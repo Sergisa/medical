@@ -177,10 +177,11 @@ function getSequence(conclusion, signs) {
                     'МР-энтерография • КТ-энтерография',
                     false,
                     "Рекомендуется провести видеокапсульную эндоскопию, предварительно исключив клинико-инструментальные признаки нарушения пассажа содержимого по кишке")
+                showQuestion('Проведена видеокапсульная эндоскопия?');
                 info("STAGE 13")
             },
-            yes: () => result(0),
-            no: () => sequence.step6,
+            yes: () => sequence.step14,
+            no: () => sequence.step17,
             needsResearchData: false,
         },
         step14: {
