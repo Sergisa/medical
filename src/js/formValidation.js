@@ -33,6 +33,7 @@
 
 function collectData() {
     return {
+        identifier: $('#identifier').val(),
         erythrocytes: parseFloat($('#erythrocytes').val().replaceAll(',', '.')),
         hemoglobin: parseFloat($('#hemoglobin').val()),
         pulse: parseFloat($('#pulse').val()),

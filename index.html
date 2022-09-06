@@ -41,6 +41,10 @@
         </div>
     </div>
     <form action="" class="p-3 needs-validation" id="aprioriForm" novalidate>
+        <div class="col-auto">
+            <input type="text" class="form-control" id="identifier" placeholder="Идентификатор">
+            <label for="identifier" class="form-label">Идентификатор</label>
+        </div>
         Пол *
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="gender" id="male" value="female" required>
@@ -58,6 +62,7 @@
                 </div>
                 <label for="age" class="form-label">Возраст, лет *</label>
             </div>
+
         </div>
         <div class="form-check">
             <input class="form-check-input" type="checkbox" id="paleSkin" value="option2">
@@ -320,6 +325,7 @@
         </div>
     </div>
     <button type="button" class="btn btn-secondary me-auto float-end" id="saveButton">Сохранить</button>
+    <i class="bi bi-check-lg d-none" id="check"></i>
 </div>
 
 <div class="modal fade" id="additionalResearch" tabindex="-1" aria-labelledby="additionalResearch" aria-hidden="true">
@@ -550,6 +556,7 @@
             data: collectData()
         }).done(function (data) {
             console.log(data);
+            //$('')
         })
     }
 
