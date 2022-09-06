@@ -16,15 +16,16 @@ echo json_encode($_POST);
 
 function pdoSet($values)
 {
-    /*$set = [];
+    $set = [];
     foreach ($values as $key => $value) {
         if ($value == 'true') $value = 1;
-        if (empty($value)) $value = 'null';
+        if ($value == "") $value = 'null';
+        if(gettype($value)=='string') $value = "'$value'";
         $set []= "`$key`=$value";
     }
-    return implode(',', $set);*/
+    return "SET ".implode(',', $set);
 
-    return "(" . implode(',', array_keys($values)) . ") VALUES (" . implode(',', array_values($values)) . ")";
+//    return "(" . implode(',', array_keys($values)) . ") VALUES (" . implode(',', array_values($values)) . ")";
 }
 
 $data = array_merge($_POST['data'], $_POST['conclusion']);
