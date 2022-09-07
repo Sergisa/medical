@@ -515,9 +515,7 @@
     document.getElementById('saveButton').addEventListener('click', function () {
         saveData()
     });
-    document.getElementById('reasonsListSave').addEventListener('click', function () {
-        shiftSequence(collectFinalData().hasChecked() ? 1 : 2)
-    });
+
     document.getElementById('aprioriForm').addEventListener('submit', function (event) {
         event.preventDefault()
         event.stopPropagation()
