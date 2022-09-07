@@ -545,6 +545,7 @@
     }
 
     function saveData() {
+        conclusion.reason = reasonsList[conclusion.reason];
         $.post("http://sergisa.smrtp.ru/medical/save.php", {
             conclusion,
             data: collectData()
