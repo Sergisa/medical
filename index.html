@@ -437,52 +437,6 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="reasonForm" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false"
-     aria-labelledby="reasonForm" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    Указание источников
-                </h5>
-                <!--<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
-            </div>
-            <form action="" id="reasonFormCheckboxList">
-                <div class="modal-body">
-                    Источником является:
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="r1" value="option1">
-                        <label class="form-check-label" for="r1">
-                            Эрозивно-язвенная энтеропатия
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="r2" value="option2">
-                        <label class="form-check-label" for="r2">
-                            Множественные венозные мальформации небольших размеров
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="r3" value="option2">
-                        <label class="form-check-label" for="r3">
-                            Тяжелые сопутствующие заболевания
-                        </label>
-                    </div>
-                    <div class="form-check text-danger">
-                        <input class="form-check-input border-danger" type="checkbox" id="r4" value="option2">
-                        <label class="form-check-label fw-bold" for="r4">
-                            Отказ пациента от дальнейшего лечения
-                        </label>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="reset" class="btn btn-outline-dark" id="clearReasonsList">Очистить</button>
-                    <button type="button" class="btn btn-primary" id="reasonsListSave">Сохранить</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 </body>
 <script src="dist/js/popper.min.js"></script>
@@ -491,7 +445,6 @@
 <script src="dist/js/bundle.min.js"></script>
 <script>
     const modalAdditionalResearch = new bootstrap.Modal('#additionalResearch');
-    const modalReasonsList = new bootstrap.Modal('#reasonForm');
     let sequenceStage, conclusion, sequence;
 
     function makeConclusion() {
@@ -564,7 +517,6 @@
     });
     document.getElementById('reasonsListSave').addEventListener('click', function () {
         shiftSequence(collectFinalData().hasChecked() ? 1 : 2)
-        modalReasonsList.hide();
     });
     document.getElementById('aprioriForm').addEventListener('submit', function (event) {
         event.preventDefault()
