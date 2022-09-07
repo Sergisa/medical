@@ -519,11 +519,6 @@
         $('#helpSequence').removeClass('d-none')
         $('#adviceLine').empty()
         if (conclusion.explicit) {
-            $('#ORIT').html('<b>Рекумендуется начало интенсивных реанимационных мероприятий</b>')
-        } else {
-            $('#ORIT').html('')
-        }
-        if (conclusion.explicit) {
             if (conclusion.hard) sequenceStage = collectData().hematohesia ? sequence.step3 : sequence.step4;
             else sequenceStage = sequence.step4
         } else {
