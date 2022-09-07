@@ -158,7 +158,7 @@ function getSequence(conclusion, signs) {
             no: () => result(-1),
             needsResearchData: false,
         },
-        step12: {//FIXME: неявный переход
+        step12: {
             run: function () {
                 adviceResearch('КТ-энтерография • Инструментально-ассистированная энтероскопия • Ангиография • Диагностическая лапароскопия/лапаротомия • Сцинтиграфия',
                     true,
