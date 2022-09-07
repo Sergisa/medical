@@ -134,6 +134,7 @@ function conclusionBuilder(conclusion) {
         bloodLossHardness: conclusion === undefined ? 0 : conclusion.bloodLossHardness,
         hard: conclusion === undefined ? null : conclusion.hard,
         localization: conclusion === undefined ? 0 : conclusion.localization,
+        finalLocalization: conclusion === undefined ? 0 : conclusion.finalLocalization,
         reason: conclusion === undefined ? 0 : conclusion.reason,
         andExplicit(indexes) {
             console.log('Определяю явность')
@@ -198,7 +199,7 @@ function conclusionBuilder(conclusion) {
             return this;
         },
         setLocalization(localization) {
-            this.localization = localization;
+            this.finalLocalization = localization;
             return this;
         },
         andResolveReason(signs) {
@@ -211,7 +212,8 @@ function conclusionBuilder(conclusion) {
             return {
                 explicit: that.explicit,
                 bloodLossHardness: that.bloodLossHardness,
-                localizationPredict: that.localization,
+                localization: that.localization,
+                finalLocalization: that.finalLocalization,
                 reason: that.reason,
                 risk: that.risk
             }
@@ -219,7 +221,7 @@ function conclusionBuilder(conclusion) {
         getTag() {
             return $(`<div class="alert alert-info my-2" role="alert">ЖКК <b>${this.explicit ? 'явное' : 'скрытое'}</b></div>`)
                 .append(() => {
-                    return this.localization ? `, локализованное в <b>${localizationDefinition[this.localization]}</b> отделах ЖКТ` : '.'
+                    return this.localization ? `, локализованное в <b>${localizationDefinition[this.finalLocalization === 0 ? this.localization : this.finalLocalization]}</b> отделах ЖКТ` : '.'
                 }).append(() => {
                     if ((this.bloodLossHardness === 1) || (this.bloodLossHardness === 2)) {
                         return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени тяжести` : '.'
