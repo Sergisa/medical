@@ -324,7 +324,9 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-secondary me-auto float-end" id="saveButton">Сохранить</button>
+    <button type="button" class="btn btn-secondary me-auto float-end" id="saveFinalData" onclick="saveData()">
+        Сохранить
+    </button>
 </div>
 
 <div class="modal fade" id="additionalResearch" tabindex="-1" aria-labelledby="additionalResearch" aria-hidden="true">
@@ -498,9 +500,10 @@
     }
 
     function saveData() {
+        console.log("before send", conclusion);
         conclusion.reason = reasonsList[conclusion.reason];
-        $.post("http://sergisa.smrtp.ru/medical/save.php", {
-            conclusion,
+        $.post("https://sergisa.smrtp.ru/medical/save.php", {
+            conclusion: conclusion.getConclusion(), //FIXME: Вызов Explicit
             data: collectData()
         }).done(function (data) {
             console.log(data);
@@ -512,8 +515,8 @@
         conclusion = makeConclusion();
         modalAdditionalResearch.hide();
     });
-    document.getElementById('saveButton').addEventListener('click', function () {
-        saveData()
+    document.getElementById('saveFinalData').addEventListener('submit', function () {
+        saveData();
     });
     document.getElementById('aprioriForm').addEventListener('submit', function (event) {
         event.preventDefault()
@@ -530,6 +533,7 @@
     document.getElementById('aprioriForm').addEventListener('reset', function () {
         $('form.was-validated').removeClass('was-validated')
     })
+
 </script>
 
 </html>

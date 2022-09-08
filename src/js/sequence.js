@@ -29,10 +29,11 @@ function result(localizationIndex) {
             <i class='bi bi-info-lg'></i>рекомендуется возвратиться к началу алгоритма (с указанием явности/скрытости и степени тяжести)</div></div>`)
             .parent().toggleClass('d-none d-block')
     } else {
+        conclusion = conclusionBuilder(conclusion)
+            .setLocalization(localizationIndex)
+            .andResolveReason(collectData())
         $('.postConclusion').html(
-            conclusionBuilder(conclusion)
-                .setLocalization(localizationIndex)
-                .andResolveReason(collectData())
+            conclusion
                 .getTag()
                 .clone()
                 .append(() => {

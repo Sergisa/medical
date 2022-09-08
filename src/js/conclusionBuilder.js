@@ -207,6 +207,17 @@ function conclusionBuilder(conclusion) {
             this.reason = bleedReasonResolver.call(this, signs)
             return this;
         },
+        getConclusion() {
+            let that = this;
+            return {
+                explicit: that.explicit,
+                bloodLossHardness: that.bloodLossHardness,
+                localization: that.localization,
+                finalLocalization: that.finalLocalization,
+                reason: that.reason,
+                risk: that.risk
+            }
+        },
         getTag() {
             return $(`<div class="alert alert-info my-2" role="alert">ЖКК <b>${this.explicit ? 'явное' : 'скрытое'}</b></div>`).append(() => {
                 return `, локализованное в <b>${localizationDefinition[this.finalLocalization === null ? this.localization : this.finalLocalization]}</b> отделах ЖКТ`;
