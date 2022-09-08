@@ -324,7 +324,7 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-secondary me-auto float-end" id="saveFinalData" onclick="saveData()">
+    <button type="button" class="btn btn-secondary me-auto float-end d-none" id="saveFinalData">
         Сохранить
     </button>
 </div>
@@ -527,6 +527,7 @@
             sequence = getSequence(conclusion, collectData())
             startHelpSequence();
             $.moveBottom()
+            $('#saveFinalData').removeClass('d-none')
         }
         return false;
     })
