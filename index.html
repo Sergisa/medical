@@ -324,7 +324,6 @@
         </div>
     </div>
     <button type="button" class="btn btn-secondary me-auto float-end" id="saveButton">Сохранить</button>
-    <i class="bi bi-check-lg d-none" id="check"></i>
 </div>
 
 <div class="modal fade" id="additionalResearch" tabindex="-1" aria-labelledby="additionalResearch" aria-hidden="true">
@@ -499,7 +498,7 @@
 
     function saveData() {
         conclusion.reason = reasonsList[conclusion.reason];
-        jQuery.post("http://sergisa.smrtp.ru/medical/save.php", {
+        $.post("http://sergisa.smrtp.ru/medical/save.php", {
             conclusion,
             data: collectData()
         }).done(function (data) {
@@ -512,13 +511,9 @@
         conclusion = makeConclusion();
         modalAdditionalResearch.hide();
     });
-    document.getElementById('saveButton').addEventListener('click', function (event) {
-        event.preventDefault()
-        event.stopPropagation()
-        saveData();
-        return false;
+    document.getElementById('saveButton').addEventListener('click', function () {
+        saveData()
     });
-
     document.getElementById('aprioriForm').addEventListener('submit', function (event) {
         event.preventDefault()
         event.stopPropagation()

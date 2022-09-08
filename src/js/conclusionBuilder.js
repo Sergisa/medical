@@ -198,8 +198,8 @@ function conclusionBuilder(conclusion) {
             this.localization = localizationResolver(signs).result
             return this;
         },
-        setLocalization(localization) {
-            this.finalLocalization = localization;
+        setLocalization(verifiedLocalization) {
+            this.finalLocalization = verifiedLocalization;
             return this;
         },
         andResolveReason(signs) {
@@ -208,16 +208,15 @@ function conclusionBuilder(conclusion) {
             return this;
         },
         getTag() {
-            return $(`<div class="alert alert-info my-2" role="alert">ЖКК <b>${this.explicit ? 'явное' : 'скрытое'}</b></div>`)
-                .append(() => {
-                    return `, локализованное в <b>${localizationDefinition[this.finalLocalization === null ? this.localization : this.finalLocalization]}</b> отделах ЖКТ`;
-                }).append(() => {
-                    if ((this.bloodLossHardness === 1) || (this.bloodLossHardness === 2)) {
-                        return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени тяжести` : '.'
-                    } else if (this.bloodLossHardness === 3) {
-                        return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени` : '.'
-                    }
-                })
+            return $(`<div class="alert alert-info my-2" role="alert">ЖКК <b>${this.explicit ? 'явное' : 'скрытое'}</b></div>`).append(() => {
+                return `, локализованное в <b>${localizationDefinition[this.finalLocalization === null ? this.localization : this.finalLocalization]}</b> отделах ЖКТ`;
+            }).append(() => {
+                if ((this.bloodLossHardness === 1) || (this.bloodLossHardness === 2)) {
+                    return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени тяжести` : '.'
+                } else if (this.bloodLossHardness === 3) {
+                    return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени` : '.'
+                }
+            })
         }
     }
 }
