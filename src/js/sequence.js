@@ -71,7 +71,7 @@ function getSequence(conclusion, signs) {
             run: function () {
                 adviceResearch(
                     'КТ-ангиография',
-                    true,
+                    false,
                     "Европейские рекомендации 2021 г. по диагностике и лечению явного кровотечения из нижних отделов ЖКТ гласят, что пациентам с нестабильной гемодинамикой и подозрением на продолжающееся кровотечение необходимо пройти компьютерную томографическую ангиографию перед эндоскопическим или рентгенологическим лечением, чтобы определить место кровотечения."
                 )
                 showQuestion('Источник найден?')
@@ -79,7 +79,7 @@ function getSequence(conclusion, signs) {
             },
             yes: () => sequence.step5,
             no: () => sequence.step4,
-            needsResearchData: true,
+            needsResearchData: false,
         },
         step4: {
             run: function () {

@@ -132,7 +132,7 @@ function conclusionBuilder(conclusion) {
         risk: conclusion === undefined ? null : conclusion.risk,
         explicit: conclusion === undefined ? null : conclusion.explicit,
         bloodLossHardness: conclusion === undefined ? 0 : conclusion.bloodLossHardness,
-        hard: conclusion === undefined ? null : conclusion.hard,
+        hard: conclusion === undefined ? false : conclusion.hard,
         localization: conclusion === undefined ? 0 : conclusion.localization,
         finalLocalization: conclusion === undefined ? null : conclusion.finalLocalization,
         reason: conclusion === undefined ? 0 : conclusion.reason,
