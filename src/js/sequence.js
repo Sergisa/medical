@@ -199,7 +199,7 @@ function getSequence(conclusion, signs) {
                 info("STAGE 15")
             },
             yes: () => sequence.step9,
-            no: () => sequence.step6,
+            no: () => sequence.step17,
             needsResearchData: false,
         },
         step16: {
