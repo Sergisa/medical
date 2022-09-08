@@ -214,11 +214,11 @@ function getSequence(conclusion, signs) {
         },
         step17: {
             run: function () {
-                if (conclusion.explicit) {
+                if (!conclusion.explicit) {
                     adviceResearch('Инструментально-ассистированная энтероскопия', true)
-                } else if (!conclusion.explicit && !conclusion.hard) {
+                } else if (conclusion.explicit && !conclusion.hard) {
                     adviceResearch('Инструментально-ассистированная энтероскопия • Диагностическая лапароскопия/лапаротомия • Интраоперационная энтероскопия', true)
-                } else if (!conclusion.explicit && conclusion.hard) {
+                } else if (conclusion.explicit && conclusion.hard) {
                     if (signs.ASA1 || signs.ASA3) adviceResearch('Инструментально-ассистированная энтероскопия', true)
                     if (signs.ASA4) adviceResearch('Операция отчаяния', true)
                 }
