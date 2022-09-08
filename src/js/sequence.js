@@ -208,8 +208,8 @@ function getSequence(conclusion, signs) {
                 showQuestion('Гемодинамика стабильна?');
                 info("STAGE 16")
             },
-            yes: () => sequence.step6,
-            no: () => sequence.step6,
+            yes: () => result(0),
+            no: () => sequence.step17,
             needsResearchData: false,
         },
         step17: {
