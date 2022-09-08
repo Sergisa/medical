@@ -1,5 +1,5 @@
-let linkPattern = `<a href="#" type="button" class="text-black" data-bs-toggle="modal" data-bs-target="#additionalResearch">Ввести данные эндоскопического исследования</a>`;
-let advicePattern = $(`<div class="alert alert-info d-block me-1" role="alert" id="text">EMPTY</div>`)
+let linkPattern = `<a href="#" type="button" class="text-black float-end" data-bs-toggle="modal" data-bs-target="#additionalResearch">Ввести данные эндоскопического исследования</a>`;
+let advicePattern = $(`<div class="alert alert-info d-block mb-0 mt-1" role="alert" id="text">EMPTY</div>`)
 
 function adviceResearch(researchName, needDataModal, additionalInfo) {
     advicePattern.clone()

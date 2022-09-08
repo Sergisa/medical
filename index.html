@@ -323,7 +323,7 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-secondary me-auto float-end d-none" id="saveButton">Сохранить</button>
+    <button type="button" class="btn btn-secondary me-auto float-end" id="saveButton">Сохранить</button>
     <i class="bi bi-check-lg d-none" id="check"></i>
 </div>
 
@@ -499,7 +499,7 @@
 
     function saveData() {
         conclusion.reason = reasonsList[conclusion.reason];
-        $.post("http://sergisa.smrtp.ru/medical/save.php", {
+        jQuery.post("http://sergisa.smrtp.ru/medical/save.php", {
             conclusion,
             data: collectData()
         }).done(function (data) {
@@ -512,13 +512,16 @@
         conclusion = makeConclusion();
         modalAdditionalResearch.hide();
     });
-    document.getElementById('saveButton').addEventListener('click', function () {
-        saveData()
+    document.getElementById('saveButton').addEventListener('click', function (event) {
+        event.preventDefault()
+        event.stopPropagation()
+        saveData();
+        return false;
     });
+
     document.getElementById('aprioriForm').addEventListener('submit', function (event) {
         event.preventDefault()
         event.stopPropagation()
-        $('#saveButton').removeClass('d-none')
         $('#helpSequence').addClass('d-none')
         if (this.checkValidity()) {
             conclusion = makeConclusion();

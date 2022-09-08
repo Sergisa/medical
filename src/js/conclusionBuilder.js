@@ -134,7 +134,7 @@ function conclusionBuilder(conclusion) {
         bloodLossHardness: conclusion === undefined ? 0 : conclusion.bloodLossHardness,
         hard: conclusion === undefined ? null : conclusion.hard,
         localization: conclusion === undefined ? 0 : conclusion.localization,
-        finalLocalization: conclusion === undefined ? 0 : conclusion.finalLocalization,
+        finalLocalization: conclusion === undefined ? null : conclusion.finalLocalization,
         reason: conclusion === undefined ? 0 : conclusion.reason,
         andExplicit(indexes) {
             console.log('Определяю явность')
@@ -207,21 +207,10 @@ function conclusionBuilder(conclusion) {
             this.reason = bleedReasonResolver.call(this, signs)
             return this;
         },
-        getConclusion() {
-            let that = this;
-            return {
-                explicit: that.explicit,
-                bloodLossHardness: that.bloodLossHardness,
-                localization: that.localization,
-                finalLocalization: that.finalLocalization,
-                reason: that.reason,
-                risk: that.risk
-            }
-        },
         getTag() {
             return $(`<div class="alert alert-info my-2" role="alert">ЖКК <b>${this.explicit ? 'явное' : 'скрытое'}</b></div>`)
                 .append(() => {
-                    return this.localization ? `, локализованное в <b>${localizationDefinition[this.finalLocalization === 0 ? this.localization : this.finalLocalization]}</b> отделах ЖКТ` : '.'
+                    return `, локализованное в <b>${localizationDefinition[this.finalLocalization === null ? this.localization : this.finalLocalization]}</b> отделах ЖКТ`;
                 }).append(() => {
                     if ((this.bloodLossHardness === 1) || (this.bloodLossHardness === 2)) {
                         return this.bloodLossHardness ? `, <b>${hardness[this.bloodLossHardness]}</b> степени тяжести` : '.'
