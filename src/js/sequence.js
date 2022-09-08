@@ -20,13 +20,13 @@ function result(localizationIndex) {
         $('.postConclusion').html(`<div class="alert alert-info my-2" role="alert">
             Консервативная терапия/наблюдение
             <div class='d-block text-dark'>
-            <i class='bi bi-info-lg'></i>при рецидиве кровотечения из ЖКТ рекомендуется возвратиться к началу алгоритма (с указанием явности/скрытости и степени тяжести)</div></div>`
+            <i class='bi bi-info-lg'></i>при рецидиве кровотечения из ЖКТ рекомендуется возвратиться к началу алгоритма</div></div>`
         ).parent().toggleClass('d-none d-block')
     } else if (localizationIndex === -1) {//не установлено
         $('.postConclusion').html(`<div class="alert alert-info my-2" role="alert">
             Локализация источника ЖКК не установлена
             <div class='d-block text-dark'>
-            <i class='bi bi-info-lg'></i>рекомендуется возвратиться к началу алгоритма (с указанием явности/скрытости и степени тяжести)</div></div>`)
+            <i class='bi bi-info-lg'></i>рекомендуется возвратиться к началу алгоритма</div></div>`)
             .parent().toggleClass('d-none d-block')
     } else {
         conclusion = conclusionBuilder(conclusion)
