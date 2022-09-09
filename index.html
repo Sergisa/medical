@@ -289,7 +289,6 @@
             </button>
         </div>
         <div class="preConclusion">
-            Предварительное заключение
             <div></div>
         </div>
     </form>
@@ -453,7 +452,7 @@
             .andResolveReason(collectData())
             .andResolveRocalRiskLevel(collectData())
             .andResolveHardness(collectData())
-        $('.preConclusion div').html(conclusion.getTag().clone())
+        $('.preConclusion div').html("Предварительное заключение").append(conclusion.getTag().clone())
         window.conclusion = conclusion;
         return conclusion;
     }
@@ -505,7 +504,7 @@
         }).done(function (data) {
             console.log(data);
             $('#good').removeClass('d-none')
-        }).fail(function(){
+        }).fail(function () {
             $('#error').removeClass('d-none')
         })
     }
