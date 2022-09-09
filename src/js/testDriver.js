@@ -55,6 +55,7 @@ function fillTestData() {
 
     }*/
 
+    $('#identifier').val('ТЕСТ');
     $('#aprioriForm').get(0).reset();
     $('#erythrocytes').val(5.4);
     $('#hemoglobin').val(124);
