@@ -12,7 +12,7 @@ let testButton = $('<button></button>', {
 });
 testButton.appendTo(location.host !== "sergisa.smrtp.ru" ? $('#aprioriForm').css('position', 'relative') : null).click(fillTestData)
 $(document).keypress(function (event) {
-    if (event.originalEvent.key === 'T' && event.originalEvent.shiftKey) {
+    if (event.originalEvent.code === 'KeyT' && event.originalEvent.shiftKey) {
         testButton.appendTo($('#aprioriForm').css('position', 'relative')).click(fillTestData)
     }
 });
