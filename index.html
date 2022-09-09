@@ -21,10 +21,6 @@
         .ASAClass div {
             font-family: "Times New Roman", serif;
         }
-
-        #saveButton {
-
-        }
     </style>
 </head>
 <body>
@@ -324,9 +320,9 @@
             </div>
         </div>
     </div>
-    <button type="button" class="btn btn-secondary me-auto float-end d-none" id="saveFinalData">
-        Сохранить
-    </button>
+    <button type="button" class="btn btn-secondary me-auto float-end d-none" id="saveFinalData">Сохранить</button>
+    <i class="status-label bi fs-2 float-end me-auto d-none text-success bi-check-lg" id="good"></i>
+    <i class="status-label bi fs-2 float-end me-auto d-none text-danger bi-x-lg" id="error"></i>
 </div>
 
 <div class="modal fade" id="additionalResearch" tabindex="-1" aria-labelledby="additionalResearch" aria-hidden="true">
@@ -500,6 +496,7 @@
     }
 
     function saveData() {
+        $('.status-label').addClass('d-none')
         console.log("before send", conclusion);
         conclusion.reason = reasonsList[conclusion.reason];
         $.post("https://sergisa.smrtp.ru/medical/save.php", {
@@ -507,7 +504,9 @@
             data: collectData()
         }).done(function (data) {
             console.log(data);
-            //$('')
+            $('#good').removeClass('d-none')
+        }).fail(function(){
+            $('#error').removeClass('d-none')
         })
     }
 
@@ -515,7 +514,7 @@
         conclusion = makeConclusion();
         modalAdditionalResearch.hide();
     });
-    document.getElementById('saveFinalData').addEventListener('submit', function () {
+    document.getElementById('saveFinalData').addEventListener('click', function () {
         saveData();
     });
     document.getElementById('aprioriForm').addEventListener('submit', function (event) {
