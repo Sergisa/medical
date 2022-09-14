@@ -161,7 +161,7 @@ function getSequence(conclusion, signs) {
         },
         step12: {
             run: function () {
-                adviceResearch('КТ-ангиография • Инструментально-ассистированная энтероскопия • Ангиография • Диагностическая лапароскопия/лапаротомия • Сцинтиграфия',
+                adviceResearch('КТ-ангиография и/или Инструментально-ассистированная энтероскопия • Ангиография • Диагностическая лапароскопия/лапаротомия • Сцинтиграфия',
                     true,
                     signs.aorticProsthesis || signs.heartDefects || signs.heartValvesProsthesis ? "Нельзя исключить ЖКК из фистулы или ангиоэктазии" : undefined)
                 showQuestion('В среднем отделе?');
