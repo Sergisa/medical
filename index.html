@@ -469,8 +469,12 @@
         $('#helpSequence').removeClass('d-none')
         $('#adviceLine').empty()
         if (conclusion.explicit) {
-            if (conclusion.hard) sequenceStage = collectData().hematohesia ? sequence.step3 : sequence.step4;
-            else sequenceStage = sequence.step4
+            if (conclusion.hard) {
+                sequenceStage = collectData().hematohesia ? sequence.step3 : sequence.step4;
+                adviceResearch('Начало интенсивной терапии/реанимационных мероприятий', false)
+            } else {
+                sequenceStage = sequence.step4
+            }
         } else {
             sequenceStage = sequence.step4;
         }
