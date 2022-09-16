@@ -219,8 +219,8 @@ function getSequence(conclusion, signs) {
                 } else if (conclusion.explicit && !conclusion.hard) {
                     adviceResearch('Инструментально-ассистированная энтероскопия • Диагностическая лапароскопия/лапаротомия • Интраоперационная энтероскопия', true)
                 } else if (conclusion.explicit && conclusion.hard) {
-                    if (signs.ASA1 || signs.ASA3) adviceResearch('Инструментально-ассистированная энтероскопия', true)
-                    if (signs.ASA4) adviceResearch('Операция отчаяния', true)
+                    if (signs.ASA1 || signs.ASA2|| signs.ASA3) adviceResearch('Инструментально-ассистированная энтероскопия', true)
+                    if (signs.ASA4) adviceResearch('Операция отчаяния только при рецедиве кровотечения', true)
                 }
                 showQuestion('В среднем отделе?');
                 info("STAGE 17")
