@@ -498,7 +498,7 @@
         $('.status-label').addClass('d-none')
         console.log("before send", conclusion);
         conclusion.reason = reasonsList[conclusion.reason];
-        $.post("https://sergisa.smrtp.ru/medical/save.php", {
+        $.post("http://sergisa.smrtp.ru/medical/save.php", {
             conclusion: conclusion.getConclusion(),
             data: collectData()
         }).done(function (data) {
