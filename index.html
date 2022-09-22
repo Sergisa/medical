@@ -8,10 +8,6 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        .main-image {
-            width: 100%;
-        }
-
         #question {
             color: var(--bs-indigo);
             font-weight: bold;
@@ -67,14 +63,14 @@
         </div>
         <div class="row">
             <div class="col-auto">
-                <input class="form-control" type="number" id="bloodArterialPressure" min="0" step="1" required>
+                <input class="form-control" type="text" id="bloodArterialPressure" required>
                 <div class="invalid-feedback">
                     Необходимо ввести значение.
                 </div>
                 <label class="form-label" for="bloodArterialPressure">АД сист., мм.рт.ст. *</label>
             </div>
             <div class="col-auto">
-                <input class="form-control" type="number" min="0" step="1" id="pulse" required>
+                <input class="form-control" type="text" id="pulse" required>
                 <div class="invalid-feedback">
                     Необходимо ввести значение.
                 </div>
@@ -146,21 +142,21 @@
         </div>
         <div class="row">
             <div class="col-auto">
-                <input class="form-control" type="number" id="hematocrit" min="0" step="1" required>
+                <input class="form-control" type="text" id="hematocrit" required>
                 <div class="invalid-feedback">
                     Необходимо ввести значение.
                 </div>
                 <label class="form-label" for="hematocrit">Гематокрит, % *</label>
             </div>
             <div class="col-auto">
-                <input class="form-control" type="number" id="hemoglobin" min="0" step="1" required>
+                <input class="form-control" type="text" id="hemoglobin" required>
                 <div class="invalid-feedback">
                     Необходимо ввести значение.
                 </div>
                 <label class="form-label" for="hemoglobin">Гемоглобин, г/л *</label>
             </div>
             <div class="col-auto">
-                <input class="form-control expectingDecimal" type="text" id="erythrocytes" min="0" step="0.1" required>
+                <input class="form-control expectingDecimal" type="text" id="erythrocytes" required>
                 <div class="invalid-feedback">
                     Необходимо ввести значение.
                 </div>
