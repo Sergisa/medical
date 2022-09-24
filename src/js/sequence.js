@@ -36,8 +36,8 @@ function result(localizationIndex) {
             .parent().toggleClass('d-none d-block')
     } else {
         conclusion = conclusionBuilder(conclusion)
-            .setLocalization(localizationIndex)
-            .andResolveReason(collectData())
+            .andResolveReason(collectData()) // Уточнение причины
+            .setLocalization(localizationIndex)//Установка локализации
         $('.postConclusion').html(
             conclusion
                 .getTag()

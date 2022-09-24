@@ -203,7 +203,20 @@ function conclusionBuilder(conclusion) {
             return this;
         },
         setLocalization(verifiedLocalization) {
+            /** TODO: chain with reasons
+             * reason -> localization
+             * 8 -> 1
+             * 5 -> 2
+             * 3 -> 2|3
+             * 1 -> 3
+             */
             this.finalLocalization = verifiedLocalization;
+            if (this.reason.contains(8)) this.finalLocalization = 1;
+            if (this.reason.contains(5)) this.finalLocalization = 2;
+            if (this.reason.contains(3)) this.finalLocalization = 2;
+            if (this.reason.contains(1)) this.finalLocalization = 3;
+            this.finalLocalization = verifiedLocalization;
+            //TODO: After result count. Shift result localization if necessary according to reason
             return this;
         },
         andResolveReason(signs) {
