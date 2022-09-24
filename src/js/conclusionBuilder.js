@@ -74,6 +74,11 @@ function localizationResolver(signs) {
     }
 }
 
+/**
+ *
+ * @param signs
+ * @returns {Array}
+ */
 function bleedReasonResolver(signs) {
     //TODO: merge arrays&unique ?
     if (signs.v32) return [9, 3, 4]
@@ -115,7 +120,7 @@ function riskResolver(signs) {
     if (signs.kidneyFailure || signs.liverFailure || signs.metastaticCancer) levelCount += 3
 
     //Диагноз
-    if (bleedReasonResolver(signs) === 8) levelCount += 0
+    if (bleedReasonResolver(signs).includes(8)) levelCount += 0
     if (signs.v37) levelCount += 2;//нерегулярность слизистой
     else levelCount += 1
 
