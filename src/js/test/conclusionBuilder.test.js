@@ -3,90 +3,52 @@ const builder = require('../conclusionBuilder')
 
 test("Опеделение причины кровотечения", () => {
     expect(builder.bleedReasonResolver({
-        v21: true,
-        v22: false,
-        v23: false,
-        v24: false,
-        v25: false,
-        v26: false,
-        v27: false,
-        v28: false,
-        v29: false,
-        v30: false,
-        v31: false,
-        v32: true,
-        v33: true,
-        v34: false,
-        v35: false,
-    })).toBe('эрозивно-язвенные поражения тонкой/толстой кишки')
-    expect(builder.bleedReasonResolver({
-        v21: true,
-        v22: true,
-        v23: true,
-        v24: false,
-        v25: false,
-        v26: false,
-        v27: true,
-        v28: false,
-        v29: false,
-        v30: true,
-        v31: true,
-        v32: true,
-        v33: true,
-        v34: false,
-        v35: false,
-    })).toBe('дивертикулы ЖКТ')
-    expect(builder.bleedReasonResolver({
-        v21: false,
-        v22: false,
-        v23: false,
-        v24: false,
-        v25: false,
-        v26: false,
-        v27: false,
-        v28: false,
-        v29: false,
-        v30: false,
-        v31: false,
         v32: false,
         v33: false,
         v34: false,
         v35: false,
-    })).toBe('опухолевые заболевания ЖКТ')
+        v36: false,
+        v37: false,
+        v38: false,
+        v39: true,
+        v40: true,
+        v41: false,
+        v42: false,
+        v43: true,
+        v44: false,
+        v45: false,
+        v46: true,
+        v47: false,
+        v48: false,
+        v49: true,
+    })).toEqual([5, 4, 3, 1])
     expect(builder.bleedReasonResolver({
-        v21: false,
-        v22: false,
-        v23: false,
-        v24: false,
-        v25: false,
-        v26: true,
-        v27: false,
-        v28: true,
-        v29: false,
-        v30: false,
-        v31: false,
-        v32: false,
-        v33: false,
-        v34: false,
-        v35: false,
-    })).toBe('эрозивно-язвенные поражения верхних отделов ЖКТ')
+        v39: true,
+        v40: true,
+        v43: true,
+        v46: true,
+        v49: true,
+    })).toEqual([5, 4, 3, 1])
     expect(builder.bleedReasonResolver({
-        v21: true,
-        v22: true,
-        v23: true,
-        v24: true,
-        v25: true,
-        v26: true,
-        v27: false,
-        v28: true,
-        v29: true,
-        v30: true,
-        v31: true,
-        v32: true,
-        v33: true,
-        v34: true,
-        v35: false,
-    })).toBe('варикозное расширение вен ЖКТ')
+        v32: undefined,
+        v33: undefined,
+        v34: undefined,
+        v35: undefined,
+        v36: undefined,
+        v37: undefined,
+        v38: undefined,
+        v39: true,
+        v40: true,
+        v41: undefined,
+        v42: undefined,
+        v43: true,
+        v44: undefined,
+        v45: undefined,
+        v46: true,
+        v47: undefined,
+        v48: undefined,
+        v49: true,
+    })).toEqual([5, 4, 3, 1])
 })
 test("Опеделение локализации кровотечения", () => {
     expect(builder.localizationResolver({
@@ -98,7 +60,7 @@ test("Опеделение локализации кровотечения", () 
         melena: false,
         coffeeVomit: false,
         bloodVomit: false,
-    }).result).toBe('средних')
+    }).result).toBe(2)
 
     expect(builder.localizationResolver({
         hemoglobin: 141,
@@ -109,7 +71,7 @@ test("Опеделение локализации кровотечения", () 
         melena: false,
         coffeeVomit: false,
         bloodVomit: false,
-    }).result).toBe('средних')
+    }).result).toBe(2)
 
     expect(builder.localizationResolver({
         hemoglobin: 130,
@@ -120,5 +82,5 @@ test("Опеделение локализации кровотечения", () 
         melena: false,
         coffeeVomit: false,
         bloodVomit: true,
-    }).result).toBe('верхних')
+    }).result).toBe(1)
 })
