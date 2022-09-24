@@ -490,7 +490,7 @@
     function saveData() {
         $('.status-label').addClass('d-none')
         console.log("before send", conclusion);
-        conclusion.reason = reasonsList[conclusion.reason];
+        conclusion.reason = getJoinedReasons(conclusion.reason,",");
         $.post("http://sergisa.smrtp.ru/medical/save.php", {
             conclusion: conclusion.getConclusion(),
             data: collectData()

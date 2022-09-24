@@ -76,25 +76,24 @@ function localizationResolver(signs) {
 
 function bleedReasonResolver(signs) {
     console.log(this);
-    if (signs.v45 || signs.v46) {
-        return 1
-    } else if (signs.v36 || signs.v38) {
-        return 2;
-    } else if (signs.v32 || signs.v34 || signs.v36 || signs.v41 || signs.v42 || signs.v43 || signs.v44) {
-        return 3;
-    } else if (signs.v32 || signs.v34 || signs.v35 || signs.v39 || signs.v43 || signs.v44) {
-        return 4;
-    } else if (signs.v39 || signs.v40 || signs.v45) {
-        return 5;
-    } else if (signs.v33 || signs.v42) {
-        return 6;
-    } else if (signs.v47) {
-        return 7;
-    } else if (signs.v48) {
-        return 8;
-    } else {
-        return 9;
-    }
+    if (signs.v32) return [9, 3, 4]
+    else if (signs.v33) return [9, 6]
+    else if (signs.v34) return [3, 4]
+    else if (signs.v35) return [4]
+    else if (signs.v36) return [9, 3, 2]
+    else if (signs.v37) return [9]
+    else if (signs.v38) return [2]
+    else if (signs.v39) return [5, 4]
+    else if (signs.v40) return [5]
+    else if (signs.v41) return [9, 3]
+    else if (signs.v42) return [9, 3, 6]
+    else if (signs.v43) return [4, 3]
+    else if (signs.v44) return [4, 3]
+    else if (signs.v45) return [5, 1]
+    else if (signs.v46) return [1]
+    else if (signs.v47) return [7]
+    else if (signs.v48) return [8]
+    else if (signs.v49) return []
 }
 
 function riskResolver(signs) {
@@ -135,7 +134,7 @@ function conclusionBuilder(conclusion) {
         hard: conclusion === undefined ? false : conclusion.hard,
         localization: conclusion === undefined ? 0 : conclusion.localization,
         finalLocalization: conclusion === undefined ? null : conclusion.finalLocalization,
-        reason: conclusion === undefined ? 0 : conclusion.reason,
+        reason: conclusion === undefined ? [] : conclusion.reason,
         andExplicit(indexes) {
             console.log('Определяю явность')
             if (indexes.bloodVomit || indexes.coffeeVomit || indexes.melena || indexes.hematohesia || indexes.blackFeces) {
