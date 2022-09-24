@@ -40,3 +40,7 @@ test("Очищает null, undefined и \"\"", () => {
     expect([1, 4, null, null, 5, 5, 7].getUnique()).toStrictEqual([1, 4, 5, 7])
     expect([1, 4, undefined, undefined, 5, 5, 7].getUnique()).toStrictEqual([1, 4, 5, 7])
 })
+test("Concat test", () => {
+    expect([].concat([5, 4]).concat([5]).concat([4, 3]).concat([1]).getUnique()).toStrictEqual([5, 4, 3, 1])
+    expect([1, 4, undefined, undefined, 5, 5, 7].getUnique()).toStrictEqual([1, 4, 5, 7])
+})

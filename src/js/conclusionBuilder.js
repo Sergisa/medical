@@ -80,24 +80,25 @@ function localizationResolver(signs) {
  * @returns {Array}
  */
 function bleedReasonResolver(signs) {
-    //TODO: merge arrays&unique ?
-    if (signs.v32) return [9, 3, 4]
-    else if (signs.v33) return [9, 6]
-    else if (signs.v34) return [3, 4]
-    else if (signs.v35) return [4]
-    else if (signs.v36) return [9, 3, 2]
-    else if (signs.v37) return [9]
-    else if (signs.v38) return [2]
-    else if (signs.v39) return [5, 4]
-    else if (signs.v40) return [5]
-    else if (signs.v41) return [9, 3]
-    else if (signs.v42) return [9, 3, 6]
-    else if (signs.v43) return [4, 3]
-    else if (signs.v44) return [4, 3]
-    else if (signs.v45) return [5, 1]
-    else if (signs.v46) return [1]
-    else if (signs.v47) return [7]
-    else if (signs.v48) return [8]
+    let reasonsSummary = []
+    if (signs.v32) reasonsSummary = reasonsSummary.concat([9, 3, 4])
+    if (signs.v33) reasonsSummary = reasonsSummary.concat([9, 6])
+    if (signs.v34) reasonsSummary = reasonsSummary.concat([3, 4])
+    if (signs.v35) reasonsSummary = reasonsSummary.concat([4])
+    if (signs.v36) reasonsSummary = reasonsSummary.concat([9, 3, 2])
+    if (signs.v37) reasonsSummary = reasonsSummary.concat([9])
+    if (signs.v38) reasonsSummary = reasonsSummary.concat([2])
+    if (signs.v39) reasonsSummary = reasonsSummary.concat([5, 4])
+    if (signs.v40) reasonsSummary = reasonsSummary.concat([5])
+    if (signs.v41) reasonsSummary = reasonsSummary.concat([9, 3])
+    if (signs.v42) reasonsSummary = reasonsSummary.concat([9, 3, 6])
+    if (signs.v43) reasonsSummary = reasonsSummary.concat([4, 3])
+    if (signs.v44) reasonsSummary = reasonsSummary.concat([4, 3])
+    if (signs.v45) reasonsSummary = reasonsSummary.concat([5, 1])
+    if (signs.v46) reasonsSummary = reasonsSummary.concat([1])
+    if (signs.v47) reasonsSummary = reasonsSummary.concat([7])
+    if (signs.v48) reasonsSummary = reasonsSummary.concat([8])
+    return reasonsSummary.getUnique();
 }
 
 function riskResolver(signs) {

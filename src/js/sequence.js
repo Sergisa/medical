@@ -48,7 +48,7 @@ function result(localizationIndex) {
                         else if (conclusion.risk >= 3 && conclusion.risk <= 7) return ', с <b>высоким</b> риском рецедива';
                     }
                 })
-                .append(`, источником которого послужили : <b>${getJoinedReasons(conclusion.reason)}</b>`)
+                .append(`, источником которого послужили : <b>${getJoinedReasons(conclusion.reason," или ")}</b>`)
                 .toggleClass('alert-info alert-primary')
         ).parent().toggleClass('d-none d-block')
     }
