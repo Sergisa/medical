@@ -1,5 +1,7 @@
 require('../arrayExtension')
 const builder = require('../conclusionBuilder')
+const test = require('@jest/globals').test
+const expect = require('@jest/globals').expect
 
 test("Опеделение причины кровотечения", () => {
     expect(builder.bleedReasonResolver({

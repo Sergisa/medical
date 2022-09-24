@@ -20,6 +20,7 @@
     "bootstrap-icons": "^1.8.3"
   },
   "devDependencies": {
+    "@jest/globals": "^29.0.3",
     "jest": "^28.1.0",
     "sass": "^1.52.3",
     "terser": "^5.14.1"
