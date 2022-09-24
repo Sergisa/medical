@@ -75,7 +75,7 @@ function localizationResolver(signs) {
 }
 
 function bleedReasonResolver(signs) {
-    console.log(this);
+    //TODO: merge arrays&unique ?
     if (signs.v32) return [9, 3, 4]
     else if (signs.v33) return [9, 6]
     else if (signs.v34) return [3, 4]
@@ -93,7 +93,6 @@ function bleedReasonResolver(signs) {
     else if (signs.v46) return [1]
     else if (signs.v47) return [7]
     else if (signs.v48) return [8]
-    else if (signs.v49) return []
 }
 
 function riskResolver(signs) {
