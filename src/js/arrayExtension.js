@@ -10,8 +10,12 @@ Array.prototype.maxIndex = function () {
 Array.prototype.minIndex = function () {
     return this.indexOf(Math.min.apply(null, this))
 }
-$.moveBottom = function (speed) {
-    $("html, body").animate({
-        scrollTop: $(document).height()
-    }, speed ?? 1000);
+Array.prototype.getUnique = function () {
+    let a = [];
+    for (let i = 0, l = this.length; i < l; i++)
+        if (a.indexOf(this[i]) === -1 && this[i] !== '' && this[i] !== undefined && this[i] !== null)
+            a.push(this[i]);
+    return a;
+
 }
+
