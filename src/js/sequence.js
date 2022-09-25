@@ -36,8 +36,8 @@ function result(localizationIndex) {
             .parent().toggleClass('d-none d-block')
     } else {
         conclusion = conclusionBuilder(conclusion)
-            .andResolveReason(collectData()) // Уточнение причины
-            .setLocalization(localizationIndex)//Установка локализации
+            .setLocalization(localizationIndex)
+            .andResolveReason(collectData())
         $('.postConclusion').html(
             conclusion
                 .getTag()
@@ -48,7 +48,7 @@ function result(localizationIndex) {
                         else if (conclusion.risk >= 3 && conclusion.risk <= 7) return ', с <b>высоким</b> риском рецедива';
                     }
                 })
-                .append(`, источником которого послужили : <b>${getJoinedReasons(conclusion.reason," или ")}</b>`)
+                .append(`, источником которого послужили : <b>${getJoinedReasons(conclusion.reason, " или ")}</b>`)
                 .toggleClass('alert-info alert-primary')
         ).parent().toggleClass('d-none d-block')
     }

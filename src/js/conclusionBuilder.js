@@ -36,8 +36,8 @@ let localizationDefinition = {
 let reasonsList = {
     1: "Геморрой неуточненный",
     2: "Дивертикулярная болезнь",
-    3: "Эрозивно-язвенные поражения тонкой/толстой кишки", //TODO: если средний нижний отдел
-    4: "Эрозивно-язвенные поражения верхних отделов ЖКТ", //TODO: если верхний отдел
+    3: "Эрозивно-язвенные поражения тонкой/толстой кишки",
+    4: "Эрозивно-язвенные поражения верхних отделов ЖКТ",
     5: "Ангиоэктазии/телеангиоэктазии/венозные мальформации",
     6: "Целиакия",
     7: "Свищ между крупным сосудом и просветом ЖКТ",
@@ -75,11 +75,17 @@ function localizationResolver(signs) {
 }
 
 /**
- *
+ * reason -> localization
+ *    8 ----> 1
+ *    4 ----> 1
+ *    3 ----> 2|3
+ *    1 ----> 3
+ * @desc called by resolveReason
  * @param signs
+ * @param localization
  * @returns {Array}
  */
-function bleedReasonResolver(signs) {
+function bleedReasonResolver(signs, localization = undefined) {
     return [].concat(
         (signs.v32) ? [9, 3, 4] : [],
         (signs.v33) ? [9, 6] : [],
@@ -98,7 +104,12 @@ function bleedReasonResolver(signs) {
         (signs.v46) ? [1] : [],
         (signs.v47) ? [7] : [],
         (signs.v48) ? [8] : [],
-    ).getUnique();
+    ).getFrequentlySorted().filter((reasonCode) => {
+        if (localization === 1) return reasonCode !== 3 && reasonCode !== 1
+        if (localization === 2) return reasonCode !== 4 && reasonCode !== 8 && reasonCode !== 1
+        if (localization === 3) return reasonCode !== 4 && reasonCode !== 8
+        return true;
+    });
 }
 
 function riskResolver(signs) {
@@ -203,25 +214,17 @@ function conclusionBuilder(conclusion) {
             return this;
         },
         setLocalization(verifiedLocalization) {
-            /** TODO: chain with reasons
-             * reason -> localization
-             * 8 -> 1
-             * 5 -> 2
-             * 3 -> 2|3
-             * 1 -> 3
-             */
             this.finalLocalization = verifiedLocalization;
-            if (this.reason.contains(8)) this.finalLocalization = 1;
-            if (this.reason.contains(5)) this.finalLocalization = 2;
-            if (this.reason.contains(3)) this.finalLocalization = 2;
-            if (this.reason.contains(1)) this.finalLocalization = 3;
-            this.finalLocalization = verifiedLocalization;
-            //TODO: After result count. Shift result localization if necessary according to reason
             return this;
         },
+        /**
+         *
+         * @param signs {Object}
+         * @returns {*}
+         */
         andResolveReason(signs) {
             console.log('Определяю причины', signs)
-            this.reason = bleedReasonResolver.call(this, signs)
+            this.reason = bleedReasonResolver.call(this, signs, this.localization)
             return this;
         },
         getConclusion() {

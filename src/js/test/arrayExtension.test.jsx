@@ -1,8 +1,6 @@
-/**
- * @jest-environment node
- * @transformIgnorePatterns: ['node_modules/'],
- */
 require('../arrayExtension')
+const test = require('@jest/globals').test
+const expect = require('@jest/globals').expect
 
 let array = [4, 5, 6, 7, 8, 9, 1, 2, 3, 10, 11, 22]
 test("Индекс максимального элемента находится", () => {
@@ -27,20 +25,37 @@ test("Минимальный находится", () => {
     expect(array.minIndex()).toBe(0)
     expect(array.maxIndex()).toBe(0)
 })
-test("Выборка уникального набора", () => {
+test("getUnique: Выборка уникального набора", () => {
     expect([1, 4, 5, 5, 5, 7].getUnique()).toStrictEqual([1, 4, 5, 7])
 })
-test("Оставляет строки не тронутыми считая их числами", () => {
+test("getUnique: Оставляет строки не тронутыми считая их числами", () => {
     expect([1, "4", 5, 5, 5, 7].getUnique()).toStrictEqual([1, "4", 5, 7])
 })
-test("Строки это не числа", () => {
+test("getUnique: Строки это не числа", () => {
     expect([1, 4, "5", 5, 5, 7].getUnique()).toStrictEqual([1, 4, "5", 5, 7])
 })
-test("Очищает null, undefined и \"\"", () => {
+test("getUnique: Очищает null, undefined и \"\"", () => {
     expect([1, 4, null, null, 5, 5, 7].getUnique()).toStrictEqual([1, 4, 5, 7])
     expect([1, 4, undefined, undefined, 5, 5, 7].getUnique()).toStrictEqual([1, 4, 5, 7])
 })
-test("Concat test", () => {
+test("getUnique: Concat test", () => {
     expect([].concat([5, 4]).concat([5]).concat([4, 3]).concat([1]).getUnique()).toStrictEqual([5, 4, 3, 1])
     expect([1, 4, undefined, undefined, 5, 5, 7].getUnique()).toStrictEqual([1, 4, 5, 7])
 })
+test("getFrequentlySorted: Frequency sorted", () => {
+    expect([].concat([5, 5, 4, 4, 4, 4, 4, 3, 2]).getFrequentlySorted()).toStrictEqual([4, 5, 3, 2])
+    expect([].concat([5, 5, 5, 5, 5, 5, 4, 3, 2]).getFrequentlySorted()).toStrictEqual([5, 4, 3, 2])
+    expect([].concat([5, 5, 5, 4, 4, 4, 7, 3, 2]).getFrequentlySorted()).toStrictEqual([5, 4, 7, 3, 2])
+    expect([].concat([1, 2, 3, 7, 8, 9]).getFrequentlySorted()).toStrictEqual([1, 2, 3, 7, 8, 9])
+})
+test("count: count element in array", () => {
+    expect([].concat([5, 2]).count(2)).toBe(1)
+    expect([].concat([5, 2, 2, 2, 2, 2]).count(2)).toBe(5)
+    expect([].concat([5, 2, 2, 2, 2, 2]).count(5)).toBe(1)
+    expect([].concat([5, undefined, null, 2, 2, 2]).count(5)).toBe(1)
+    expect([].concat([5, undefined, null, 2, 2, 2]).count(2)).toBe(3)
+    expect([].concat([5, undefined, null, 2, 2, 2]).count(undefined)).toBe(1)
+    expect([].concat([5, undefined, null, 2, 2, 2]).count(null)).toBe(1)
+})
+
+

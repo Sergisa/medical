@@ -16,6 +16,17 @@ Array.prototype.getUnique = function () {
         if (a.indexOf(this[i]) === -1 && this[i] !== '' && this[i] !== undefined && this[i] !== null)
             a.push(this[i]);
     return a;
-
+}
+Array.prototype.count = function (value) {
+    return this.filter(x => x === value).length;
+}
+Array.prototype.getFrequentlySorted = function () {
+    let a;
+    let firstVersion = this;
+    a = this.getUnique().sort((a, b) => {
+        if (firstVersion.count(a) === firstVersion.count(b)) return a > b
+        return (firstVersion.count(a) > firstVersion.count(b)) ? -1 : 1;
+    })
+    return a;
 }
 
