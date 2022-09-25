@@ -88,15 +88,6 @@ test("Геморрой не может быть ни в каком кроме в
     //reason: 1, 3, 4, 5
     //loc.:1 -> 4, 5
     expect(builder.bleedReasonResolver({
-        age: 76,
-        pressure: 120.3,
-        pulse: 80,
-        hematocrit: 16.8,
-        erythrocytes: 1.67,
-        hemoglobin: 50.6,
-        gender: 'female',
-        melena: true,
-        ASA3: true,
         v39: true,
         v40: true,
         v43: true,
@@ -107,34 +98,43 @@ test("Эрозивно-язвенные поражения тонкой/толс
     //reason: 1, 3, 4, 5
     //loc.:2
     expect(builder.bleedReasonResolver({
-        age: 76,
-        pressure: 120.3,
-        pulse: 80,
-        hematocrit: 16.8,
-        erythrocytes: 1.67,
-        hemoglobin: 50.6,
-        gender: 'female',
-        melena: true,
-        ASA3: true,
         v39: true,
         v40: true,
         v43: true,
         v46: true
     }, 2).sort()).toEqual([3, 5].sort())
+    expect(builder.bleedReasonResolver({
+        v39: true,
+        v40: true,
+        v43: true,
+        v46: true
+    }, 1).sort()).toEqual([4, 5].sort())
+    expect(builder.bleedReasonResolver({
+        v39: true,
+        v40: true,
+        v43: true,
+        v46: true
+    }, 3).sort()).toEqual([1, 3, 5].sort())
+
+})
+test("Эрозивно-язвенные поражения верхних отделов ЖКТ не может быть нигде кроме верхнего отдела {v34, v46} -> [1, 3, 4]", () => {
+    expect(builder.bleedReasonResolver({
+        v34: true,
+        v46: true,
+    }, 1).sort()).toEqual([4].sort())
+    expect(builder.bleedReasonResolver({
+        v34: true,
+        v46: true,
+    }, 2).sort()).toEqual([3].sort())
+    expect(builder.bleedReasonResolver({
+        v34: true,
+        v46: true,
+    }, 3).sort()).toEqual([1, 3].sort())
 })
 test("Эрозивно-язвенные поражения верхних отделов ЖКТ не может быть нигде кроме верхнего отдела {v39, v40, v43, v46} -> [1, 3, 4, 5]", () => {
     //reason: 1, 3, 4, 5
     //loc.:1 -> 1, 3, 5
     expect(builder.bleedReasonResolver({
-        age: 76,
-        pressure: 120.3,
-        pulse: 80,
-        hematocrit: 16.8,
-        erythrocytes: 1.67,
-        hemoglobin: 50.6,
-        gender: 'female',
-        melena: true,
-        ASA3: true,
         v39: true,
         v40: true,
         v43: true,
@@ -145,15 +145,6 @@ test("Синдром Меллори-Вейса не может быть ни в 
     //reason: 1, 3, 4, 5, 8
     //loc.:1 -> 4, 5, 8
     expect(builder.bleedReasonResolver({
-        age: 76,
-        pressure: 120.3,
-        pulse: 80,
-        hematocrit: 16.8,
-        erythrocytes: 1.67,
-        hemoglobin: 50.6,
-        gender: 'female',
-        melena: true,
-        ASA3: true,
         v39: true,
         v40: true,
         v43: true,
