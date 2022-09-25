@@ -29,7 +29,7 @@
             </h1>
         </div>
     </div>
-    <form action="" class="p-3 needs-validation" id="aprioriForm" novalidate>
+    <form action="" class="p-3 needs-validation" id="aprioriForm" name="signsForm" novalidate>
         <div class="col-auto">
             <input type="text" class="form-control" id="identifier" placeholder="Идентификатор">
             <label class="form-check-label" for="identifier"></label>
@@ -232,44 +232,44 @@
             <hr class="mb-3">
             <div class="col-md-4">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="ASA1" value="">
+                    <input class="form-check-input" type="radio" id="ASA1" value="ASA1" name="ASA" required>
                     <label class="form-check-label" for="ASA1">ASA I</label>
                     <div class="form-text">Здоровый пациент</div>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="ASA2" value="">
+                    <input class="form-check-input" type="radio" id="ASA2" value="ASA2" name="ASA" required>
                     <label class="form-check-label" for="ASA2">ASA II</label>
                     <div class="form-text">Пациент с легким системным заболеванием</div>
 
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="ASA3" value="">
+                    <input class="form-check-input" type="radio" id="ASA3" value="ASA3" name="ASA" required>
                     <label class="form-check-label" for="ASA3">ASA III</label>
                     <div class="form-text">Пациент с тяжелым системным заболеванием</div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="ASA4" value="">
+                    <input class="form-check-input" type="radio" id="ASA4" value="ASA4" name="ASA" required>
                     <label class="form-check-label" for="ASA4">ASA IV</label>
                     <div class="form-text">
                         Пациент с тяжелым системным заболеванием, которое представляет собой постоянную угрозу для жизни
                     </div>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="ASA5" value="">
+                    <input class="form-check-input" type="radio" id="ASA5" value="ASA5" name="ASA" required>
                     <label class="form-check-label" for="ASA5">ASA V</label>
                     <div class="form-text">Умирающий пациент. Операция по жизненным показаниям.</div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="ASA6" value="">
+                    <input class="form-check-input" type="radio" id="ASA6" value="ASA6" name="ASA" required>
                     <label class="form-check-label" for="ASA6">ASA VI</label>
                     <div class="form-text">Констатирована смерть мозга</div>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="E" value="">
+                    <input class="form-check-input" type="checkbox" id="E" value="" name="E">
                     <label class="form-check-label" for="E">E</label>
                     <div class="form-text">Неотложность хирургического вмешательства</div>
                 </div>
