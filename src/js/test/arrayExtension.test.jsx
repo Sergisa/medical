@@ -46,7 +46,7 @@ test("getFrequentlySorted: Frequency sorted", () => {
     expect([].concat([5, 5, 4, 4, 4, 4, 4, 3, 2]).getFrequentlySorted()).toStrictEqual([4, 5, 3, 2])
     expect([].concat([5, 5, 5, 5, 5, 5, 4, 3, 2]).getFrequentlySorted()).toStrictEqual([5, 4, 3, 2])
     expect([].concat([5, 5, 5, 4, 4, 4, 7, 3, 2]).getFrequentlySorted()).toStrictEqual([5, 4, 7, 3, 2])
-    expect([].concat([1, 2, 3, 7, 8, 9]).getFrequentlySorted()).toStrictEqual([1, 2, 3, 7, 8, 9])
+    expect([].concat([1, 2, 3, 7, 8, 9]).getFrequentlySorted()).toStrictEqual([9, 8, 7, 3, 2, 1])
 })
 test("count: count element in array", () => {
     expect([].concat([5, 2]).count(2)).toBe(1)

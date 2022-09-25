@@ -24,7 +24,7 @@ Array.prototype.getFrequentlySorted = function () {
     let a;
     let firstVersion = this;
     a = this.getUnique().sort((a, b) => {
-        if (firstVersion.count(a) === firstVersion.count(b)) return a > b
+        if (firstVersion.count(a) === firstVersion.count(b)) return (a > b) ? -1 : 1
         return (firstVersion.count(a) > firstVersion.count(b)) ? -1 : 1;
     })
     return a;
