@@ -8,10 +8,6 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        .main-image {
-            width: 100%;
-        }
-
         #question {
             color: var(--bs-indigo);
             font-weight: bold;
@@ -26,10 +22,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="col-12 col-md-4">
-            <img src="mainImage.png" alt="image" class=" main-image"/>
-        </div>
-        <div class="col-12 col-md-8 my-auto">
+        <div class="col-12 my-auto">
             <h1 class="text-danger fw-bold text-center">
                 Алгоритм ведения пациентов с подозрением на желудочно-кишечное кровотечение с элементами поддержки
                 принятия клинических решений
@@ -70,14 +63,14 @@
         </div>
         <div class="row">
             <div class="col-auto">
-                <input class="form-control" type="number" id="bloodArterialPressure" min="0" step="1" required>
+                <input class="form-control" type="text" id="bloodArterialPressure" required>
                 <div class="invalid-feedback">
                     Необходимо ввести значение.
                 </div>
                 <label class="form-label" for="bloodArterialPressure">АД сист., мм.рт.ст. *</label>
             </div>
             <div class="col-auto">
-                <input class="form-control" type="number" min="0" step="1" id="pulse" required>
+                <input class="form-control" type="text" id="pulse" required>
                 <div class="invalid-feedback">
                     Необходимо ввести значение.
                 </div>
@@ -149,21 +142,21 @@
         </div>
         <div class="row">
             <div class="col-auto">
-                <input class="form-control" type="number" id="hematocrit" min="0" step="1" required>
+                <input class="form-control" type="text" id="hematocrit" required>
                 <div class="invalid-feedback">
                     Необходимо ввести значение.
                 </div>
                 <label class="form-label" for="hematocrit">Гематокрит, % *</label>
             </div>
             <div class="col-auto">
-                <input class="form-control" type="number" id="hemoglobin" min="0" step="1" required>
+                <input class="form-control" type="text" id="hemoglobin" required>
                 <div class="invalid-feedback">
                     Необходимо ввести значение.
                 </div>
                 <label class="form-label" for="hemoglobin">Гемоглобин, г/л *</label>
             </div>
             <div class="col-auto">
-                <input class="form-control expectingDecimal" type="text" id="erythrocytes" min="0" step="0.1" required>
+                <input class="form-control expectingDecimal" type="text" id="erythrocytes" required>
                 <div class="invalid-feedback">
                     Необходимо ввести значение.
                 </div>
@@ -302,7 +295,7 @@
                 Рекомендация
                 <div class="d-block">
                     <div class="col-12 mt-2" id="adviceLine"></div>
-                    <div id="questionBlock" class="d-flex">
+                    <div id="questionBlock" class="d-flex justify-content-end mt-2">
                         <div id="question" class="d-inline-flex question badge bg-light fs-6"></div>
                         <button id="yes" class="btn btn-sm btn-secondary me-1">Да</button>
                         <button id="no" class="btn btn-sm btn-secondary me-1">Нет</button>
@@ -501,8 +494,8 @@
     function saveData() {
         $('.status-label').addClass('d-none')
         console.log("before send", conclusion);
-        conclusion.reason = reasonsList[conclusion.reason];
-        $.post("https://sergisa.smrtp.ru/medical/save.php", {
+        conclusion.reason = getJoinedReasons(conclusion.reason,",");
+        $.post("http://sergisa.smrtp.ru/medical/save.php", {
             conclusion: conclusion.getConclusion(),
             data: collectData()
         }).done(function (data) {

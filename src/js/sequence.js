@@ -13,6 +13,12 @@ function showQuestion(question) {
     $('#question').html(question)
 }
 
+function getJoinedReasons(reasons, delim) {
+    return reasons.map(function (reasonCode) {
+        return reasonsList[reasonCode]
+    }).join(delim ?? ', ')
+}
+
 function result(localizationIndex) {
     $('#questionBlock').toggleClass('d-inline d-none')
     console.log("RESULT:", conclusion)
@@ -42,7 +48,7 @@ function result(localizationIndex) {
                         else if (conclusion.risk >= 3 && conclusion.risk <= 7) return ', с <b>высоким</b> риском рецедива';
                     }
                 })
-                .append(`, источником которого послужили : <b>${reasonsList[conclusion.reason]}</b>`)
+                .append(`, источником которого послужили : <b>${getJoinedReasons(conclusion.reason, " или ")}</b>`)
                 .toggleClass('alert-info alert-primary')
         ).parent().toggleClass('d-none d-block')
     }
@@ -217,10 +223,10 @@ function getSequence(conclusion, signs) {
                 if (!conclusion.explicit) {
                     adviceResearch('Инструментально-ассистированная энтероскопия', true)
                 } else if (conclusion.explicit && !conclusion.hard) {
-                    adviceResearch('Инструментально-ассистированная энтероскопия • Диагностическая лапароскопия/лапаротомия • Интраоперационная энтероскопия', true)
+                    adviceResearch('Инструментально-ассистированная энтероскопия; диагностическая лапароскопия/лапаротомия, в том числе с интраоперационной энтероскопией', true)
                 } else if (conclusion.explicit && conclusion.hard) {
-                    if (signs.ASA1 || signs.ASA3) adviceResearch('Инструментально-ассистированная энтероскопия', true)
-                    if (signs.ASA4) adviceResearch('Операция отчаяния', true)
+                    if (signs.ASA1 || signs.ASA2 || signs.ASA3) adviceResearch('Инструментально-ассистированная энтероскопия', true)
+                    if (signs.ASA4) adviceResearch('Операция отчаяния только при рецедиве кровотечения', true)
                 }
                 showQuestion('В среднем отделе?');
                 info("STAGE 17")

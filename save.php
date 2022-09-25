@@ -1,19 +1,5 @@
 <?php
-$host = 'sergisa.ru';
-$db = 'medical';
-$user = 'user15912_sergey';
-$pass = 'isakovs';
-$charset = 'utf8';
-
-$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
-$opt = [
-    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES => false,
-];
-$dbh = new PDO($dsn, $user, $pass, $opt);
-echo json_encode($_POST);
-
+include 'database.php';
 function pdoSet($values): string
 {
     $set = [];
@@ -32,7 +18,7 @@ $data = array_merge($_POST['data'], $_POST['conclusion']);
 $sql = "INSERT INTO patient " . pdoSet($data);
 
 echo "SQL" . $sql;
-$stm = $dbh->prepare($sql);
+$stm = getConnection()->prepare($sql);
 $stm->execute();
 
 

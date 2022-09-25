@@ -36,8 +36,8 @@ let localizationDefinition = {
 let reasonsList = {
     1: "Геморрой неуточненный",
     2: "Дивертикулярная болезнь",
-    3: "Эрозивно-язвенные поражения тонкой/толстой кишки", //TODO: если средний нижний отдел
-    4: "Эрозивно-язвенные поражения верхних отделов ЖКТ", //TODO: если верхний отдел
+    3: "Эрозивно-язвенные поражения тонкой/толстой кишки",
+    4: "Эрозивно-язвенные поражения верхних отделов ЖКТ",
     5: "Ангиоэктазии/телеангиоэктазии/венозные мальформации",
     6: "Целиакия",
     7: "Свищ между крупным сосудом и просветом ЖКТ",
@@ -74,27 +74,42 @@ function localizationResolver(signs) {
     }
 }
 
-function bleedReasonResolver(signs) {
-    console.log(this);
-    if (signs.v45 || signs.v46) {
-        return 1
-    } else if (signs.v36 || signs.v38) {
-        return 2;
-    } else if (signs.v32 || signs.v34 || signs.v36 || signs.v41 || signs.v42 || signs.v43 || signs.v44) {
-        return 3;
-    } else if (signs.v32 || signs.v34 || signs.v35 || signs.v39 || signs.v43 || signs.v44) {
-        return 4;
-    } else if (signs.v39 || signs.v40 || signs.v45) {
-        return 5;
-    } else if (signs.v33 || signs.v42) {
-        return 6;
-    } else if (signs.v47) {
-        return 7;
-    } else if (signs.v48) {
-        return 8;
-    } else {
-        return 9;
-    }
+/**
+ * reason -> localization
+ *    8 ----> 1
+ *    4 ----> 1
+ *    3 ----> 2|3
+ *    1 ----> 3
+ * @desc called by resolveReason
+ * @param signs
+ * @param localization
+ * @returns {Array}
+ */
+function bleedReasonResolver(signs, localization = undefined) {
+    return [].concat(
+        (signs.v32) ? [9, 3, 4] : [],
+        (signs.v33) ? [9, 6] : [],
+        (signs.v34) ? [3, 4] : [],
+        (signs.v35) ? [4] : [],
+        (signs.v36) ? [9, 3, 2] : [],
+        (signs.v37) ? [9] : [],
+        (signs.v38) ? [2] : [],
+        (signs.v39) ? [5, 4] : [],
+        (signs.v40) ? [5] : [],
+        (signs.v41) ? [9, 3] : [],
+        (signs.v42) ? [9, 3, 6] : [],
+        (signs.v43) ? [4, 3] : [],
+        (signs.v44) ? [4, 3] : [],
+        (signs.v45) ? [5, 1] : [],
+        (signs.v46) ? [1] : [],
+        (signs.v47) ? [7] : [],
+        (signs.v48) ? [8] : [],
+    ).getFrequentlySorted().filter((reasonCode) => {
+        if (localization === 1) return reasonCode !== 3 && reasonCode !== 1
+        if (localization === 2) return reasonCode !== 4 && reasonCode !== 8 && reasonCode !== 1
+        if (localization === 3) return reasonCode !== 4 && reasonCode !== 8
+        return true;
+    });
 }
 
 function riskResolver(signs) {
@@ -117,7 +132,7 @@ function riskResolver(signs) {
     if (signs.kidneyFailure || signs.liverFailure || signs.metastaticCancer) levelCount += 3
 
     //Диагноз
-    if (bleedReasonResolver(signs) === 8) levelCount += 0
+    if (bleedReasonResolver(signs).includes(8)) levelCount += 0
     if (signs.v37) levelCount += 2;//нерегулярность слизистой
     else levelCount += 1
 
@@ -135,7 +150,7 @@ function conclusionBuilder(conclusion) {
         hard: conclusion === undefined ? false : conclusion.hard,
         localization: conclusion === undefined ? 0 : conclusion.localization,
         finalLocalization: conclusion === undefined ? null : conclusion.finalLocalization,
-        reason: conclusion === undefined ? 0 : conclusion.reason,
+        reason: conclusion === undefined ? [] : conclusion.reason,
         andExplicit(indexes) {
             console.log('Определяю явность')
             if (indexes.bloodVomit || indexes.coffeeVomit || indexes.melena || indexes.hematohesia || indexes.blackFeces) {
@@ -202,9 +217,14 @@ function conclusionBuilder(conclusion) {
             this.finalLocalization = verifiedLocalization;
             return this;
         },
+        /**
+         *
+         * @param signs {Object}
+         * @returns {*}
+         */
         andResolveReason(signs) {
             console.log('Определяю причины', signs)
-            this.reason = bleedReasonResolver.call(this, signs)
+            this.reason = bleedReasonResolver.call(this, signs, this.localization)
             return this;
         },
         getConclusion() {
