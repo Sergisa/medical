@@ -63,7 +63,6 @@ test("Опеделение локализации кровотечения", () 
         coffeeVomit: false,
         bloodVomit: false,
     }).result).toBe(2)
-
     expect(builder.localizationResolver({
         hemoglobin: 141,
         gender: 'male',
@@ -74,7 +73,6 @@ test("Опеделение локализации кровотечения", () 
         coffeeVomit: false,
         bloodVomit: false,
     }).result).toBe(2)
-
     expect(builder.localizationResolver({
         hemoglobin: 130,
         gender: 'male',
@@ -178,4 +176,26 @@ test("Набор причин должен быть отсортирован п�
         v46: true,
         v48: true
     })).toEqual([3, 9, 4, 5, 8, 6, 2, 1])
+})
+test("Набор причин должен быть отсортирован по частоте и локализация должна быть учтена", () => {
+    // reason full 1,2,  3,3,3,3,3,3,  4,4,4,4,  5,5,  6,8,  9,9,9,9
+    // reason Sorted 3, 9, 4, 5, 2, 6, 1, 8
+    const signsObject = {
+        v32: true,
+        v34: true,
+        v36: true,
+        v39: true,
+        v40: true,
+        v41: true,
+        v42: true,
+        v43: true,
+        v46: true,
+        v48: true
+    }
+    // must exclude 1 3
+    expect(builder.bleedReasonResolver(signsObject, 1)).toEqual([9, 4, 5, 8, 6, 2])
+    // must exclude 1 4 8
+    expect(builder.bleedReasonResolver(signsObject, 2)).toEqual([3, 9, 5, 6, 2])
+    // must exclude 4 8
+    expect(builder.bleedReasonResolver(signsObject, 3)).toEqual([3, 9, 5, 6, 2, 1])
 })
