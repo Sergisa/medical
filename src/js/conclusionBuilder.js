@@ -43,6 +43,7 @@ let reasonsList = {
     7: "Свищ между крупным сосудом и просветом ЖКТ",
     8: "Синдром Меллори-Вейса",
     9: "Опухолевые заболевания ЖКТ",
+    10: "Варикозное расширение вен пещевода",
 }
 
 function solveFor(coefficients, signs) {
@@ -109,6 +110,11 @@ function bleedReasonResolver(signs, localization = undefined) {
         if (localization === 2) return reasonCode !== 4 && reasonCode !== 8 && reasonCode !== 1
         if (localization === 3) return reasonCode !== 4 && reasonCode !== 8
         return true;
+    }).map((reasonCode) => {
+        if (localization === 1 && signs.v46 && reasonCode === 1) {
+            return 10;
+        }
+        return reasonCode;
     });
 }
 
