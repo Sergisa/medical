@@ -37,7 +37,7 @@ function result(localizationIndex) {
     } else {
         conclusion = conclusionBuilder(conclusion)
             .setLocalization(localizationIndex)
-            .andResolveReason(collectData())
+            .andResolveReason(collectData(), localizationIndex)
         $('.postConclusion').html(
             conclusion
                 .getTag()

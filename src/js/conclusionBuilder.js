@@ -220,11 +220,12 @@ function conclusionBuilder(conclusion) {
         /**
          *
          * @param signs {Object}
+         * @param finalLocalization
          * @returns {*}
          */
-        andResolveReason(signs) {
-            console.log('Определяю причины', signs)
-            this.reason = bleedReasonResolver.call(this, signs, this.localization)
+        andResolveReason(signs, finalLocalization = undefined) {
+            console.log('Определяю причины', finalLocalization, signs)
+            this.reason = bleedReasonResolver.call(this, signs, finalLocalization)
             return this;
         },
         getConclusion() {
