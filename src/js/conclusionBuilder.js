@@ -261,5 +261,5 @@ function conclusionBuilder(conclusion) {
 
 if (typeof exports === 'object') {
     // Node, CommonJS-like
-    module.exports = {bleedReasonResolver, localizationResolver}
+    module.exports = {conclusionBuilder}
 }
