@@ -102,7 +102,7 @@ function bleedReasonResolver(signs, localization = undefined) {
         (signs.v43) ? [4, 3] : [],
         (signs.v44) ? [4, 3] : [],
         (signs.v45) ? [5, 1] : [],
-        (signs.v46) ? [1] : [],
+        (signs.v46) ? [localization === 1 ? 10 : 1] : [],
         (signs.v47) ? [7] : [],
         (signs.v48) ? [8] : [],
     ).getFrequentlySorted().filter((reasonCode) => {
@@ -110,11 +110,6 @@ function bleedReasonResolver(signs, localization = undefined) {
         if (localization === 2) return reasonCode !== 4 && reasonCode !== 8 && reasonCode !== 1
         if (localization === 3) return reasonCode !== 4 && reasonCode !== 8
         return true;
-    }).map((reasonCode) => {
-        if (localization === 1 && signs.v46 && reasonCode === 1) {
-            return 10;
-        }
-        return reasonCode;
     });
 }
 

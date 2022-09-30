@@ -66,7 +66,7 @@ test("Геморрой не может быть ни в каком кроме в
         v40: true,
         v43: true,
         v46: true
-    }, 1).getConclusion().reason.sort()).toEqual([4, 5].sort())
+    }, 1).getConclusion().reason.sort()).toEqual([10, 4, 5].sort())
 })
 test("Эрозивно-язвенные поражения тонкой/толстой кишки не может быть нигде кроме среднего/нижнего отдела {v39, v40, v43, v46} -> [1, 3, 4, 5]", () => {
     //reason: 1, 3, 4, 5
@@ -82,7 +82,7 @@ test("Эрозивно-язвенные поражения тонкой/толс
         v40: true,
         v43: true,
         v46: true
-    }, 1).getConclusion().reason.sort()).toEqual([4, 5].sort())
+    }, 1).getConclusion().reason.sort()).toEqual([10, 4, 5].sort())
     expect(builder.conclusionBuilder().andResolveReason({
         v39: true,
         v40: true,
@@ -95,7 +95,7 @@ test("Эрозивно-язвенные поражения верхних отд
     expect(builder.conclusionBuilder().andResolveReason({
         v34: true,
         v46: true,
-    }, 1).getConclusion().reason.sort()).toEqual([4].sort())
+    }, 1).getConclusion().reason.sort()).toEqual([10, 4].sort())
     expect(builder.conclusionBuilder().andResolveReason({
         v34: true,
         v46: true,
@@ -124,7 +124,7 @@ test("Синдром Меллори-Вейса не может быть ни в 
         v43: true,
         v46: true,
         v48: true
-    }, 1).getConclusion().reason.sort()).toEqual([4, 5, 8].sort())
+    }, 1).getConclusion().reason.sort()).toEqual([10, 4, 5, 8].sort())
 })
 test("Набор причин должен быть отсортирован по частоте", () => {
     // reason full 1,2,  3,3,3,3,3,3,  4,4,4,4,  5,5,  6,8,  9,9,9,9
@@ -158,7 +158,7 @@ test("Набор причин должен быть отсортирован п�
         v48: true
     }
     // must exclude 1 3
-    expect(builder.conclusionBuilder().andResolveReason(signsObject, 1).getConclusion().reason).toEqual([9, 4, 5, 8, 6, 2])
+    expect(builder.conclusionBuilder().andResolveReason(signsObject, 1).getConclusion().reason).toEqual([9, 4, 5, 10, 8, 6, 2])
     // must exclude 1 4 8
     expect(builder.conclusionBuilder().andResolveReason(signsObject, 2).getConclusion().reason).toEqual([3, 9, 5, 6, 2])
     // must exclude 4 8
