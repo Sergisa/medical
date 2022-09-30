@@ -30,9 +30,19 @@
         </div>
     </div>
     <form action="" class="p-3 needs-validation" id="aprioriForm" name="signsForm" novalidate>
+        <div class="row">
+            <div class="col-6">
+                <input type="text" class="form-control" id="identifier" placeholder="Идентификатор">
+                <label class="form-check-label" for="identifier"></label>
+            </div>
+            <div class="col-6">
+                <input type="text" class="form-control" id="IIC" placeholder="Код МКБ">
+                <label class="form-check-label" for="IIC"></label>
+            </div>
+        </div>
         <div class="col-auto">
-            <input type="text" class="form-control" id="identifier" placeholder="Идентификатор">
-            <label class="form-check-label" for="identifier"></label>
+            <textarea type="text" class="form-control" id="description" placeholder="Описание" rows="4"></textarea>
+            <label class="form-check-label" for="description"></label>
         </div>
         Пол *
         <div class="form-check form-check-inline">
@@ -494,7 +504,7 @@
     function saveData() {
         $('.status-label').addClass('d-none')
         console.log("before send", conclusion);
-        conclusion.reason = getJoinedReasons(conclusion.reason,",");
+        conclusion.reason = getJoinedReasons(conclusion.reason, ",");
         $.post("http://sergisa.smrtp.ru/medical/save.php", {
             conclusion: conclusion.getConclusion(),
             data: collectData()

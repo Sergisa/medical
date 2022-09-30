@@ -84,6 +84,10 @@ $form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://w
 #aprioriForm {
   background-color: $Clouds;
   border-radius: 6px;
+
+  textarea {
+    resize: none;
+  }
 }
 
 @import "bootstrap/scss/mixins";

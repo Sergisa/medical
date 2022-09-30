@@ -34,6 +34,8 @@
 function collectData() {
     return {
         identifier: $('#identifier').val(),
+        IIC: $('#IIC').val(),
+        description: $('#description').val(),
         erythrocytes: parseFloat($('#erythrocytes').val().replaceAll(',', '.')),
         hemoglobin: parseFloat($('#hemoglobin').val()),
         pulse: parseFloat($('#pulse').val()),
