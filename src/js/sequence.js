@@ -21,7 +21,7 @@ function getJoinedReasons(reasons, delim) {
 
 function result(localizationIndex) {
     $('#questionBlock').toggleClass('d-inline d-none')
-    console.log("RESULT:", conclusion)
+    console.log("Localization in fact :", localizationIndex)
     if (localizationIndex === 0) { // терапия
         $('.postConclusion').html(`<div class="alert alert-info my-2" role="alert">
             Консервативная терапия/наблюдение
@@ -231,7 +231,7 @@ function getSequence(conclusion, signs) {
                 showQuestion('В среднем отделе?');
                 info("STAGE 17")
             },
-            yes: () => result(3),
+            yes: () => result(2),
             no: () => sequence.step10,
             needsResearchData: false,
         }
