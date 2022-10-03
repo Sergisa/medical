@@ -37,15 +37,15 @@ function collectData() {
         IIC: $('#IIC').val(),
         description: $('#description').val(),
         erythrocytes: parseFloat($('#erythrocytes').val().replaceAll(',', '.')),
-        hemoglobin: parseFloat($('#hemoglobin').val()),
-        pulse: parseFloat($('#pulse').val()),
-        hematocrit: parseFloat($('#hematocrit').val()),
+        hemoglobin: parseFloat($('#hemoglobin').val().replaceAll(',', '.')),
+        pulse: parseFloat($('#pulse').val().replaceAll(',', '.')),
+        hematocrit: parseFloat($('#hematocrit').val().replaceAll(',', '.')),
 
         age: parseFloat($('#age').val()),
         coffeeVomit: $('#coffeeVomit').is(':checked'),
         melena: $('#melena').is(':checked'),
         lossConsciousness: $('#lossConsciousness').is(':checked'),
-        bloodArterialPressure: parseFloat($('#bloodArterialPressure').val()),
+        bloodArterialPressure: parseFloat($('#bloodArterialPressure').val().replaceAll(',', '.')),
 
         chronicHeartFailure: $('#chronicHeartFailure').is(':checked'),
         cardiacIschemia: $('#cardiacIschemia').is(':checked'),
@@ -118,4 +118,8 @@ function collectData() {
                 this.v48
         }
     }
+}
+
+if (typeof exports === 'object') {
+    module.exports = {collectData}
 }
