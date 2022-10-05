@@ -64,7 +64,7 @@ function collectData() {
         collaptoidState: $('#collaptoidState').is(':checked'),
         gastrointestinalUcler: $('#gastrointestinalUcler').is(':checked'),
         paleSkin: $('#paleSkin').is(':checked'),
-        hemoglobinFalls: this.hemoglobin < 100,
+        hemoglobinFalls: parseFloat($('#hemoglobin').val().replaceAll(',', '.')) < 100,
         hiddenBleeding: $('#hiddenBleeding').is(':checked'),
         stickySweat: $('#stickySweat').is(':checked'),
 

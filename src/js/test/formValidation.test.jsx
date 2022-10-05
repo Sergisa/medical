@@ -55,3 +55,21 @@ test("Целочисленные значения считываются", () =>
     expect(formValidation.collectData().bloodArterialPressure).toBe(14)
     expect(formValidation.collectData().hematocrit).toBe(15)
 })
+test("Hemoglobin falls", () => {
+    prepareDOM({
+        erythrocytes: "11",
+        hemoglobin: "12",
+        pulse: "13",
+        bloodArterialPressure: "14",
+        hematocrit: "15"
+    });
+    expect(formValidation.collectData().hemoglobinFalls).toBe(true);
+    prepareDOM({
+        erythrocytes: "11",
+        hemoglobin: "102",
+        pulse: "13",
+        bloodArterialPressure: "14",
+        hematocrit: "15"
+    });
+    expect(formValidation.collectData().hemoglobinFalls).toBe(false)
+})
