@@ -22,10 +22,12 @@
                 event.stopPropagation()
             }
             const field = form.querySelector('.expectingDecimal');
-            field.addEventListener('input', function (event) {
-                checkDecimalValidity(event.currentTarget, event)
-            })
-            checkDecimalValidity(field, event)
+            if (field) {
+                field.addEventListener('input', function (event) {
+                    checkDecimalValidity(event.currentTarget, event)
+                })
+                checkDecimalValidity(field, event)
+            }
             form.classList.add('was-validated')
         }, false)
     })
