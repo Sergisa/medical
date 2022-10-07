@@ -36,6 +36,24 @@ test("Опеделение тяжести кровотечения", () => {
         bloodArterialPressure: 110,
         gender: 'male',
     }).getConclusion().bloodLossHardness).toEqual(2)
+    expect(builder.conclusionBuilder().andBloodLossHardnessLevel({
+        erythrocytes: 5.8,
+        hemoglobin: 163,
+        pulse: 80,
+        hematocrit: 53.1,
+        age: 51,
+        bloodArterialPressure: 120,
+        gender: 'male',
+    }).getConclusion().bloodLossHardness).toEqual(1)
+    expect(builder.conclusionBuilder().andBloodLossHardnessLevel({
+        erythrocytes: 2.22,
+        hemoglobin: 54,
+        pulse: 85,
+        hematocrit: 20.8,
+        age: 68,
+        bloodArterialPressure: 100,
+        gender: 'female',
+    }).getConclusion().bloodLossHardness).toEqual(3)
 })
 test("Опеделение тяжести кровотечения должно быть пересчитано по Горбашко", () => {
     expect(builder.conclusionBuilder().andBloodLossHardnessLevel({
