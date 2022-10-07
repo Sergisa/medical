@@ -26,6 +26,22 @@ test("Опеделение причины кровотечения", () => {
         v49: true,
     }).getConclusion().reason).toEqual([5, 4, 3, 1])
 })
+//TODO: Подсчет обычной тяжести кровопотери.
+test("Опеделение тяжести кровотечения должно быть пересчитано по Горбашко", () => {
+    expect(builder.conclusionBuilder().andBloodLossHardnessLevel({
+        gender: 'female',
+        age: 49,
+        bloodArterialPressure: 130,
+        pulse: 80,
+        hematocrit: 24.8,
+        hemoglobin: 67,
+        erythrocytes: 2.82,
+        melena: true,
+        pathologicalChanges: true,
+        v32: true,
+        v37: true
+    }).getConclusion().bloodLossHardness).not.toEqual(0)
+})
 test("Опеделение локализации кровотечения", () => {
     expect(builder.conclusionBuilder().predictLocalization({
         hemoglobin: 122,

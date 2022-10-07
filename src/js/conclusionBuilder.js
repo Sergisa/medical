@@ -191,6 +191,11 @@ function conclusionBuilder(conclusion) {
             ) {
                 this.bloodLossHardness = 3
             }
+            if (this.bloodLossHardness === 0) {
+                if (bloodSigns.hemoglobin > 100) this.bloodLossHardness = 1
+                else if (bloodSigns.hemoglobin >= 83 && bloodSigns.hemoglobin <= 100) this.bloodLossHardness = 2
+                else if (bloodSigns.hemoglobin < 83) this.bloodLossHardness = 3
+            }
             return this;
         },
         andResolveHardness(signs) {
