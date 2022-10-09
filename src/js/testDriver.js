@@ -12,7 +12,9 @@ let testButton = $('<button></button>', {
 });
 testButton.appendTo(location.host !== "sergisa.smrtp.ru" ? $('#aprioriForm').css('position', 'relative') : null).click(fillTestData)
 $(document).keypress(function (event) {
-    if (event.originalEvent.code === 'KeyT' && event.originalEvent.shiftKey) {
+    if ((event.originalEvent.code === 'KeyT' && event.originalEvent.shiftKey) || event.originalEvent.code === 'VolumeUp') {
+        event.preventDefault()
+        event.stopPropagation()
         testButton.appendTo($('#aprioriForm').css('position', 'relative')).click(fillTestData)
     }
 });
