@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+header('Content-Type: text/html; charset=utf-8');
 //error_reporting(E_ERROR | E_PARSE);
 $database = new PDO('mysql:dbname=medical;host=sergisa.ru', 'user15912_sergey', 'isakovs');
 $patient = (object)[
@@ -627,15 +628,7 @@ if (array_key_exists('id', $_GET)) {
         $('.status-label').addClass('d-none')
         console.log("before send", conclusion);
         conclusion.reason = getJoinedReasons(conclusion.reason, ",");
-        $.post("http://sergisa.smrtp.ru/medical/save.php", {
-            conclusion: conclusion.getConclusion(),
-            data: collectData()
-        }).done(function (data) {
-            console.log(data);
-            $('#good').removeClass('d-none')
-        }).fail(function () {
-            $('#error').removeClass('d-none')
-        })
+        exportToCsv('patientData.csv', collectData())
     }
 
     document.getElementById('additionalResearchSave').addEventListener('click', function () {

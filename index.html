@@ -505,14 +505,9 @@
         $('.status-label').addClass('d-none')
         console.log("before send", conclusion);
         conclusion.reason = getJoinedReasons(conclusion.reason, ",");
-        $.post("http://sergisa.smrtp.ru/medical/save.php", {
+        exportToCsv('patientData.csv', {
             conclusion: conclusion.getConclusion(),
             data: collectData()
-        }).done(function (data) {
-            console.log(data);
-            $('#good').removeClass('d-none')
-        }).fail(function () {
-            $('#error').removeClass('d-none')
         })
     }
 
