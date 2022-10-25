@@ -1,0 +1,19 @@
+{
+  "name": "sergisa/medical",
+  "description": "System for supporting medical decission",
+  "type": "project",
+  "autoload": {
+    "psr-4": {
+      "Sergisa\\Medical\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "sergisa",
+      "email": "phebra@yandex.ru"
+    }
+  ],
+  "require": {
+    "phpoffice/phpspreadsheet": "^1.25"
+  }
+}
