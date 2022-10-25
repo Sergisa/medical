@@ -2,6 +2,7 @@
 <?php
 //error_reporting(E_ERROR | E_PARSE);
 $database = new PDO('mysql:dbname=medical;host=sergisa.ru', 'user15912_sergey', 'isakovs');
+$database->exec( 'SET CHARACTER SET UTF8' );
 $patient = (object)[
     "identifier" => null,
     "erythrocytes" => null,
