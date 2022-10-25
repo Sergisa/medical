@@ -12,7 +12,7 @@ $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
 $sheet->fromArray(array_merge([$columns], $patients));
 header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment; filename="file.xlsx"');
+header('Content-Disposition: attachment; filename="export_data.xlsx"');
 try {
     $writer = new Xlsx($spreadsheet);
     $writer->save('php://output');
