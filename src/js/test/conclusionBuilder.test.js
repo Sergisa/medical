@@ -132,7 +132,7 @@ test("Эрозивно-язвенные поражения тонкой/толс
         v40: true,
         v43: true,
         v46: true
-    }, 3).getConclusion().reason.sort()).toEqual([1, 3, 5].sort())
+    }, 3).getConclusion().reason.sort()).toEqual([1, 5].sort())
 
 })
 test("Эрозивно-язвенные поражения верхних отделов ЖКТ не может быть нигде кроме верхнего отдела {v34, v46} -> [1, 3, 4]", () => {
@@ -147,7 +147,7 @@ test("Эрозивно-язвенные поражения верхних отд
     expect(builder.conclusionBuilder().andResolveReason({
         v34: true,
         v46: true,
-    }, 3).getConclusion().reason.sort()).toEqual([1, 3].sort())
+    }, 3).getConclusion().reason.sort()).toEqual([1].sort())
 })
 test("Эрозивно-язвенные поражения верхних отделов ЖКТ не может быть нигде кроме верхнего отдела {v39, v40, v43, v46} -> [1, 3, 4, 5]", () => {
     //reason: 1, 3, 4, 5
@@ -157,7 +157,7 @@ test("Эрозивно-язвенные поражения верхних отд
         v40: true,
         v43: true,
         v46: true
-    }, 3).getConclusion().reason.sort()).toEqual([1, 3, 5].sort())
+    }, 3).getConclusion().reason.sort()).toEqual([1, 5].sort())
 })
 test("Синдром Меллори-Вейса не может быть ни в каком кроме верхнего отдела {v39, v40, v43, v46, v48} -> [1, 3, 4, 5, 8]", () => {
     //reason: 1, 3, 4, 5, 8
@@ -206,5 +206,5 @@ test("Набор причин должен быть отсортирован п�
     // must exclude 1 4 8
     expect(builder.conclusionBuilder().andResolveReason(signsObject, 2).getConclusion().reason).toEqual([3, 9, 5, 6, 2])
     // must exclude 4 8
-    expect(builder.conclusionBuilder().andResolveReason(signsObject, 3).getConclusion().reason).toEqual([3, 9, 5, 6, 2, 1])
+    expect(builder.conclusionBuilder().andResolveReason(signsObject, 3).getConclusion().reason).toEqual([9, 5, 6, 2, 1])
 })
