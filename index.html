@@ -29,14 +29,18 @@
             </h1>
         </div>
     </div>
-    <a href="download.php" target="_self">Скачать накопления</a>
-    <form action="" class="p-3 needs-validation" id="aprioriForm" name="signsForm" novalidate>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="download.php" target="_self" class="btn btn-primary btn-sm float-end">Скачать все данные</a>
+        </div>
+    </div>
+    <form action="" class="p-3 needs-validation mt-3" id="aprioriForm" name="signsForm" novalidate>
         <div class="row">
-            <div class="col-6">
+            <div class="col-lg-6">
                 <input type="text" class="form-control" id="identifier" placeholder="Идентификатор">
                 <label class="form-check-label" for="identifier"></label>
             </div>
-            <div class="col-6">
+            <div class="col-lg-6">
                 <input type="text" class="form-control" id="IIC" placeholder="Код МКБ">
                 <label class="form-check-label" for="IIC"></label>
             </div>
