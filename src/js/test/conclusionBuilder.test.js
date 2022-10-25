@@ -170,7 +170,7 @@ test("Синдром Меллори-Вейса не может быть ни в 
         v48: true
     }, 1).getConclusion().reason.sort()).toEqual([10, 4, 5, 8].sort())
 })
-test("Набор причин должен быть отсортирован по частоте", () => {
+test("Набор причин должен быть отсортирован по частоте (сначала частые потом одиночные)", () => {
     // reason full 1,2,  3,3,3,3,3,3,  4,4,4,4,  5,5,  6,8,  9,9,9,9
     // reason Sorted 3, 9, 4, 5, 2, 6, 1, 8
     expect(builder.conclusionBuilder().andResolveReason({
@@ -184,7 +184,7 @@ test("Набор причин должен быть отсортирован п�
         v43: true,
         v46: true,
         v48: true
-    }).getConclusion().reason).toEqual([3, 9, 4, 5, 8, 6, 2, 1])
+    }).getConclusion().reason).toEqual([3, 9, 4, 5, 11, 8, 2, 1])
 })
 test("Набор причин должен быть отсортирован по частоте и локализация должна быть учтена", () => {
     // reason full 1,2,  3,3,3,3,3,3,  4,4,4,4,  5,5,  6,8,  9,9,9,9
@@ -202,9 +202,9 @@ test("Набор причин должен быть отсортирован п�
         v48: true
     }
     // must exclude 1 3
-    expect(builder.conclusionBuilder().andResolveReason(signsObject, 1).getConclusion().reason).toEqual([9, 4, 5, 10, 8, 6, 2])
+    expect(builder.conclusionBuilder().andResolveReason(signsObject, 1).getConclusion().reason).toEqual([9, 4, 5, 10, 8])
     // must exclude 1 4 8
-    expect(builder.conclusionBuilder().andResolveReason(signsObject, 2).getConclusion().reason).toEqual([3, 9, 5, 6, 2])
+    expect(builder.conclusionBuilder().andResolveReason(signsObject, 2).getConclusion().reason).toEqual([3, 9, 5, 2])
     // must exclude 4 8
-    expect(builder.conclusionBuilder().andResolveReason(signsObject, 3).getConclusion().reason).toEqual([9, 5, 6, 2, 1])
+    expect(builder.conclusionBuilder().andResolveReason(signsObject, 3).getConclusion().reason).toEqual([9, 5, 11, 1])
 })
