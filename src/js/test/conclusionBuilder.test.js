@@ -3,7 +3,7 @@ const builder = require('../conclusionBuilder')
 const test = require('@jest/globals').test
 const expect = require('@jest/globals').expect
 
-test("Опеделение причины кровотечения", () => {
+test("Определение причины кровотечения", () => {
     expect(builder.conclusionBuilder().andResolveReason({
         v39: true,
         v40: true,
@@ -26,7 +26,7 @@ test("Опеделение причины кровотечения", () => {
         v49: true,
     }).getConclusion().reason).toEqual([5, 4, 3, 1])
 })
-test("Опеделение тяжести кровотечения", () => {
+test("Определение тяжести кровотечения", () => {
     expect(builder.conclusionBuilder().andBloodLossHardnessLevel({
         erythrocytes: 3.41,
         hemoglobin: 98,
@@ -55,7 +55,7 @@ test("Опеделение тяжести кровотечения", () => {
         gender: 'female',
     }).getConclusion().bloodLossHardness).toEqual(3)
 })
-test("Опеделение тяжести кровотечения должно быть пересчитано по Горбашко", () => {
+test("Определение тяжести кровотечения должно быть пересчитано по Горбашко", () => {
     expect(builder.conclusionBuilder().andBloodLossHardnessLevel({
         gender: 'female',
         age: 49,
@@ -70,7 +70,7 @@ test("Опеделение тяжести кровотечения должно 
         v37: true
     }).getConclusion().bloodLossHardness).not.toEqual(0)
 })
-test("Опеделение локализации кровотечения", () => {
+test("Определение локализации кровотечения", () => {
     expect(builder.conclusionBuilder().predictLocalization({
         hemoglobin: 122,
         gender: 'female',
