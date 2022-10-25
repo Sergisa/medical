@@ -35,15 +35,15 @@ let localizationDefinition = {
 
 let reasonsList = {
     1: "Геморрой неуточненный",
-    2: "Дивертикулярная болезнь",
+    2: "Дивертикулярная болезнь толстой кишки",
     3: "Эрозивно-язвенные поражения тонкой/толстой кишки",
     4: "Эрозивно-язвенные поражения верхних отделов ЖКТ",
     5: "Ангиоэктазии/телеангиоэктазии/венозные мальформации",
-    6: "Целиакия",
     7: "Свищ между крупным сосудом и просветом ЖКТ",
     8: "Синдром Меллори-Вейса",
     9: "Опухолевые заболевания ЖКТ",
     10: "Варикозное расширение вен пещевода и/или желудка",
+    11: "Дивертикул Меккеля"
 }
 
 function solveFor(coefficients, signs) {
@@ -89,16 +89,16 @@ function localizationResolver(signs) {
 function bleedReasonResolver(signs, localization = undefined) {
     return [].concat(
         (signs.v32) ? [9, 3, 4] : [],
-        (signs.v33) ? [9, 6] : [],
+        (signs.v33) ? [9] : [],
         (signs.v34) ? [3, 4] : [],
         (signs.v35) ? [4] : [],
-        (signs.v36) ? [9, 3, 2] : [],
+        (signs.v36) ? [9, 3, 2, 11] : [],
         (signs.v37) ? [9] : [],
-        (signs.v38) ? [2] : [],
+        (signs.v38) ? [2, 11] : [],
         (signs.v39) ? [5, 4] : [],
         (signs.v40) ? [5] : [],
         (signs.v41) ? [9, 3] : [],
-        (signs.v42) ? [9, 3, 6] : [],
+        (signs.v42) ? [9, 3] : [],
         (signs.v43) ? [4, 3] : [],
         (signs.v44) ? [4, 3] : [],
         (signs.v45) ? [5, 1] : [],
@@ -106,9 +106,9 @@ function bleedReasonResolver(signs, localization = undefined) {
         (signs.v47) ? [7] : [],
         (signs.v48) ? [8] : [],
     ).getFrequentlySorted().filter((reasonCode) => {
-        if (localization === 1) return reasonCode !== 3 && reasonCode !== 1
-        if (localization === 2) return reasonCode !== 4 && reasonCode !== 8 && reasonCode !== 1
-        if (localization === 3) return reasonCode !== 4 && reasonCode !== 8
+        if (localization === 1) return ![1, 2, 3, 11].includes(reasonCode)
+        if (localization === 2) return ![1, 4, 8, 10, 11].includes(reasonCode)
+        if (localization === 3) return ![2, 3, 4, 8, 10].includes(reasonCode)
         return true;
     });
 }
