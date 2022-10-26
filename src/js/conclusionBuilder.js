@@ -76,11 +76,14 @@ function localizationResolver(signs) {
 }
 
 /**
- * reason -> localization
- *    8 ----> 1
- *    4 ----> 1
- *    3 ----> 2|3
- *    1 ----> 3
+ * reason -> localization <br>
+ *     11 ----> 3 <br>
+ *     10 ----> 1 <br>
+ *     8  ----> 1 <br>
+ *     4  ----> 1 <br>
+ *     3  ----> 2|3 <br>
+ *     1  ----> 3 <br>
+ *     2  ----> 2 <br>
  * @desc called by resolveReason
  * @param signs
  * @param localization

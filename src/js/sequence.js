@@ -52,6 +52,9 @@ function result(localizationIndex) {
                 .toggleClass('alert-info alert-primary')
         ).parent().toggleClass('d-none d-block')
     }
+    $('#instructionModal ol').hide();
+    $(`#instructionModal ol#${conclusion.reason}`).show();
+    $('.postConclusion').after(`<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#instructionModal">Открыть рекомендации</button>`)
     $.moveBottom()
 }
 
