@@ -53,4 +53,5 @@ function fillTestData() {
     $('#coffeeVomit').get(0).checked = true;
     $('#bloodVomit').get(0).checked = true;
     $('input#male').get(0).checked = true;
+    $('input#ASA1').get(0).checked = true;
 }

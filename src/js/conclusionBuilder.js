@@ -235,6 +235,7 @@ function conclusionBuilder(conclusion) {
         andResolveReason(signs, finalLocalization = undefined) {
             console.log('Определяю причины', finalLocalization, signs)
             this.reason = bleedReasonResolver.call(this, signs, finalLocalization)
+            console.log("Причина:", this.reason);
             return this;
         },
         getConclusion() {
