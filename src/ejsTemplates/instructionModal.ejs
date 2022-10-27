@@ -9,12 +9,12 @@
             </div>
             <div class="modal-body">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="bleedContinue" value="option1">
-                    <label class="form-check-label" for="bleedContinue">Кровотечение продолжается</label>
+                    <input class="form-check-input" type="checkbox" id="bleedContinue-checkbox" value="option1">
+                    <label class="form-check-label" for="bleedContinue-checkbox">Кровотечение продолжается</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="repeat" value="option1">
-                    <label class="form-check-label" for="repeat">Зафиксирован рецидив</label>
+                    <input class="form-check-input" type="checkbox" id="repeat-checkbox" value="option1">
+                    <label class="form-check-label" for="repeat-checkbox">Зафиксирован рецидив</label>
                 </div>
                 <hr>
                 <div id="instructions">
@@ -61,7 +61,9 @@
                         </li>
                     </ol>
                     <ol id="2">
-                        Хирургическое лечение.
+                        <li>
+                            Хирургическое лечение.
+                        </li>
                     </ol>
                     <ol id="9">
                         <li class="bleed">
@@ -87,32 +89,25 @@
                         </li>
                     </ol>
                     <ol id="4">
-                        <li class="bleed">
+                        <li class="bleed has-repeat">
                             Эндоскопическое лечение/эндоваскулярный гемостаз/хирургическое лечение (при невозможности
                             эндоскопического лечения/эндоваскулярного гемостаза).
                         </li>
-                        <li class="no-bleed">
+                        <li class="no-bleed low-repeat-risk">
                             Эндоскопическое лечение и/или консервативная терапия (в зависимости от наличия в нем
                             сосудистых структур) + консервативная терапия.
                         </li>
-                        <li>
-                            Если риск рецидива кровотечения низкий, то аналогично пункту 2.
-                        </li>
-                        <li>
-                            Если риск рецидива кровотечения высокий, то динамический эндоскопический контроль или
-                            ангиографическое вмешательство.
-                        </li>
-                        <li>
-                            Если возникнет рецидив кровотечения, то аналогично пункту 1.
+                        <li class="high-repeat-risk">
+                            Динамический эндоскопический контроль или ангиографическое вмешательство.
                         </li>
                     </ol>
                     <ol id="3">
                         <li class="bleed">
-                            эндоскопический гемостаз/хирургическое лечение (при
-                            неэффективности/невозможности эндоскопического лечения) + консервативная терапия.
+                            Эндоскопический гемостаз/хирургическое лечение (при неэффективности/невозможности
+                            эндоскопического лечения) + консервативная терапия.
                         </li>
                         <li class="no-bleed">
-                            консервативная терапия.
+                            Консервативная терапия.
                         </li>
                     </ol>
                 </div>

@@ -69,122 +69,41 @@
 
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="paleSkin" value="option2">
-            <label class="form-check-label" for="paleSkin">Бледность кожных покровов</label>
+            <%- include('src/ejsTemplates/checkbox',{item:mainForm.paleSkin}); %>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="stickySweat" value="option2">
-            <label class="form-check-label" for="stickySweat">Холодный липкий пот</label>
+            <%- include('src/ejsTemplates/checkbox',{item:mainForm.stickySweat}); %>
         </div>
         <div class="row">
-            <div class="col-auto">
-                <input class="form-control" type="text" id="bloodArterialPressure" required>
-                <div class="invalid-feedback">
-                    Необходимо ввести значение.
-                </div>
-                <label class="form-label" for="bloodArterialPressure">АД сист., мм.рт.ст. *</label>
-            </div>
-            <div class="col-auto">
-                <input class="form-control" type="text" id="pulse" required>
-                <div class="invalid-feedback">
-                    Необходимо ввести значение.
-                </div>
-                <label class="form-label" for="pulse">Пульс, уд/мин *</label>
-            </div>
+            <div class="col-auto"><%- include('src/ejsTemplates/input',{item:mainForm.bloodArterialPressure}); %></div>
+            <div class="col-auto"><%- include('src/ejsTemplates/input',{item:mainForm.pulse}); %></div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="collaptoidState" value="option1">
-                    <label class="form-check-label" for="collaptoidState">Коллаптоидное состояние</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="lossConsciousness" value="option2">
-                    <label class="form-check-label" for="lossConsciousness">Потеря сознания</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="coffeeVomit" value="option2">
-                    <label class="form-check-label" for="coffeeVomit">Рвота содержимым по типу «кофейной гущи»</label>
-                </div>
-                <div class="form-check" title="Рвота кровью">
-                    <input class="form-check-input" type="checkbox" id="bloodVomit" value="option2">
-                    <label class="form-check-label" for="bloodVomit">Гематемезис</label>
-                    <div class="form-text">Рвота кровью</div>
-                </div>
-                <div class="form-check" title="Черный дегтеобразный стул">
-                    <input class="form-check-input" type="checkbox" id="melena" value="option2">
-                    <label class="form-check-label" for="melena">Мелена</label>
-                    <div class="form-text">Черный дегтеобразный стул</div>
-                </div>
-                <div class="form-check" title="Кровь в стуле">
-                    <input class="form-check-input" type="checkbox" id="hematohesia" value="option2">
-                    <label class="form-check-label" for="hematohesia">Гематохезия</label>
-                    <div class="form-text">Кровь в стуле</div>
-                </div>
-                <div class="form-check" title="Кровь в стуле">
-                    <input class="form-check-input" type="checkbox" id="blackFeces" value="option2">
-                    <label class="form-check-label" for="blackFeces">
-                        Черный оформленный кал при пальцевом исследовании прямой кишки
-                    </label>
-                </div>
+                <div class="form-check form-check-inline"><%- include('src/ejsTemplates/checkbox',{item:mainForm.collaptoidState}); %></div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.lossConsciousness}); %></div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.coffeeVomit}); %></div>
+                <div class="form-check" title="Рвота кровью"><%- include('src/ejsTemplates/checkbox',{item:mainForm.bloodVomit}); %></div>
+                <div class="form-check" title="Черный дегтеобразный стул"><%- include('src/ejsTemplates/checkbox',{item:mainForm.melena}); %></div>
+                <div class="form-check" title="Кровь в стуле"><%- include('src/ejsTemplates/checkbox',{item:mainForm.hematohesia}); %></div>
+                <div class="form-check" title="Кровь в стуле"><%- include('src/ejsTemplates/checkbox',{item:mainForm.blackFeces}); %></div>
             </div>
             <div class="col-md-6">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gastrointestinalUcler" value="option2">
-                    <label class="form-check-label" for="gastrointestinalUcler">Язвы в ЖКТ в анамнезе</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="anamnesisGastrointestinalUpperBleeding"
-                           value="option2">
-                    <label class="form-check-label" for="anamnesisGastrointestinalUpperBleeding">
-                        ЖКК в анамнезе в верхнем отделе ЖКТ</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="anamnesisGastrointestinalUndefinedBleeding"
-                           value="option2">
-                    <label class="form-check-label" for="anamnesisGastrointestinalUndefinedBleeding">
-                        ЖКК в анамнезе в неустановленном отделе ЖКТ
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="additionalIllness" value="option2">
-                    <label class="form-check-label" for="additionalIllness">
-                        Сопутствующие заболевания в стадии суб- и декомпенсации, требующие неотложных лечебных
-                        мероприятий или непосредственно угрожающие жизни больного
-                    </label>
-                </div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.gastrointestinalUcler}); %></div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.anamnesisGastrointestinalUpperBleeding}); %></div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.anamnesisGastrointestinalUndefinedBleeding}); %></div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.additionalIllness}); %></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-auto">
-                <input class="form-control" type="text" id="hematocrit" required>
-                <div class="invalid-feedback">
-                    Необходимо ввести значение.
-                </div>
-                <label class="form-label" for="hematocrit">Гематокрит, % *</label>
-            </div>
-            <div class="col-auto">
-                <input class="form-control" type="text" id="hemoglobin" required>
-                <div class="invalid-feedback">
-                    Необходимо ввести значение.
-                </div>
-                <label class="form-label" for="hemoglobin">Гемоглобин, г/л *</label>
-            </div>
-            <div class="col-auto">
-                <input class="form-control" type="text" id="erythrocytes" required>
-                <div class="invalid-feedback">
-                    Необходимо ввести значение.
-                </div>
-                <label class="form-label" for="erythrocytes">Эритроциты, 10^12/л *</label>
-            </div>
+            <div class="col-auto"><%- include('src/ejsTemplates/input',{item:mainForm.hematocrit}); %></div>
+            <div class="col-auto"><%- include('src/ejsTemplates/input',{item:mainForm.hemoglobin}); %></div>
+            <div class="col-auto"><%- include('src/ejsTemplates/input',{item:mainForm.erythrocytes}); %></div>
         </div>
         <div class="row">
             <div class="col-12">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="hiddenBleeding" value="">
-                    <label class="form-check-label" for="hiddenBleeding">
-                        Тест на скрытую кровь в кале "+"
-                    </label>
+                    <%- include('src/ejsTemplates/checkbox',{item:mainForm.hiddenBleeding}); %>
                 </div>
             </div>
         </div>
@@ -194,50 +113,15 @@
             </p>
             <hr class="mb-3">
             <div class="col-md-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="chronicHeartFailure" value="option2">
-                    <label class="form-check-label" for="chronicHeartFailure">
-                        Хроническая сердечная недостаточность в анамнезе
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="cardiacIschemia" value="option2">
-                    <label class="form-check-label" for="cardiacIschemia">Ишемическая болезнь сердца в анамнезе</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="kidneyFailure" value="option2">
-                    <label class="form-check-label" for="kidneyFailure">Почечная недостаточность в анамнезе</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="liverFailure" value="option2">
-                    <label class="form-check-label" for="liverFailure">Печеночная недостаточность в анамнезе</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="metastaticCancer" value="option2">
-                    <label class="form-check-label" for="metastaticCancer">Метастатический рак в анамнезе</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="pathologicalChanges" value="option2">
-                    <label class="form-check-label" for="pathologicalChanges">
-                        Патологические изменения панкреато-билиарной зоны в анамнезе или при объективном обследовании
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="aorticProsthesis" value="option2">
-                    <label class="form-check-label" for="aorticProsthesis">
-                        Протезирование аорты по поводу аневризмы в анамнезе
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="heartDefects" value="option2">
-                    <label class="form-check-label" for="heartDefects">Пороки развития сердца в анамнезе</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="heartValvesProsthesis" value="option2">
-                    <label class="form-check-label" for="heartValvesProsthesis">
-                        Протезирование сердечных клапанов в анамнезе
-                    </label>
-                </div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.chronicHeartFailure}); %></div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.cardiacIschemia}); %></div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.kidneyFailure}); %></div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.liverFailure}); %></div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.metastaticCancer}); %></div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.pathologicalChanges}); %></div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.aorticProsthesis}); %></div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.heartDefects}); %></div>
+                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.heartValvesProsthesis}); %></div>
             </div>
         </div>
         <div class="row ASAClass">
@@ -415,12 +299,23 @@
         })
     }
 
-    function showInstructions(check) {
-        $('#instructionModal .bleed, #instructionModal .no-bleed').show();
-        if (check) {
-            $('#instructionModal .no-bleed').hide();
+    function showInstructions(continuousBleed, hasRepeat, riskLevel) {
+        console.log("SHOWING instructions")
+        $('#instructionModal ol').hide();
+        $(`#instructionModal ol#${conclusion.reason.join(' ,ol#')}`).show();
+        $('#instructionModal .bleed, #instructionModal .no-bleed, .has-repeat, .high-repeat-risk, .low-repeat-risk').hide();
+        if (continuousBleed) {
+            $('#instructionModal .bleed').show();
         } else {
-            $('#instructionModal .bleed').hide();
+            $('#instructionModal .no-bleed').show();
+        }
+        if (hasRepeat) {
+            $('#instructionModal .has-repeat').show();
+        }
+        if (conclusion.risk >= 0 && conclusion.risk <= 2) {
+            $('#instructionModal .low-repeat-risk').show();
+        } else if (conclusion.risk >= 3 && conclusion.risk <= 7) {
+            $('#instructionModal .high-repeat-risk').show();
         }
         $('#instructions').show()
     }
@@ -448,9 +343,12 @@
     document.getElementById('aprioriForm').addEventListener('reset', function () {
         $('form.was-validated').removeClass('was-validated')
     })
-    $('#instructionModal #bleedContinue').on('change', function () {
+    $('#bleedContinue-checkbox, #repeat-checkbox').on('change', function () {
         console.log('Changed', $(this).is(':checked'))
-        showInstructions($(this).is(':checked'))
+        showInstructions(
+            $('#bleedContinue-checkbox').is(':checked'),
+            $('#repeat-checkbox').is(':checked'),
+        )
     })
 
 </script>

@@ -1,0 +1,8 @@
+<input class="form-check-input" type="checkbox" id="<%= item.id %>" value="option2">
+<% if (item.err) { %>
+    <div class="invalid-feedback"><%= item.err %></div>
+<% } %>
+<label class="form-check-label" for="<%= item.id %>"><%= item.name %></label>
+<% if (item.desc) { %>
+    <div class="form-text"><%= item.desc %></div>
+<% } %>

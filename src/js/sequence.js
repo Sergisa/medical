@@ -44,17 +44,19 @@ function result(localizationIndex) {
                 .clone()
                 .append(() => {
                     if (localizationIndex === 1) {
-                        if (conclusion.risk >= 0 && conclusion.risk <= 2) return ', с <b>низким</b> риском рецедива';
-                        else if (conclusion.risk >= 3 && conclusion.risk <= 7) return ', с <b>высоким</b> риском рецедива';
+                        if (conclusion.risk >= 0 && conclusion.risk <= 2) return ', с <b>низким</b> риском рецидива';
+                        else if (conclusion.risk >= 3 && conclusion.risk <= 7) return ', с <b>высоким</b> риском рецидива';
                     }
                 })
                 .append(`, источником которого послужили : <b>${getJoinedReasons(conclusion.reason, " или ")}</b>`)
                 .toggleClass('alert-info alert-primary')
         ).parent().toggleClass('d-none d-block')
     }
-    $('#instructionModal ol').hide();
-    $(`#instructionModal ol#${conclusion.reason.join(' ,ol#')}`).show();
-    showInstructions($(this).is(':checked'))
+    showInstructions(
+        $('#bleedContinue-checkbox').is(':checked'),
+        $('#repeat-checkbox').is(':checked'),
+        conclusion.risk
+    )
     $('.postConclusion').after(`<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#instructionModal">Открыть рекомендации</button>`)
     $.moveBottom()
 }
