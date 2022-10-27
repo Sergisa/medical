@@ -31,7 +31,7 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <a href="../../download.php" target="_self" class="btn btn-primary btn-sm float-end">Скачать все данные</a>
+            <a href="download.php" target="_self" class="btn btn-primary btn-sm float-end">Скачать все данные</a>
         </div>
     </div>
     <form action="" class="p-3 needs-validation mt-3" id="aprioriForm" name="signsForm" novalidate>
@@ -415,6 +415,16 @@
         })
     }
 
+    function showInstructions(check) {
+        $('#instructionModal .bleed, #instructionModal .no-bleed').show();
+        if (check) {
+            $('#instructionModal .no-bleed').hide();
+        } else {
+            $('#instructionModal .bleed').hide();
+        }
+        $('#instructions').show()
+    }
+
     document.getElementById('additionalResearchSave').addEventListener('click', function () {
         conclusion = makeConclusion();
         modalAdditionalResearch.hide();
@@ -437,6 +447,10 @@
     })
     document.getElementById('aprioriForm').addEventListener('reset', function () {
         $('form.was-validated').removeClass('was-validated')
+    })
+    $('#instructionModal #bleedContinue').on('change', function () {
+        console.log('Changed', $(this).is(':checked'))
+        showInstructions($(this).is(':checked'))
     })
 
 </script>

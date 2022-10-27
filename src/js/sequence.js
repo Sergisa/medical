@@ -54,6 +54,7 @@ function result(localizationIndex) {
     }
     $('#instructionModal ol').hide();
     $(`#instructionModal ol#${conclusion.reason.join(' ,ol#')}`).show();
+    showInstructions($(this).is(':checked'))
     $('.postConclusion').after(`<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#instructionModal">Открыть рекомендации</button>`)
     $.moveBottom()
 }
