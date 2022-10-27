@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build-html": "ejs ./src/ejsTemplates/index.ejs -f ./src/ejsTemplates/signs.json -o ./index.html",
     "test": "jest",
     "all": "npm run js-minify-dev && npm run css-min",
     "js-minify-prod": "terser src/js/console.js src/js/arrayExtension.js src/js/jquery-extension-scroller.js src/js/conclusionBuilder.js src/js/formValidation.js src/js/sequence.js -o dist/js/bundle.min.js -c ecma=5,ie8=true,drop_console=true -m",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@jest/globals": "^29.0.3",
+    "ejs": "^3.1.8",
     "jest": "^28.1.0",
     "jest-environment-jsdom": "^29.1.2",
     "sass": "^1.52.3",
