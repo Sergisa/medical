@@ -20,6 +20,8 @@
     "sign49": {"id": "sign49", "name": "Наличие крови, фиксированный тромб или сгусток, кровоточащий сосуд"}
   },
   "mainForm": {
+    "identifier":                                 {"id": "identifier", "placeholder": "Идентификатор", "err": "Необходимо ввести возраст."},
+    "IIC":                                        {"id": "IIC", "placeholder": "Код МКБ", "err": "Необходимо ввести возраст."},
     "age":                                        {"id": "age", "name": "Возраст, лет *", "err": "Необходимо ввести возраст."},
     "collaptoidState":                            {"id": "collaptoidState", "name": "Коллаптоидное состояние"},
     "lossConsciousness":                          {"id": "lossConsciousness", "name": "Потеря сознания"},

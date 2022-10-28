@@ -36,14 +36,8 @@
     </div>
     <form action="" class="p-3 needs-validation mt-3" id="aprioriForm" name="signsForm" novalidate>
         <div class="row">
-            <div class="col-lg-6">
-                <input type="text" class="form-control" id="identifier" placeholder="Идентификатор">
-                <label class="form-check-label" for="identifier"></label>
-            </div>
-            <div class="col-lg-6">
-                <input type="text" class="form-control" id="IIC" placeholder="Код МКБ">
-                <label class="form-check-label" for="IIC"></label>
-            </div>
+            <%- include('src/ejsTemplates/input',{item:mainForm.identifier, col:"lg-6"}); %>
+            <%- include('src/ejsTemplates/input',{item:mainForm.IIC, col:"lg-6"}); %>
         </div>
         <div class="col-auto">
             <textarea type="text" class="form-control" id="description" placeholder="Описание" rows="4"></textarea>
@@ -59,13 +53,13 @@
             <label class="form-check-label" for="female">Женский</label>
         </div>
         <div class="row mt-1">
-            <%- include('src/ejsTemplates/input',{item:mainForm.age}); %>
+            <%- include('src/ejsTemplates/input',{item:mainForm.age, required:true}); %>
         </div>
         <%- include('src/ejsTemplates/checkbox',{item:mainForm.paleSkin}); %>
         <%- include('src/ejsTemplates/checkbox',{item:mainForm.stickySweat}); %>
         <div class="row">
-            <%- include('src/ejsTemplates/input',{item:mainForm.bloodArterialPressure}); %>
-            <%- include('src/ejsTemplates/input',{item:mainForm.pulse}); %>
+            <%- include('src/ejsTemplates/input',{item:mainForm.bloodArterialPressure, required:true}); %>
+            <%- include('src/ejsTemplates/input',{item:mainForm.pulse, required:true}); %>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -85,9 +79,9 @@
             </div>
         </div>
         <div class="row">
-            <%- include('src/ejsTemplates/input',{item:mainForm.hematocrit}); %>
-            <%- include('src/ejsTemplates/input',{item:mainForm.hemoglobin}); %>
-            <%- include('src/ejsTemplates/input',{item:mainForm.erythrocytes}); %>
+            <%- include('src/ejsTemplates/input',{item:mainForm.hematocrit, required:true}); %>
+            <%- include('src/ejsTemplates/input',{item:mainForm.hemoglobin, required:true}); %>
+            <%- include('src/ejsTemplates/input',{item:mainForm.erythrocytes, required:true}); %>
         </div>
         <div class="row">
             <div class="col-12">
