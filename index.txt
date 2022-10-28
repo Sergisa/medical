@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Алгоритм ведения пациентов</title>
+    <link href="dist/css/output.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dist/css/bs-icons.min.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        #question {
+            color: var(--bs-indigo);
+            font-weight: bold;
+            background-color: #CFD8DC !important;
+        }
+
+        .ASAClass div {
+            font-family: "Times New Roman", serif;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12 my-auto">
+            <h1 class="text-danger fw-bold text-center">
+                Алгоритм ведения пациентов с подозрением на желудочно-кишечное кровотечение с элементами поддержки
+                принятия клинических решений
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <a href="download.php" target="_self" class="btn btn-primary btn-sm float-end">Скачать все данные</a>
+        </div>
+    </div>
+    <form action="" class="p-3 needs-validation mt-3" id="aprioriForm" name="signsForm" novalidate>
+        <div class="row">
+            <div class="col-auto">
+    <input class="form-control" type="text" id="identifier" 
+Warning: Undefined variable $required in C:\Users\Sergisa\AppData\Local\Temp\blade\views\a044e9f131b4004ec3f15c9522fc53966517540f.php on line 2
+>
+    <label class="form-label" for="identifier">
+Warning: Undefined array key "name" in C:\Users\Sergisa\AppData\Local\Temp\blade\views\a044e9f131b4004ec3f15c9522fc53966517540f.php on line 3
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+</label>
+            <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    </div>
+            <div class="col-auto">
+    <input class="form-control" type="text" id="IIC" 
+Warning: Undefined variable $required in C:\Users\Sergisa\AppData\Local\Temp\blade\views\a044e9f131b4004ec3f15c9522fc53966517540f.php on line 2
+>
+    <label class="form-label" for="IIC">
+Warning: Undefined array key "name" in C:\Users\Sergisa\AppData\Local\Temp\blade\views\a044e9f131b4004ec3f15c9522fc53966517540f.php on line 3
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+</label>
+            <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    </div>
+        </div>
+        <div class="col-auto">
+            <textarea type="text" class="form-control" id="description" placeholder="Описание" rows="4"></textarea>
+            <label class="form-check-label" for="description"></label>
+        </div>
+        Пол *
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="male" value="female" required>
+            <label class="form-check-label" for="male">Мужской</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="female" value="male">
+            <label class="form-check-label" for="female">Женский</label>
+        </div>
+        <div class="row mt-1">
+            <div class="col-
+Warning: Undefined variable $col in C:\Users\Sergisa\AppData\Local\Temp\blade\views\a044e9f131b4004ec3f15c9522fc53966517540f.php on line 1
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+">
+    <input class="form-control" type="text" id="age" required>
+    <label class="form-label" for="age">Возраст, лет *</label>
+            <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    </div>
+        </div>
+        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="paleSkin>" value="option2">
+        <label class="form-check-label" for="paleSkin">Бледность кожных покровов</label>
+    </div>
+        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="stickySweat>" value="option2">
+        <label class="form-check-label" for="stickySweat">Холодный липкий пот</label>
+    </div>
+        <div class="row">
+            <div class="col-
+Warning: Undefined variable $col in C:\Users\Sergisa\AppData\Local\Temp\blade\views\a044e9f131b4004ec3f15c9522fc53966517540f.php on line 1
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+">
+    <input class="form-control" type="text" id="bloodArterialPressure" required>
+    <label class="form-label" for="bloodArterialPressure">АД сист., мм.рт.ст. *</label>
+            <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    </div>
+            <div class="col-
+Warning: Undefined variable $col in C:\Users\Sergisa\AppData\Local\Temp\blade\views\a044e9f131b4004ec3f15c9522fc53966517540f.php on line 1
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+">
+    <input class="form-control" type="text" id="pulse" required>
+    <label class="form-label" for="pulse">Пульс, уд/мин *</label>
+            <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="collaptoidState>" value="option2">
+        <label class="form-check-label" for="collaptoidState">Коллаптоидное состояние</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="lossConsciousness>" value="option2">
+        <label class="form-check-label" for="lossConsciousness">Потеря сознания</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="coffeeVomit>" value="option2">
+        <label class="form-check-label" for="coffeeVomit">Рвота содержимым по типу «кофейной гущи»</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="bloodVomit>" value="option2">
+        <label class="form-check-label" for="bloodVomit">Гематемезис</label>
+            <div class="form-text">Рвота кровью</div>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="melena>" value="option2">
+        <label class="form-check-label" for="melena">Мелена</label>
+            <div class="form-text">Черный дегтеобразный стул</div>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="hematohesia>" value="option2">
+        <label class="form-check-label" for="hematohesia">Гематохезия</label>
+            <div class="form-text">Кровь в стуле</div>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="blackFeces>" value="option2">
+        <label class="form-check-label" for="blackFeces">Черный оформленный кал при пальцевом исследовании прямой кишки</label>
+    </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="gastrointestinalUcler>" value="option2">
+        <label class="form-check-label" for="gastrointestinalUcler">Язвы в ЖКТ в анамнезе</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="anamnesisGastrointestinalUpperBleeding>" value="option2">
+        <label class="form-check-label" for="anamnesisGastrointestinalUpperBleeding">ЖКК в анамнезе в верхнем отделе ЖКТ</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="anamnesisGastrointestinalUndefinedBleeding>" value="option2">
+        <label class="form-check-label" for="anamnesisGastrointestinalUndefinedBleeding">ЖКК в анамнезе в неустановленном отделе ЖКТ</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="additionalIllness>" value="option2">
+        <label class="form-check-label" for="additionalIllness">Сопутствующие заболевания в стадии суб- и декомпенсации, требующие неотложных лечебных мероприятий или непосредственно угрожающие жизни больного</label>
+    </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-
+Warning: Undefined variable $col in C:\Users\Sergisa\AppData\Local\Temp\blade\views\a044e9f131b4004ec3f15c9522fc53966517540f.php on line 1
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+">
+    <input class="form-control" type="text" id="hematocrit" required>
+    <label class="form-label" for="hematocrit">Гематокрит, % *</label>
+            <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    </div>
+            <div class="col-
+Warning: Undefined variable $col in C:\Users\Sergisa\AppData\Local\Temp\blade\views\a044e9f131b4004ec3f15c9522fc53966517540f.php on line 1
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+">
+    <input class="form-control" type="text" id="hemoglobin" required>
+    <label class="form-label" for="hemoglobin">Гемоглобин, г/л *</label>
+            <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    </div>
+            <div class="col-
+Warning: Undefined variable $col in C:\Users\Sergisa\AppData\Local\Temp\blade\views\a044e9f131b4004ec3f15c9522fc53966517540f.php on line 1
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+">
+    <input class="form-control" type="text" id="erythrocytes" required>
+    <label class="form-label" for="erythrocytes">Эритроциты, 10^12/л *</label>
+            <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="hiddenBleeding>" value="option2">
+            <div class="invalid-feedback">1</div>
+        <label class="form-check-label" for="hiddenBleeding">Тест на скрытую кровь в кале &quot;+&quot;</label>
+    </div>
+            </div>
+        </div>
+        <div class="row riskFactors">
+            <p class="fw-bold my-2">
+                Факторы риска (сопутствующие заболевания)
+            </p>
+            <hr class="mb-3">
+            <div class="col-md-12">
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="chronicHeartFailure>" value="option2">
+        <label class="form-check-label" for="chronicHeartFailure">Хроническая сердечная недостаточность в анамнезе</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="cardiacIschemia>" value="option2">
+        <label class="form-check-label" for="cardiacIschemia">Ишемическая болезнь сердца в анамнезе</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="kidneyFailure>" value="option2">
+        <label class="form-check-label" for="kidneyFailure">Почечная недостаточность в анамнезе</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="liverFailure>" value="option2">
+        <label class="form-check-label" for="liverFailure">Печеночная недостаточность в анамнезе</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="metastaticCancer>" value="option2">
+        <label class="form-check-label" for="metastaticCancer">Метастатический рак в анамнезе</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="pathologicalChanges>" value="option2">
+        <label class="form-check-label" for="pathologicalChanges">Патологические изменения панкреато-билиарной зоны в анамнезе или при объективном обследовании</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="aorticProsthesis>" value="option2">
+        <label class="form-check-label" for="aorticProsthesis">Протезирование аорты по поводу аневризмы в анамнезе</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="heartDefects>" value="option2">
+        <label class="form-check-label" for="heartDefects">Пороки развития сердца в анамнезе</label>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="heartValvesProsthesis>" value="option2">
+        <label class="form-check-label" for="heartValvesProsthesis">Протезирование сердечных клапанов в анамнезе</label>
+    </div>
+            </div>
+        </div>
+        <div class="row ASAClass">
+            <p class="fw-bold my-2">
+                Физический статус пациента по классификации ASA
+            </p>
+            <hr class="mb-3">
+            <div class="col-md-4">
+                <div class="form-check">
+    <input class="form-check-input" type="radio" id="ASA1" name="
+Warning: Undefined array key "group" in C:\Users\Sergisa\AppData\Local\Temp\blade\views\ecd05083f08f02809b948b60334f4d51773bbf19.php on line 2
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+" required>
+        <label class="form-check-label" for="ASA1">ASA I</label>
+            <div class="form-text">Здоровый пациент</div>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="radio" id="ASA2" name="
+Warning: Undefined array key "group" in C:\Users\Sergisa\AppData\Local\Temp\blade\views\ecd05083f08f02809b948b60334f4d51773bbf19.php on line 2
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+" required>
+        <label class="form-check-label" for="ASA2">ASA II</label>
+            <div class="form-text">Пациент с легким системным заболеванием</div>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="radio" id="ASA3" name="
+Warning: Undefined array key "group" in C:\Users\Sergisa\AppData\Local\Temp\blade\views\ecd05083f08f02809b948b60334f4d51773bbf19.php on line 2
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+" required>
+        <label class="form-check-label" for="ASA3">ASA III</label>
+            <div class="form-text">Пациент с тяжелым системным заболеванием</div>
+    </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-check">
+    <input class="form-check-input" type="radio" id="ASA4" name="
+Warning: Undefined array key "group" in C:\Users\Sergisa\AppData\Local\Temp\blade\views\ecd05083f08f02809b948b60334f4d51773bbf19.php on line 2
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+" required>
+        <label class="form-check-label" for="ASA4">ASA IV</label>
+            <div class="form-text">Пациент с тяжелым системным заболеванием, которое представляет собой постоянную угрозу для жизни</div>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="radio" id="ASA5" name="
+Warning: Undefined array key "group" in C:\Users\Sergisa\AppData\Local\Temp\blade\views\ecd05083f08f02809b948b60334f4d51773bbf19.php on line 2
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+" required>
+        <label class="form-check-label" for="ASA5">ASA V</label>
+            <div class="form-text">Умирающий пациент. Операция по жизненным показаниям.</div>
+    </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-check">
+    <input class="form-check-input" type="radio" id="ASA6" name="
+Warning: Undefined array key "group" in C:\Users\Sergisa\AppData\Local\Temp\blade\views\ecd05083f08f02809b948b60334f4d51773bbf19.php on line 2
+
+Deprecated: htmlspecialchars(): Passing null to parameter #1 ($string) of type string is deprecated in phar://C:/Users/Sergisa/PhpstormProjects/medical/blade-cli.phar/vendor/illuminate/support/helpers.php on line 532
+" required>
+        <label class="form-check-label" for="ASA6">ASA VI</label>
+            <div class="form-text">Констатирована смерть мозга</div>
+    </div>
+                <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="E>" value="option2">
+        <label class="form-check-label" for="E">E</label>
+            <div class="form-text">Неотложность хирургического вмешательства</div>
+    </div>
+            </div>
+        </div>
+        <div class="control-bottom d-flex align-items-end justify-content-end">
+            <button type="reset" class="btn btn-outline-dark me-2">Очистить</button>
+            <button type="submit" class="btn btn-primary text-break" id="preConclusion">
+                Предварительное заключение
+            </button>
+        </div>
+        <div class="preConclusion">
+            <div></div>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-md-12">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="border border-2 rounded p-3 mt-3 d-none" id="helpSequence">
+                Рекомендация
+                <div class="d-block">
+                    <div class="col-12 mt-2" id="adviceLine"></div>
+                    <div id="questionBlock" class="d-inline-flex justify-content-end w-100 mt-2">
+                        <div id="question" class="d-inline-flex question badge bg-light fs-6"></div>
+                        <button id="yes" class="btn btn-sm btn-secondary me-1">Да</button>
+                        <button id="no" class="btn btn-sm btn-secondary me-1">Нет</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="border border-2 rounded shadow p-3 mt-3 d-none">
+                Эндоскопческое заключение
+                <div class="postConclusion"></div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-secondary me-auto float-end d-none" id="saveFinalData">Сохранить</button>
+    <i class="status-label bi fs-2 float-end me-auto d-none text-success bi-check-lg" id="good"></i>
+    <i class="status-label bi fs-2 float-end me-auto d-none text-danger bi-x-lg" id="error"></i>
+</div>
+
+<div class="modal fade" id="additionalResearch" tabindex="-1" aria-labelledby="Данные эндоскопического исследования"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Эндоскопические признаки
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <form action="" id="endoscopicResearch">
+                <div class="modal-body">
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign32" value="option1">
+        <label class="form-check-label" for="sign32">
+        Поверхностный дефект (эрозия) слизистой оболочки
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign33" value="option1">
+        <label class="form-check-label" for="sign33">
+        Локальная атрофия ворсинок тонкой кишки
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign34" value="option1">
+        <label class="form-check-label" for="sign34">
+        Локальные воспалительные изменения слизистой оболочки
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign35" value="option1">
+        <label class="form-check-label" for="sign35">
+        Анастомоз ЖКТ
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign36" value="option1">
+        <label class="form-check-label" for="sign36">
+        Задержка видеокапсулы
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign37" value="option1">
+        <label class="form-check-label" for="sign37">
+        Нерегулярность поверхности слизистой оболочки (подозрение на наличие опухоли)
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign38" value="option1">
+        <label class="form-check-label" for="sign38">
+        Дивертикулы кишки
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign39" value="option1">
+        <label class="form-check-label" for="sign39">
+        Посткоагуляционный струп
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign40" value="option1">
+        <label class="form-check-label" for="sign40">
+        Сосудистые мальформации
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign41" value="option1">
+        <label class="form-check-label" for="sign41">
+        Стриктура кишки
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign42" value="option1">
+        <label class="form-check-label" for="sign42">
+        Тотальная атрофия ворсинок тонкой кишки
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign43" value="option1">
+        <label class="form-check-label" for="sign43">
+        Тотальные воспалительные изменения слизистой оболочки
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign44" value="option1">
+        <label class="form-check-label" for="sign44">
+        Глубокий дефект (язва) слизистой оболочки
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign45" value="option1">
+        <label class="form-check-label" for="sign45">
+        Кровотечение из геморроидального узла
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign46" value="option1">
+        <label class="form-check-label" for="sign46">
+        Варикозно-расширенные вены
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign47" value="option1">
+        <label class="form-check-label" for="sign47">
+        Кровотечение из фистулы
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign48" value="option1">
+        <label class="form-check-label" for="sign48">
+        Разрыв слизистой оболочки брюшного отдела пищевода и/или кардиального отдела желудка
+    </label>
+    </div>
+                                            <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign49" value="option1">
+        <label class="form-check-label" for="sign49">
+        Наличие крови, фиксированный тромб или сгусток, кровоточащий сосуд
+    </label>
+    </div>
+                                    </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-outline-dark" id="clearAdditionalResearch">Очистить</button>
+                    <button type="button" class="btn btn-primary" id="additionalResearchSave">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+;
+<div class="modal fade" id="instructionModal" tabindex="-1" aria-labelledby="Окно инструкций" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Последовательность выбора действий в лечебной тактике ведения пациентов с ЖКК
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <p class="fs-6">
+                    Выберите пожалуйста опции, в связи с которыми, будет настроен список рекомендаций
+                </p>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="bleedContinue-checkbox" value="option1">
+                    <label class="form-check-label" for="bleedContinue-checkbox">Кровотечение продолжается</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="repeat-checkbox" value="option1">
+                    <label class="form-check-label" for="repeat-checkbox">Зафиксирован рецидив</label>
+                </div>
+                <hr>
+                <div id="instructions">
+                                            <div id="5">
+                            <h6 class="fw-bold">Для ангиоэктазий/телеангиоэктазий/венозных мальформаций</h6>
+<ol>
+            <li class="bleed">Эндоскопическое лечение/ангиографическое лечение/хирургическое лечение (при неэффективности эндоскопического или ангиографического лечения) + консервативная терапия.</li>
+            <li class="no-bleed"> Консервативная терапия/эндоскопическое/хирургическое (в зависимости от формы, размера,
+      количества).</li>
+    </ol>
+                        </div>
+                                            <div id="10">
+                            <h6 class="fw-bold">Для варикозно расширенных вен пищевода и/или желудка</h6>
+<ol>
+            <li class="bleed">Установка зонда Блэкмора + консервативная терапия.</li>
+            <li class="no-bleed">Консервативная терапия + эндоскопическое лечение (на вторые сутки от появления симптомов кровотечения).</li>
+    </ol>
+                        </div>
+                                            <div id="1">
+                            <h6 class="fw-bold">Для геморроя неуточненного</h6>
+<ol>
+            <li class="bleed">Хирургическое лечение (при обильных профузных кровотечениях рекомендовано прошивание сосуда или склеротерапия или лигирование кровоточащего узла) + консервативная терапия.</li>
+            <li class="no-bleed">Консервативная терапия.</li>
+    </ol>
+                        </div>
+                                            <div id="11">
+                            <h6 class="fw-bold">Для дивертикулярной болезни толстой кишки</h6>
+<ol>
+            <li class="bleed">Эндоскопическое лечение.</li>
+            <li class="">Хирургическое лечение (при невозможности/неэффективности эндоскопического гемостаза).</li>
+            <li class="no-bleed">Если кровотечение остановилось и виден тромбированный сосуд, то эндоскопическое лечение.</li>
+            <li class="">Если кровотечение остановилось и имеется дивертикулит, то консервативная терапия.</li>
+    </ol>
+                        </div>
+                                            <div id="2">
+                            <h6 class="fw-bold">Для дивертикула Меккеля</h6>
+<ol>
+            <li class="">Хирургическое лечение.</li>
+    </ol>
+                        </div>
+                                            <div id="9">
+                            <h6 class="fw-bold">Для опухолевых заболеваний ЖКТ</h6>
+<ol>
+            <li class="bleed">Эндоскопический гемостаз/эндоваскулярная эмболизация/хирургическое лечение (при невозможности/неэффективности эндоскопического/эндоваскулярного гемостаза).</li>
+            <li class="no-bleed">Консервативная терапия и/или эндоскопическое лечение.</li>
+    </ol>
+                        </div>
+                                            <div id="7">
+                            <h6 class="fw-bold">Для свища между крупным сосудом и просветом ЖКТ</h6>
+<ol>
+            <li class="">Эндоваскулярное лечение/хирургическое лечение.</li>
+    </ol>
+                        </div>
+                                            <div id="8">
+                            <h6 class="fw-bold">Для синдрома Меллори-Вейса</h6>
+<ol>
+            <li class="">Эндоскопическое лечение + консервативная терапия.</li>
+            <li class="">Хирургическое лечение (при неэффективности эндоскопического лечения + консервативной терапии).</li>
+    </ol>
+                        </div>
+                                            <div id="4">
+                            <h6 class="fw-bold">Для эрозивно-язвенных поражений верхних отделов ЖКТ</h6>
+<ol>
+            <li class="bleed has-repeat">Эндоскопическое лечение/эндоваскулярный гемостаз/хирургическое лечение (при невозможности эндоскопического лечения/эндоваскулярного гемостаза).</li>
+            <li class="no-bleed low-repeat-risk">Эндоскопическое лечение и/или консервативная терапия (в зависимости от наличия в нем сосудистых структур) + консервативная терапия.</li>
+            <li class="high-repeat-risk">Динамический эндоскопический контроль или ангиографическое вмешательство.</li>
+    </ol>
+                        </div>
+                                            <div id="3">
+                            <h6 class="fw-bold">Для эрозивно-язвенных поражений тонкой/толстой кишки</h6>
+<ol>
+            <li class="bleed">Эндоскопический гемостаз/хирургическое лечение (при неэффективности/невозможности эндоскопического лечения) + консервативная терапия.</li>
+            <li class="no-bleed">Консервативная терапия.</li>
+    </ol>
+                        </div>
+                                    </div>
+                <button type="button" class="btn btn-primary float-end" data-bs-dismiss="modal"
+                        id="instructionModal__close">
+                    Закрыть
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+;
+
+
+</body>
+<script src="dist/js/popper.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/jquery3.6.0.min.js"></script>
+<script src="dist/js/bundle.min.js"></script>
+<script>
+    const modalAdditionalResearch = new bootstrap.Modal('#additionalResearch');
+    const instructionModal = new bootstrap.Modal('#instructionModal');
+    let sequenceStage, conclusion, sequence;
+
+    function makeConclusion() {
+        let conclusion = conclusionBuilder()
+            .andBloodLossHardnessLevel(collectData())
+            .andExplicit(collectData())
+            .predictLocalization(collectData())
+            .andResolveReason(collectData())
+            .andResolveRocalRiskLevel(collectData())
+            .andResolveHardness(collectData())
+        $('.preConclusion div').html("Предварительное заключение").append(conclusion.getTag().clone())
+        window.conclusion = conclusion;
+        return conclusion;
+    }
+
+
+    $('#yes').click(function () {
+        shiftSequence(1)
+    })
+    $('#no').click(function () {
+        shiftSequence(2)
+    })
+
+    function startHelpSequence() {
+        $('#helpSequence').removeClass('d-none')
+        $('#adviceLine').empty()
+        if (conclusion.explicit) {
+            if (conclusion.hard) {
+                sequenceStage = collectData().hematohesia ? sequence.step3 : sequence.step4;
+                adviceResearch('Начало интенсивной терапии/реанимационных мероприятий', false)
+            } else {
+                sequenceStage = sequence.step4
+            }
+        } else {
+            sequenceStage = sequence.step4;
+        }
+        if (sequenceStage) sequenceStage.run()
+    }
+
+    function shiftSequence(answer) {
+        if (answer === 1) {//yes
+            if (collectData().hasResearchData() || !sequenceStage.needsResearchData) {
+                console.log("Данные исследования не нужны")
+                sequenceStage = sequenceStage.yes();
+                $.moveBottom()
+
+                if (sequenceStage) sequenceStage.run();
+            } else if (sequenceStage.needsResearchData && !collectData().hasResearchData()) {
+                alert("Введите данные исследования")
+            }
+        } else if (answer === 2) { //no
+            sequenceStage = sequenceStage.no();
+            if (sequenceStage) sequenceStage.run();
+        }
+    }
+
+    function saveData() {
+        $('.status-label').addClass('d-none')
+        console.log("before send", conclusion);
+        conclusion.reason = getJoinedReasons(conclusion.reason, ",");
+        $.post("http://sergisa.smrtp.ru/medical/save.php", {
+            conclusion: conclusion.getConclusion(),
+            data: collectData()
+        }).done(function (data) {
+            console.log(data);
+            $('#good').removeClass('d-none')
+        }).fail(function () {
+            $('#error').removeClass('d-none')
+        })
+    }
+
+    function showInstructions(continuousBleed, hasRepeat, riskLevel) {
+        console.log("SHOWING instructions")
+        if (conclusion.reason !== 4) {
+            $('#repeat-checkbox').parent().hide();
+        }
+        $('#instructions > div').hide();
+        $(`#instructionModal #${conclusion.reason.join(' ,#')}`).show();
+        $('#instructionModal .bleed, #instructionModal .no-bleed, .has-repeat, .high-repeat-risk, .low-repeat-risk').hide();
+        if (continuousBleed) {
+            $('#instructionModal .bleed').show();
+        } else {
+            $('#instructionModal .no-bleed').show();
+        }
+        if (hasRepeat) {
+            $('#instructionModal .has-repeat').show();
+        }
+        if (conclusion.risk >= 0 && conclusion.risk <= 2) {
+            $('#instructionModal .low-repeat-risk').show();
+        } else if (conclusion.risk >= 3 && conclusion.risk <= 7) {
+            $('#instructionModal .high-repeat-risk').show();
+        }
+        $('#instructions').show()
+    }
+
+    document.getElementById('additionalResearchSave').addEventListener('click', function () {
+        conclusion = makeConclusion();
+        modalAdditionalResearch.hide();
+    });
+    document.getElementById('saveFinalData').addEventListener('click', function () {
+        saveData();
+    });
+    document.getElementById('aprioriForm').addEventListener('submit', function (event) {
+        event.preventDefault()
+        event.stopPropagation()
+        $('#helpSequence').addClass('d-none')
+        if (this.checkValidity()) {
+            conclusion = makeConclusion();
+            sequence = getSequence(conclusion, collectData())
+            startHelpSequence();
+            $.moveBottom()
+            $('#saveFinalData').removeClass('d-none')
+        }
+        return false;
+    })
+    document.getElementById('aprioriForm').addEventListener('reset', function () {
+        $('form.was-validated').removeClass('was-validated')
+    })
+    $('#bleedContinue-checkbox, #repeat-checkbox').on('change', function () {
+        console.log('Changed', $(this).is(':checked'))
+        showInstructions(
+            $('#bleedContinue-checkbox').is(':checked'),
+            $('#repeat-checkbox').is(':checked'),
+        )
+    })
+
+</script>
+
+</html>
