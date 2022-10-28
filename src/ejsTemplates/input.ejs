@@ -1,7 +1,9 @@
-<input class="form-control" type="text" id="<%= item.id %>" required>
-<% if (item.err) { %>
-    <div class="invalid-feedback">
-        Необходимо ввести значение.
-    </div>
-<% } %>
-<label class="form-label" for="<%= item.id %>"><%= item.name %></label>
+<div class="col-auto">
+    <input class="form-control" type="text" id="<%= item.id %>" required>
+    <% if (item.err) { %>
+        <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    <% } %>
+    <label class="form-label" for="<%= item.id %>"><%= item.name %></label>
+</div>

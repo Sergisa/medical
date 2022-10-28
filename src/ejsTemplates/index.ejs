@@ -59,20 +59,13 @@
             <label class="form-check-label" for="female">Женский</label>
         </div>
         <div class="row mt-1">
-            <div class="col-auto">
-                <input type="text" class="form-control" id="age" min="0" step="1" required>
-                <div class="invalid-feedback">
-                    Необходимо ввести возраст.
-                </div>
-                <label for="age" class="form-label">Возраст, лет *</label>
-            </div>
-
+            <%- include('src/ejsTemplates/input',{item:mainForm.age}); %>
         </div>
         <%- include('src/ejsTemplates/checkbox',{item:mainForm.paleSkin}); %>
         <%- include('src/ejsTemplates/checkbox',{item:mainForm.stickySweat}); %>
         <div class="row">
-            <div class="col-auto"><%- include('src/ejsTemplates/input',{item:mainForm.bloodArterialPressure}); %></div>
-            <div class="col-auto"><%- include('src/ejsTemplates/input',{item:mainForm.pulse}); %></div>
+            <%- include('src/ejsTemplates/input',{item:mainForm.bloodArterialPressure}); %>
+            <%- include('src/ejsTemplates/input',{item:mainForm.pulse}); %>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -92,9 +85,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-auto"><%- include('src/ejsTemplates/input',{item:mainForm.hematocrit}); %></div>
-            <div class="col-auto"><%- include('src/ejsTemplates/input',{item:mainForm.hemoglobin}); %></div>
-            <div class="col-auto"><%- include('src/ejsTemplates/input',{item:mainForm.erythrocytes}); %></div>
+            <%- include('src/ejsTemplates/input',{item:mainForm.hematocrit}); %>
+            <%- include('src/ejsTemplates/input',{item:mainForm.hemoglobin}); %>
+            <%- include('src/ejsTemplates/input',{item:mainForm.erythrocytes}); %>
         </div>
         <div class="row">
             <div class="col-12">

@@ -20,6 +20,7 @@
     {"key": "sign49", "name": "Наличие крови, фиксированный тромб или сгусток, кровоточащий сосуд"}
   ],
   "mainForm": {
+    "age":                                        {"id": "age", "name": "Возраст, лет *", "err": "Необходимо ввести возраст."},
     "collaptoidState":                            {"id": "collaptoidState", "name": "Коллаптоидное состояние"},
     "lossConsciousness":                          {"id": "lossConsciousness", "name": "Потеря сознания"},
     "coffeeVomit":                                {"id": "coffeeVomit", "name": "Рвота содержимым по типу «кофейной гущи»"},
@@ -31,8 +32,8 @@
     "anamnesisGastrointestinalUpperBleeding":     {"id": "anamnesisGastrointestinalUpperBleeding", "name": "ЖКК в анамнезе в верхнем отделе ЖКТ"},
     "anamnesisGastrointestinalUndefinedBleeding": {"id": "anamnesisGastrointestinalUndefinedBleeding", "name": "ЖКК в анамнезе в неустановленном отделе ЖКТ"},
     "additionalIllness":                          {
-      "name": "Сопутствующие заболевания в стадии суб- и декомпенсации, требующие неотложных лечебных мероприятий или непосредственно угрожающие жизни больного",
-      "id":   "additionalIllness"
+      "id":   "additionalIllness",
+      "name": "Сопутствующие заболевания в стадии суб- и декомпенсации, требующие неотложных лечебных мероприятий или непосредственно угрожающие жизни больного"
     },
     "chronicHeartFailure":                        {"id": "chronicHeartFailure", "name": "Хроническая сердечная недостаточность в анамнезе"},
     "cardiacIschemia":                            {"id": "cardiacIschemia", "name": "Ишемическая болезнь сердца в анамнезе"},
