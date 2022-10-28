@@ -257,8 +257,8 @@
 
     function showInstructions(continuousBleed, hasRepeat, riskLevel) {
         console.log("SHOWING instructions")
-        $('#instructionModal ol').hide();
-        $(`#instructionModal ol#${conclusion.reason.join(' ,ol#')}`).show();
+        $('#instructions > div').hide();
+        $(`#instructionModal #${conclusion.reason.join(' ,#')}`).show();
         $('#instructionModal .bleed, #instructionModal .no-bleed, .has-repeat, .high-repeat-risk, .low-repeat-risk').hide();
         if (continuousBleed) {
             $('#instructionModal .bleed').show();
