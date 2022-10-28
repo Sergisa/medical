@@ -1,11 +1,11 @@
 <div class="form-check">
-    <input class="form-check-input" type="checkbox" id="<%= sign.key %>" value="option1">
+    <input class="form-check-input" type="checkbox" id="<%= sign.id %>" value="option1">
     <% if (sign.err) { %>
         <div class="invalid-feedback">
             Необходимо ввести значение.
         </div>
     <% } %>
-    <label class="form-check-label" for="<%= sign.key %>">
+    <label class="form-check-label" for="<%= sign.id %>">
         <%= sign.name %>
     </label>
     <% if (sign.sub) { %>

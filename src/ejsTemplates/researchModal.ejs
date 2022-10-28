@@ -10,7 +10,7 @@
             </div>
             <form action="" id="endoscopicResearch">
                 <div class="modal-body">
-                    <% signs.forEach(function(sign){ %>
+                    <% Object.values(signs).forEach(function(sign){ %>
                         <%- include('src/ejsTemplates/sign', {sign: sign}); %>
                     <% }); %>
                 </div>
