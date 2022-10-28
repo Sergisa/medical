@@ -251,6 +251,9 @@
 
     function showInstructions(continuousBleed, hasRepeat, riskLevel) {
         console.log("SHOWING instructions")
+        if (conclusion.reason !== 4) {
+            $('#repeat-checkbox').parent().hide();
+        }
         $('#instructions > div').hide();
         $(`#instructionModal #${conclusion.reason.join(' ,#')}`).show();
         $('#instructionModal .bleed, #instructionModal .no-bleed, .has-repeat, .high-repeat-risk, .low-repeat-risk').hide();
