@@ -68,31 +68,27 @@
             </div>
 
         </div>
-        <div class="form-check">
-            <%- include('src/ejsTemplates/checkbox',{item:mainForm.paleSkin}); %>
-        </div>
-        <div class="form-check">
-            <%- include('src/ejsTemplates/checkbox',{item:mainForm.stickySweat}); %>
-        </div>
+        <%- include('src/ejsTemplates/checkbox',{item:mainForm.paleSkin}); %>
+        <%- include('src/ejsTemplates/checkbox',{item:mainForm.stickySweat}); %>
         <div class="row">
             <div class="col-auto"><%- include('src/ejsTemplates/input',{item:mainForm.bloodArterialPressure}); %></div>
             <div class="col-auto"><%- include('src/ejsTemplates/input',{item:mainForm.pulse}); %></div>
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="form-check form-check-inline"><%- include('src/ejsTemplates/checkbox',{item:mainForm.collaptoidState}); %></div>
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.lossConsciousness}); %></div>
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.coffeeVomit}); %></div>
-                <div class="form-check" title="Рвота кровью"><%- include('src/ejsTemplates/checkbox',{item:mainForm.bloodVomit}); %></div>
-                <div class="form-check" title="Черный дегтеобразный стул"><%- include('src/ejsTemplates/checkbox',{item:mainForm.melena}); %></div>
-                <div class="form-check" title="Кровь в стуле"><%- include('src/ejsTemplates/checkbox',{item:mainForm.hematohesia}); %></div>
-                <div class="form-check" title="Кровь в стуле"><%- include('src/ejsTemplates/checkbox',{item:mainForm.blackFeces}); %></div>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.collaptoidState}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.lossConsciousness}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.coffeeVomit}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.bloodVomit}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.melena}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.hematohesia}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.blackFeces}); %>
             </div>
             <div class="col-md-6">
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.gastrointestinalUcler}); %></div>
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.anamnesisGastrointestinalUpperBleeding}); %></div>
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.anamnesisGastrointestinalUndefinedBleeding}); %></div>
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.additionalIllness}); %></div>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.gastrointestinalUcler}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.anamnesisGastrointestinalUpperBleeding}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.anamnesisGastrointestinalUndefinedBleeding}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.additionalIllness}); %>
             </div>
         </div>
         <div class="row">
@@ -102,9 +98,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="form-check">
-                    <%- include('src/ejsTemplates/checkbox',{item:mainForm.hiddenBleeding}); %>
-                </div>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.hiddenBleeding}); %>
             </div>
         </div>
         <div class="row riskFactors">
@@ -113,15 +107,15 @@
             </p>
             <hr class="mb-3">
             <div class="col-md-12">
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.chronicHeartFailure}); %></div>
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.cardiacIschemia}); %></div>
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.kidneyFailure}); %></div>
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.liverFailure}); %></div>
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.metastaticCancer}); %></div>
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.pathologicalChanges}); %></div>
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.aorticProsthesis}); %></div>
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.heartDefects}); %></div>
-                <div class="form-check"><%- include('src/ejsTemplates/checkbox',{item:mainForm.heartValvesProsthesis}); %></div>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.chronicHeartFailure}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.cardiacIschemia}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.kidneyFailure}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.liverFailure}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.metastaticCancer}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.pathologicalChanges}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.aorticProsthesis}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.heartDefects}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.heartValvesProsthesis}); %>
             </div>
         </div>
         <div class="row ASAClass">
@@ -130,48 +124,17 @@
             </p>
             <hr class="mb-3">
             <div class="col-md-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" id="ASA1" value="ASA1" name="ASA" required>
-                    <label class="form-check-label" for="ASA1">ASA I</label>
-                    <div class="form-text">Здоровый пациент</div>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" id="ASA2" value="ASA2" name="ASA" required>
-                    <label class="form-check-label" for="ASA2">ASA II</label>
-                    <div class="form-text">Пациент с легким системным заболеванием</div>
-
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" id="ASA3" value="ASA3" name="ASA" required>
-                    <label class="form-check-label" for="ASA3">ASA III</label>
-                    <div class="form-text">Пациент с тяжелым системным заболеванием</div>
-                </div>
+                <%- include('src/ejsTemplates/radioButton',{item:mainForm.ASA1, group:"ASA"}); %>
+                <%- include('src/ejsTemplates/radioButton',{item:mainForm.ASA2, group:"ASA"}); %>
+                <%- include('src/ejsTemplates/radioButton',{item:mainForm.ASA3, group:"ASA"}); %>
             </div>
             <div class="col-md-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" id="ASA4" value="ASA4" name="ASA" required>
-                    <label class="form-check-label" for="ASA4">ASA IV</label>
-                    <div class="form-text">
-                        Пациент с тяжелым системным заболеванием, которое представляет собой постоянную угрозу для жизни
-                    </div>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" id="ASA5" value="ASA5" name="ASA" required>
-                    <label class="form-check-label" for="ASA5">ASA V</label>
-                    <div class="form-text">Умирающий пациент. Операция по жизненным показаниям.</div>
-                </div>
+                <%- include('src/ejsTemplates/radioButton',{item:mainForm.ASA4, group:"ASA"}); %>
+                <%- include('src/ejsTemplates/radioButton',{item:mainForm.ASA5, group:"ASA"}); %>
             </div>
             <div class="col-md-4">
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" id="ASA6" value="ASA6" name="ASA" required>
-                    <label class="form-check-label" for="ASA6">ASA VI</label>
-                    <div class="form-text">Констатирована смерть мозга</div>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="E" value="" name="E">
-                    <label class="form-check-label" for="E">E</label>
-                    <div class="form-text">Неотложность хирургического вмешательства</div>
-                </div>
+                <%- include('src/ejsTemplates/radioButton',{item:mainForm.ASA6, group:"ASA"}); %>
+                <%- include('src/ejsTemplates/checkbox',{item:mainForm.E}); %>
             </div>
         </div>
         <div class="control-bottom d-flex align-items-end justify-content-end">

@@ -1,5 +1,5 @@
 <div class="form-check">
-    <input class="form-check-input" type="checkbox" id="<%= item.id %>" value="option2">
+    <input class="form-check-input" type="radio" id="<%= item.id %>" name="<%= group %>" required>
     <% if (item.err) { %>
         <div class="invalid-feedback"><%= item.err %></div>
     <% } %>
