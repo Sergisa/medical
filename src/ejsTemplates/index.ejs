@@ -31,7 +31,9 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <a href="download.php" target="_self" class="btn btn-primary btn-sm float-end">Скачать все данные</a>
+            <a href="#" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#dateSelectionModal">
+                Скачать все данные
+            </a>
         </div>
     </div>
     <form action="" class="p-3 needs-validation mt-3" id="aprioriForm" name="signsForm" novalidate>
@@ -168,6 +170,7 @@
 
 <%- include('src/ejsTemplates/researchModal', {id:"additionalResearch"}); %>
 <%- include('src/ejsTemplates/instructionModal', {id:"instructionModal"}); %>
+<%- include('src/ejsTemplates/dateSelectionModal', {id:"dateSelectionModal"}); %>
 
 
 </body>

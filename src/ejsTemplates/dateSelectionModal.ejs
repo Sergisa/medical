@@ -1,0 +1,31 @@
+<div class="modal fade" id="<%= id %>" tabindex="-1" aria-labelledby="Данные эндоскопического исследования" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Выбор диапазона дат
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <form action="download.php">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="date" class="form-control" name="dateStart" id="dateStart" placeholder="дата начала">
+                            <label class="form-label" for="dateStart">Дата начала</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="date" class="form-control" name="dateEnd" id="dateEnd" placeholder="дата окончания">
+                            <label class="form-label" for="dateEnd">Дата окончания</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-outline-dark float-end" id="download">Скачать</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
