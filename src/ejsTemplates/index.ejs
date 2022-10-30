@@ -166,8 +166,8 @@
     <i class="status-label bi fs-2 float-end me-auto d-none text-danger bi-x-lg" id="error"></i>
 </div>
 
-<%- include('src/ejsTemplates/researchModal'); %>
-<%- include('src/ejsTemplates/instructionModal'); %>
+<%- include('src/ejsTemplates/researchModal', {id:"additionalResearch"}); %>
+<%- include('src/ejsTemplates/instructionModal', {id:"instructionModal"}); %>
 
 
 </body>
@@ -251,7 +251,7 @@
 
     function showInstructions(continuousBleed, hasRepeat, riskLevel) {
         console.log("SHOWING instructions")
-        if (conclusion.reason !== 4) {
+        if (!conclusion.reason.includes(4)) {
             $('#repeat-checkbox').parent().hide();
         }
         $('#instructions > div').hide();
