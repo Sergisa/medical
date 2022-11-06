@@ -700,6 +700,30 @@ if (array_key_exists('id', $_GET)) {
         })
     }
 
+    function showInstructions(continuousBleed, hasRepeat, riskLevel) {
+        console.log("SHOWING instructions")
+        if (!conclusion.reason.includes(4)) {
+            $('#repeat-checkbox').parent().hide();
+        }
+        $('#instructions > div').hide();
+        $(`#instructionModal #${conclusion.reason.join(' ,#')}`).show();
+        $('#instructionModal .bleed, #instructionModal .no-bleed, .has-repeat, .high-repeat-risk, .low-repeat-risk').hide();
+        if (continuousBleed) {
+            $('#instructionModal .bleed').show();
+        } else {
+            $('#instructionModal .no-bleed').show();
+        }
+        if (hasRepeat) {
+            $('#instructionModal .has-repeat').show();
+        }
+        if (conclusion.risk >= 0 && conclusion.risk <= 2) {
+            $('#instructionModal .low-repeat-risk').show();
+        } else if (conclusion.risk >= 3 && conclusion.risk <= 7) {
+            $('#instructionModal .high-repeat-risk').show();
+        }
+        $('#instructions').show()
+    }
+
     document.getElementById('additionalResearchSave').addEventListener('click', function () {
         conclusion = makeConclusion();
         modalAdditionalResearch.hide();
@@ -722,6 +746,13 @@ if (array_key_exists('id', $_GET)) {
     })
     document.getElementById('aprioriForm').addEventListener('reset', function () {
         $('form.was-validated').removeClass('was-validated')
+    })
+    $('#bleedContinue-checkbox, #repeat-checkbox').on('change', function () {
+        console.log('Changed', $(this).is(':checked'))
+        showInstructions(
+            $('#bleedContinue-checkbox').is(':checked'),
+            $('#repeat-checkbox').is(':checked'),
+        )
     })
 
 </script>
