@@ -183,6 +183,13 @@
     const modalAdditionalResearch = new bootstrap.Modal('#additionalResearch');
     const instructionModal = new bootstrap.Modal('#instructionModal');
     let sequenceStage, conclusion, sequence;
+    const paramsFromUrl = new URLSearchParams(window.location.search)
+    if (paramsFromUrl.has('id')) {
+        $.getJSON('view.php', {id: paramsFromUrl.get('id')}, function (data) {
+            console.log(data)
+            fillData(data)
+        })
+    }
 
     function makeConclusion() {
         let conclusion = conclusionBuilder()
@@ -196,7 +203,6 @@
         window.conclusion = conclusion;
         return conclusion;
     }
-
 
     $('#yes').click(function () {
         shiftSequence(1)

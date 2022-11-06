@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build-html":     "ejs ./src/ejsTemplates/index.ejs -f signs.json -o ./index.html",
-    "build-view":     "ejs ./src/ejsTemplates/view.ejs -f signs.json -o ./view.html",
     "test":           "jest",
     "all":            "npm run js-minify-dev && npm run css-min && npm run build-html",
     "js-minify-prod": "terser src/js/console.js src/js/arrayExtension.js src/js/jquery-extension-scroller.js src/js/conclusionBuilder.js src/js/formValidation.js src/js/sequence.js -o dist/js/bundle.min.js -c ecma=5,ie8=true,drop_console=true -m",

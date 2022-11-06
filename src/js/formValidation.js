@@ -43,7 +43,7 @@ function fillData(data) {
     $('#pulse').val(data.pulse)
     $('#hematocrit').val(data.hematocrit)
     $('#bloodArterialPressure').val(data.bloodArterialPressure)
-    //gender: $('input[name="gender"]:checked').attr('id'),
+    $(`input[name="gender"]#${data.gender}`).attr('checked', true)
     $('#coffeeVomit').attr('checked', data.coffeeVomit === 1)
     $('#melena').attr('checked', data.melena === 1)
     $('#lossConsciousness').attr('checked', data.lossConsciousness === 1)
