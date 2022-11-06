@@ -11,22 +11,10 @@
                 <p class="fs-6">
                     Выберите опции, в связи с которыми, будет настроен список рекомендаций
                 </p>
-                <%- include('src/ejsTemplates/checkbox',{
-                item: tacticsCheckboxes.bleedContinue,
-                classList: "form-check-inline"
-                }); %>
-                <%- include('src/ejsTemplates/checkbox',{
-                item: tacticsCheckboxes.repeat,
-                classList: "form-check-inline"
-                }); %>
-                <%- include('src/ejsTemplates/checkbox',{
-                item: tacticsCheckboxes.thrombosedVessel,
-                classList: "form-check-inline"
-                }); %>
-                <%- include('src/ejsTemplates/checkbox',{
-                item: tacticsCheckboxes.diverticulitis,
-                classList: "form-check-inline"
-                }); %>
+                <%- include('src/ejsTemplates/checkbox',{item: tacticsCheckboxes.bleedContinue,classList: "tacticsSelection form-check-inline"}); %>
+                <%- include('src/ejsTemplates/checkbox',{item: tacticsCheckboxes.repeat,classList: "tacticsSelection form-check-inline"}); %>
+                <%- include('src/ejsTemplates/checkbox',{item: tacticsCheckboxes.thrombosedVessel,classList: "tacticsSelection form-check-inline"}); %>
+                <%- include('src/ejsTemplates/checkbox',{item: tacticsCheckboxes.diverticulitis,classList: "tacticsSelection form-check-inline"}); %>
                 <hr>
                 <div id="instructions">
                     <% Object.keys(tactics).forEach(function(key){ %>
