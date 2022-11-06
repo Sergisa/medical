@@ -31,7 +31,8 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-            <a href="#" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal" data-bs-target="#dateSelectionModal">
+            <a href="#" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal"
+               data-bs-target="#dateSelectionModal">
                 Скачать все данные
             </a>
         </div>
@@ -252,28 +253,47 @@
         })
     }
 
-    function showInstructions(continuousBleed, hasRepeat, riskLevel) {
+    function toggleInstructionBlocks() {
+        const continueBleeding = $('#bleedContinue-checkbox').is(':checked')
+        const hasRepeat = $('#repeat-checkbox').is(':checked')
+        const thrombosedVessel = $('#thrombosed-vessel-checkbox').is(':checked')
+        const diverticulitis = $('#diverticulitis-checkbox').is(':checked')
+
+        $('#instructions .bleed, #instructions .no-bleed, .has-repeat, .high-repeat-risk, .low-repeat-risk, .no-bleed\\+thromobsedVessel, .no-bleed\\+diverticulitis').hide();
+        if (continueBleeding) {
+            $('#instructions .bleed').show();
+        } else {
+            $('#instructions .no-bleed').show();
+        }
+        if (hasRepeat) {
+            $('#instructions .has-repeat').show();
+        }
+        if (thrombosedVessel && !continueBleeding) {
+            $('#instructions .no-bleed\\+thromobsedVessel').show();
+        }
+        if (diverticulitis && !continueBleeding) {
+            $('#instructions .no-bleed\\+diverticulitis').show();
+        }
+        if (conclusion.risk >= 0 && conclusion.risk <= 2) {
+            $('#instructions .low-repeat-risk').show();
+        } else if (conclusion.risk >= 3 && conclusion.risk <= 7) {
+            $('#instructions .high-repeat-risk').show();
+        }
+        $('#instructions').show()
+    }
+
+    function showInstructions() {
         console.log("SHOWING instructions")
+        if (!conclusion.reason.includes(11)) {
+            $('#diverticulitis-checkbox').parent().hide();
+            $('#thrombosed-vessel-checkbox').parent().hide();
+        }
         if (!conclusion.reason.includes(4)) {
             $('#repeat-checkbox').parent().hide();
         }
         $('#instructions > div').hide();
         $(`#instructionModal #${conclusion.reason.join(' ,#')}`).show();
-        $('#instructionModal .bleed, #instructionModal .no-bleed, .has-repeat, .high-repeat-risk, .low-repeat-risk').hide();
-        if (continuousBleed) {
-            $('#instructionModal .bleed').show();
-        } else {
-            $('#instructionModal .no-bleed').show();
-        }
-        if (hasRepeat) {
-            $('#instructionModal .has-repeat').show();
-        }
-        if (conclusion.risk >= 0 && conclusion.risk <= 2) {
-            $('#instructionModal .low-repeat-risk').show();
-        } else if (conclusion.risk >= 3 && conclusion.risk <= 7) {
-            $('#instructionModal .high-repeat-risk').show();
-        }
-        $('#instructions').show()
+        toggleInstructionBlocks()
     }
 
     document.getElementById('additionalResearchSave').addEventListener('click', function () {
@@ -301,10 +321,7 @@
     })
     $('#bleedContinue-checkbox, #repeat-checkbox').on('change', function () {
         console.log('Changed', $(this).is(':checked'))
-        showInstructions(
-            $('#bleedContinue-checkbox').is(':checked'),
-            $('#repeat-checkbox').is(':checked'),
-        )
+        showInstructions()
     })
 
 </script>

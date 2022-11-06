@@ -52,11 +52,7 @@ function result(localizationIndex) {
                 .toggleClass('alert-info alert-primary')
         ).parent().toggleClass('d-none d-block')
     }
-    showInstructions(
-        $('#bleedContinue-checkbox').is(':checked'),
-        $('#repeat-checkbox').is(':checked'),
-        conclusion.risk
-    )
+    showInstructions()
     $('.postConclusion').after(`<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#instructionModal">Открыть рекомендации</button>`)
     $.moveBottom()
 }

@@ -22,6 +22,11 @@ $patients = $patientsQuery->fetchAll(PDO::FETCH_ASSOC);
 $columns = array_keys($patients[0]);
 $spreadsheet = new Spreadsheet();
 $sheet = $spreadsheet->getActiveSheet();
+array_walk($patients, function (&$item, $key) {
+    if (!$item) {
+        $item = 0;
+    }
+});
 $sheet->fromArray(array_merge([$columns], $patients));
 header('Content-Type: application/vnd.ms-excel');
 header('Content-Disposition: attachment; filename="export_data.xlsx"');
