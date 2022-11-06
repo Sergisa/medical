@@ -4,47 +4,47 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-$Turquoise: #1ABC9C;
-$GreenSea: #16A085;
-$Emerald: #2ECC71;
-$Nephritis: #27AE60;
-$PeterRiver: #3498DB;
-$BelizeHole: #2980B9;
-$Amethyst: #9B59B6;
-$Wisteria: #8E44AD;
-$WetAsphalt: #34495E;
-$MidnightBlue: #2C3E50;
-$SunFlower: #F1C40F;
-$Orange: #F39C12;
-$Carrot: #E67E22;
-$Pumpkin: #D35400;
-$Alizarin: #E74C3C;
-$Pomegranate: #C0392B;
-$Clouds: #ECF0F1;
-$Silver: #BDC3C7;
-$Concrete: #95A5A6;
-$Asbestos: #7F8C8D;
-$enable-shadows: false;
+$Turquoise:                         #1ABC9C;
+$GreenSea:                          #16A085;
+$Emerald:                           #2ECC71;
+$Nephritis:                         #27AE60;
+$PeterRiver:                        #3498DB;
+$BelizeHole:                        #2980B9;
+$Amethyst:                          #9B59B6;
+$Wisteria:                          #8E44AD;
+$WetAsphalt:                        #34495E;
+$MidnightBlue:                      #2C3E50;
+$SunFlower:                         #F1C40F;
+$Orange:                            #F39C12;
+$Carrot:                            #E67E22;
+$Pumpkin:                           #D35400;
+$Alizarin:                          #E74C3C;
+$Pomegranate:                       #C0392B;
+$Clouds:                            #ECF0F1;
+$Silver:                            #BDC3C7;
+$Concrete:                          #95A5A6;
+$Asbestos:                          #7F8C8D;
+$enable-shadows:                    false;
 //$body-bg: $WetAsphalt;
 @import "bootstrap/scss/functions";
 
 
-$blue: $BelizeHole;
-$red: $Alizarin;
-$orange: $Orange;
-$yellow: $SunFlower;
-$green: $Nephritis;
-$teal: $GreenSea;
-$cyan: $BelizeHole;
+$blue:                              $BelizeHole;
+$red:                               $Alizarin;
+$orange:                            $Orange;
+$yellow:                            $SunFlower;
+$green:                             $Nephritis;
+$teal:                              $GreenSea;
+$cyan:                              $BelizeHole;
 
-$primary: $Turquoise;
-$secondary: $BelizeHole;
-$success: $Nephritis;
-$info: $GreenSea;
-$warning: $Orange;
-$danger: $Pomegranate;
-$light: $Clouds;
-$dark: $MidnightBlue;
+$primary:                           $Turquoise;
+$secondary:                         $BelizeHole;
+$success:                           $Nephritis;
+$info:                              $GreenSea;
+$warning:                           $Orange;
+$danger:                            $Pomegranate;
+$light:                             $Clouds;
+$dark:                              $MidnightBlue;
 
 /**RADIOBUTTON**/
 //$form-check-input-checked-color: $Silver;
@@ -53,40 +53,40 @@ $dark: $MidnightBlue;
 //$form-check-input-checked-border-color: #1abc9c;
 
 /**CHECKBOX**/
-$form-check-input-width: 1.1em;
-$form-check-input-width: 1.1em;
-$form-check-input-border: none;
-$form-check-input-border-radius: 4px;
-$form-check-input-bg: $Silver;
+$form-check-input-width:            1.1em;
+$form-check-input-width:            1.1em;
+$form-check-input-border:           none;
+$form-check-input-border-radius:    4px;
+$form-check-input-bg:               $Silver;
 
 /*TEXT INPUT*/
-$input-border-radius: 6px;
-$input-color: #495057;
-$input-border-color: transparent;
-$input-border-width: 2px;
-$input-focus-border-color: $Turquoise;
+$input-border-radius:               6px;
+$input-color:                       #495057;
+$input-border-color:                transparent;
+$input-border-width:                2px;
+$input-focus-border-color:          $Turquoise;
 
-$input-focus-color: #495057;
-$btn-focus-width: 0;
+$input-focus-color:                 #495057;
+$btn-focus-width:                   0;
 $form-check-input-focus-box-shadow: none;
-$input-focus-box-shadow: none;
-$input-focus-width: 0;
+$input-focus-box-shadow:            none;
+$input-focus-width:                 0;
 
 /*ALERT*/
-$alert-bg-scale: -65%;
+$alert-bg-scale:                    -65%;
 
 /*BODY*/
-$body-color: $WetAsphalt;
+$body-color:                        $WetAsphalt;
 
 /*modal*/
-$modal-content-bg: $Clouds;
+$modal-content-bg:                  $Clouds;
 
 @import "bootstrap/scss/variables";
 $form-check-input-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'><path fill='none' stroke='#{$form-check-input-checked-color}' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 10l3 3l6-6'/></svg>");
 $form-check-radio-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='2' fill='#{$form-check-input-checked-color}'/></svg>");
 #aprioriForm {
   background-color: $Clouds;
-  border-radius: 6px;
+  border-radius:    6px;
 
   textarea {
     resize: none;
