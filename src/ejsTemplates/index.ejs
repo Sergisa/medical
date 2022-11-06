@@ -289,7 +289,7 @@
     }
 
     function showInstructions() {
-        console.log("SHOWING instructions")
+        console.log("SHOWING instructions", conclusion)
         if (!conclusion.reason.includes(11)) {
             $('#diverticulitis-checkbox').parent().hide();
             $('#thrombosed-vessel-checkbox').parent().hide();
@@ -325,7 +325,7 @@
     document.getElementById('aprioriForm').addEventListener('reset', function () {
         $('form.was-validated').removeClass('was-validated')
     })
-    $('#bleedContinue-checkbox, #repeat-checkbox').on('change', function () {
+    $('#bleedContinue-checkbox, #repeat-checkbox, #diverticulitis-checkbox, #thrombosed-vessel-checkbox').on('change', function () {
         console.log('Changed', $(this).is(':checked'))
         showInstructions()
     })

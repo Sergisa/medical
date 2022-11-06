@@ -1,5 +1,5 @@
 {
-  "signs":    {
+  "signs":             {
     "sign32": {"id": "sign32", "name": "Поверхностный дефект (эрозия) слизистой оболочки"},
     "sign33": {"id": "sign33", "name": "Локальная атрофия ворсинок тонкой кишки"},
     "sign34": {"id": "sign34", "name": "Локальные воспалительные изменения слизистой оболочки"},
@@ -19,7 +19,7 @@
     "sign48": {"id": "sign48", "name": "Разрыв слизистой оболочки брюшного отдела пищевода и/или кардиального отдела желудка"},
     "sign49": {"id": "sign49", "name": "Наличие крови, фиксированный тромб или сгусток, кровоточащий сосуд"}
   },
-  "mainForm": {
+  "mainForm":          {
     "identifier":                                 {"id": "identifier", "placeholder": "Идентификатор", "err": "Необходимо ввести возраст."},
     "IIC":                                        {"id": "IIC", "placeholder": "Код МКБ", "err": "Необходимо ввести возраст."},
     "age":                                        {"id": "age", "name": "Возраст, лет *", "err": "Необходимо ввести возраст."},
@@ -42,27 +42,27 @@
     "kidneyFailure":                              {"id": "kidneyFailure", "name": "Почечная недостаточность в анамнезе"},
     "liverFailure":                               {"id": "liverFailure", "name": "Печеночная недостаточность в анамнезе"},
     "metastaticCancer":                           {"id": "metastaticCancer", "name": "Метастатический рак в анамнезе"},
-    "pathologicalChanges":   {"id": "pathologicalChanges", "name": "Патологические изменения панкреато-билиарной зоны в анамнезе или при объективном обследовании"},
-    "aorticProsthesis":      {"id": "aorticProsthesis", "name": "Протезирование аорты по поводу аневризмы в анамнезе"},
-    "heartDefects":          {"id": "heartDefects", "name": "Пороки развития сердца в анамнезе"},
-    "heartValvesProsthesis": {"id": "heartValvesProsthesis", "name": "Протезирование сердечных клапанов в анамнезе"},
-    "paleSkin":              {"id": "paleSkin", "name": "Бледность кожных покровов"},
-    "stickySweat":           {"id": "stickySweat", "name": "Холодный липкий пот"},
-    "hematocrit":            {"id": "hematocrit", "name": "Гематокрит, % *", "err": true},
-    "hemoglobin":            {"id": "hemoglobin", "name": "Гемоглобин, г/л *", "err": true},
-    "erythrocytes":          {"id": "erythrocytes", "name": "Эритроциты, 10^12/л *", "err": true},
-    "hiddenBleeding":        {"id": "hiddenBleeding", "name": "Тест на скрытую кровь в кале \"+\"", "err": true},
-    "bloodArterialPressure": {"id": "bloodArterialPressure", "name": "АД сист., мм.рт.ст. *", "err": true},
-    "pulse":                 {"id": "pulse", "name": "Пульс, уд/мин *", "err": true},
-    "E":                     {"id": "E", "name": "E", "desc": "Неотложность хирургического вмешательства"},
-    "ASA1":                  {"id": "ASA1", "name": "ASA I", "desc": "Здоровый пациент"},
-    "ASA2":                  {"id": "ASA2", "name": "ASA II", "desc": "Пациент с легким системным заболеванием"},
-    "ASA3":                  {"id": "ASA3", "name": "ASA III", "desc": "Пациент с тяжелым системным заболеванием"},
-    "ASA4":                  {"id": "ASA4", "name": "ASA IV", "desc": "Пациент с тяжелым системным заболеванием, которое представляет собой постоянную угрозу для жизни"},
-    "ASA5":                  {"id": "ASA5", "name": "ASA V", "desc": "Умирающий пациент. Операция по жизненным показаниям."},
-    "ASA6":                  {"id": "ASA6", "name": "ASA VI", "desc": "Констатирована смерть мозга"}
+    "pathologicalChanges":                        {"id": "pathologicalChanges", "name": "Патологические изменения панкреато-билиарной зоны в анамнезе или при объективном обследовании"},
+    "aorticProsthesis":                           {"id": "aorticProsthesis", "name": "Протезирование аорты по поводу аневризмы в анамнезе"},
+    "heartDefects":                               {"id": "heartDefects", "name": "Пороки развития сердца в анамнезе"},
+    "heartValvesProsthesis":                      {"id": "heartValvesProsthesis", "name": "Протезирование сердечных клапанов в анамнезе"},
+    "paleSkin":                                   {"id": "paleSkin", "name": "Бледность кожных покровов"},
+    "stickySweat":                                {"id": "stickySweat", "name": "Холодный липкий пот"},
+    "hematocrit":                                 {"id": "hematocrit", "name": "Гематокрит, % *", "err": true},
+    "hemoglobin":                                 {"id": "hemoglobin", "name": "Гемоглобин, г/л *", "err": true},
+    "erythrocytes":                               {"id": "erythrocytes", "name": "Эритроциты, 10^12/л *", "err": true},
+    "hiddenBleeding":                             {"id": "hiddenBleeding", "name": "Тест на скрытую кровь в кале \"+\"", "err": true},
+    "bloodArterialPressure":                      {"id": "bloodArterialPressure", "name": "АД сист., мм.рт.ст. *", "err": true},
+    "pulse":                                      {"id": "pulse", "name": "Пульс, уд/мин *", "err": true},
+    "E":                                          {"id": "E", "name": "E", "desc": "Неотложность хирургического вмешательства"},
+    "ASA1":                                       {"id": "ASA1", "name": "ASA I", "desc": "Здоровый пациент"},
+    "ASA2":                                       {"id": "ASA2", "name": "ASA II", "desc": "Пациент с легким системным заболеванием"},
+    "ASA3":                                       {"id": "ASA3", "name": "ASA III", "desc": "Пациент с тяжелым системным заболеванием"},
+    "ASA4":                                       {"id": "ASA4", "name": "ASA IV", "desc": "Пациент с тяжелым системным заболеванием, которое представляет собой постоянную угрозу для жизни"},
+    "ASA5":                                       {"id": "ASA5", "name": "ASA V", "desc": "Умирающий пациент. Операция по жизненным показаниям."},
+    "ASA6":                                       {"id": "ASA6", "name": "ASA VI", "desc": "Констатирована смерть мозга"}
   },
-  "reasons":  [
+  "reasons":           [
     {"id": 1, "name": "Геморрой неуточненный"},
     {"id": 2, "name": "Дивертикул Меккеля"},
     {"id": 3, "name": "Эрозивно-язвенные поражения тонкой/толстой кишки"},
@@ -74,7 +74,7 @@
     {"id": 10, "name": "Варикозное расширение вен пищевода и/или желудка"},
     {"id": 11, "name": "Дивертикулярная болезнь толстой кишки"}
   ],
-  "tactics":  {
+  "tactics":           {
     "5":  {
       "title": "Для ангиоэктазий/телеангиоэктазий/венозных мальформаций",
       "list":  [
@@ -146,5 +146,11 @@
         {"class": "no-bleed", "content": "Консервативная терапия."}
       ]
     }
+  },
+  "tacticsCheckboxes": {
+    "bleedContinue":    {"id": "bleedContinue-checkbox", "name": "Кровотечение продолжается"},
+    "repeat":           {"id": "repeat-checkbox", "name": "Зафиксирован рецидив"},
+    "thrombosedVessel": {"id": "thrombosed-vessel-checkbox", "name": "Имеется тромбированный сосуд"},
+    "diverticulitis":   {"id": "diverticulitis-checkbox", "name": "Имеется дивертикулит"}
   }
 }

@@ -11,22 +11,22 @@
                 <p class="fs-6">
                     Выберите опции, в связи с которыми, будет настроен список рекомендаций
                 </p>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="bleedContinue-checkbox" value="option1">
-                    <label class="form-check-label" for="bleedContinue-checkbox">Кровотечение продолжается</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="repeat-checkbox" value="option1">
-                    <label class="form-check-label" for="repeat-checkbox">Зафиксирован рецидив</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="thrombosed-vessel-checkbox" value="option1">
-                    <label class="form-check-label" for="thrombosed-vessel-checkbox">Имеется тромбированный сосуд</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="diverticulitis-checkbox" value="option1">
-                    <label class="form-check-label" for="diverticulitis-checkbox">Имеется дивертикулит</label>
-                </div>
+                <%- include('src/ejsTemplates/checkbox',{
+                item: tacticsCheckboxes.bleedContinue,
+                classList: "form-check-inline"
+                }); %>
+                <%- include('src/ejsTemplates/checkbox',{
+                item: tacticsCheckboxes.repeat,
+                classList: "form-check-inline"
+                }); %>
+                <%- include('src/ejsTemplates/checkbox',{
+                item: tacticsCheckboxes.thrombosedVessel,
+                classList: "form-check-inline"
+                }); %>
+                <%- include('src/ejsTemplates/checkbox',{
+                item: tacticsCheckboxes.diverticulitis,
+                classList: "form-check-inline"
+                }); %>
                 <hr>
                 <div id="instructions">
                     <% Object.keys(tactics).forEach(function(key){ %>
