@@ -5,5 +5,5 @@ $database->exec('SET CHARACTER SET UTF8');
 if (array_key_exists('id', $_GET)) {
     $id = $_GET['id'];
     $patient = $database->query("SELECT * FROM patient WHERE ID = $id", PDO::FETCH_ASSOC)->fetch();
-    echo json_encode($patient, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    echo json_encode($patient, JSON_NUMERIC_CHECK | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 }
