@@ -184,6 +184,15 @@
     const instructionModal = new bootstrap.Modal('#instructionModal');
     let sequenceStage, conclusion, sequence;
     const paramsFromUrl = new URLSearchParams(window.location.search)
+    let reasonsList = {};
+
+    $.getJSON("signs.json", function (data) {
+        console.log(data)
+        data.reasons.forEach(function (element) {
+            reasonsList[element.id] = element.name;
+        })
+    });
+    initHandlers()
     if (paramsFromUrl.has('id')) {
         $.getJSON('view.php', {id: paramsFromUrl.get('id')}, function (data) {
             console.log(data)
@@ -302,33 +311,35 @@
         toggleInstructionBlocks()
     }
 
-    document.getElementById('additionalResearchSave').addEventListener('click', function () {
-        conclusion = makeConclusion();
-        modalAdditionalResearch.hide();
-    });
-    document.getElementById('saveFinalData').addEventListener('click', function () {
-        saveData();
-    });
-    document.getElementById('aprioriForm').addEventListener('submit', function (event) {
-        event.preventDefault()
-        event.stopPropagation()
-        $('#helpSequence').addClass('d-none')
-        if (this.checkValidity()) {
+    function initHandlers() {
+        document.getElementById('additionalResearchSave').addEventListener('click', function () {
             conclusion = makeConclusion();
-            sequence = getSequence(conclusion, collectData())
-            startHelpSequence();
-            $.moveBottom()
-            $('#saveFinalData').removeClass('d-none')
-        }
-        return false;
-    })
-    document.getElementById('aprioriForm').addEventListener('reset', function () {
-        $('form.was-validated').removeClass('was-validated')
-    })
-    $('.tacticsSelection').on('change', function () {
-        console.log('Changed', $(this).is(':checked'))
-        showInstructions()
-    })
+            modalAdditionalResearch.hide();
+        });
+        document.getElementById('saveFinalData').addEventListener('click', function () {
+            saveData();
+        });
+        document.getElementById('aprioriForm').addEventListener('submit', function (event) {
+            event.preventDefault()
+            event.stopPropagation()
+            $('#helpSequence').addClass('d-none')
+            if (this.checkValidity()) {
+                conclusion = makeConclusion();
+                sequence = getSequence(conclusion, collectData())
+                startHelpSequence();
+                $.moveBottom()
+                $('#saveFinalData').removeClass('d-none')
+            }
+            return false;
+        })
+        document.getElementById('aprioriForm').addEventListener('reset', function () {
+            $('form.was-validated').removeClass('was-validated')
+        })
+        $('.tacticsSelection').on('change', function () {
+            console.log('Changed', $(this).is(':checked'))
+            showInstructions()
+        })
+    }
 
 </script>
 
