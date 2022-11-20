@@ -78,11 +78,11 @@ function getSequence(conclusion, signs) {
         step3: {
             run: function () {
                 adviceResearch(
-                    sequenceStages.step3.research.name,
-                    sequenceStages.step3.research.dataModal,
-                    sequenceStages.step3.research.info
+                    'КТ-ангиография',
+                    false,
+                    "Европейские рекомендации 2021 г. по диагностике и лечению явного кровотечения из нижних отделов ЖКТ гласят, что пациентам с нестабильной гемодинамикой и подозрением на продолжающееся кровотечение необходимо пройти компьютерную томографическую ангиографию перед эндоскопическим или рентгенологическим лечением, чтобы определить место кровотечения."
                 )
-                showQuestion(sequenceStages.step3.question)
+                showQuestion('Источник найден?')
                 info("STAGE 3")
             },
             yes: () => sequence.step5,
@@ -91,11 +91,8 @@ function getSequence(conclusion, signs) {
         },
         step4: {
             run: function () {
-                adviceResearch(
-                    sequenceStages.step4.research.name,
-                    sequenceStages.step3.research.dataModal,
-                )
-                showQuestion(sequenceStages.step3.question)
+                adviceResearch('Эзофагогастродуоденоскопия', true)
+                showQuestion('Источник найден?')
                 info("STAGE 4")
             },
             yes: () => sequence.step5,
