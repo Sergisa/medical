@@ -185,16 +185,13 @@
     let sequenceStage, conclusion, sequence;
     const paramsFromUrl = new URLSearchParams(window.location.search)
     let reasonsList = {};
-    let sequenceStages = {};
 
     $.getJSON("signs.json", function (data) {
         console.log(data)
-        sequenceStages = data.steps
         data.reasons.forEach(function (element) {
             reasonsList[element.id] = element.name;
         })
     });
-
     initHandlers()
     if (paramsFromUrl.has('id')) {
         $.getJSON('view.php', {id: paramsFromUrl.get('id')}, function (data) {
