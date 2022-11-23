@@ -1,9 +1,13 @@
 <div class="col-<%= typeof col == 'undefined' ? "auto" : col %>">
-    <input class="form-control" type="text" id="<%= item.id %>" <%= typeof required == 'undefined' ? "" : "required" %>>
+    <% if (item.name) { %>
+        <label class="form-label" for="<%= item.id %>"><%= item.name %></label>
+    <% } %>
+    <input class="form-control" type="text" id="<%= item.id %>"
+           placeholder="<%= typeof item.placeholder == 'undefined' ? "" : item.placeholder %>"
+            <%= typeof required == 'undefined' ? "" : "required" %>>
     <% if (item.err) { %>
         <div class="invalid-feedback">
             Необходимо ввести значение.
         </div>
     <% } %>
-    <label class="form-label" for="<%= item.id %>"><%= item.name %></label>
 </div>

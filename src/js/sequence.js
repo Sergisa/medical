@@ -44,8 +44,8 @@ function result(localizationIndex) {
                 .clone()
                 .append(() => {
                     if (localizationIndex === 1) {
-                        if (conclusion.risk >= 0 && conclusion.risk <= 2) return ', с <b>низким</b> риском рецидива';
-                        else if (conclusion.risk >= 3 && conclusion.risk <= 7) return ', с <b>высоким</b> риском рецидива';
+                        if (conclusion.risk >= 0 && conclusion.risk <= 2) return ', с <b>низким</b> риском рецидива по шкале Рокалла';
+                        else if (conclusion.risk >= 3 && conclusion.risk <= 7) return ', с <b>высоким</b> риском рецидива по шкале Рокалла';
                     }
                 })
                 .append(`, источником которого послужили : <b>${getJoinedReasons(conclusion.reason, " или ")}</b>`)
@@ -53,7 +53,7 @@ function result(localizationIndex) {
         ).parent().toggleClass('d-none d-block')
     }
     showInstructions()
-    $('.postConclusion').after(`<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#instructionModal">Открыть рекомендации</button>`)
+    $('.postConclusion').after(`<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#instructionModal">Рекомендации по остановке/профилактике ЖКК</button>`)
     $.moveBottom()
 }
 
@@ -169,7 +169,7 @@ function getSequence(conclusion, signs) {
         },
         step12: {
             run: function () {
-                adviceResearch('КТ-ангиография и/или Инструментально-ассистированная энтероскопия • Ангиография • Диагностическая лапароскопия/лапаротомия • Сцинтиграфия',
+                adviceResearch('КТ-ангиография и/или Инструментально-ассистированная энтероскопия, Ангиография, Диагностическая лапароскопия/лапаротомия, Сцинтиграфия',
                     true,
                     signs.aorticProsthesis || signs.heartDefects || signs.heartValvesProsthesis ? "Нельзя исключить ЖКК из фистулы или ангиоэктазии" : undefined)
                 showQuestion('В среднем отделе?');

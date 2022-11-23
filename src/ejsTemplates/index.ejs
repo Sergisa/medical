@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Алгоритм ведения пациентов</title>
+    <title>Система поддержки</title>
     <link href="dist/css/output.min.css" rel="stylesheet">
     <link rel="stylesheet" href="dist/css/bs-icons.min.css">
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
@@ -24,8 +24,8 @@
     <div class="row">
         <div class="col-12 my-auto">
             <h1 class="text-danger fw-bold text-center">
-                Алгоритм ведения пациентов с подозрением на желудочно-кишечное кровотечение с элементами поддержки
-                принятия клинических решений
+                Система поддержки принятия клинических решений при ведении пациентов с желудочно-кишечными
+                кровотечениями
             </h1>
         </div>
     </div>
@@ -42,10 +42,10 @@
             <%- include('src/ejsTemplates/input',{item:mainForm.identifier, col:"lg-6"}); %>
             <%- include('src/ejsTemplates/input',{item:mainForm.IIC, col:"lg-6"}); %>
         </div>
-        <div class="col-auto">
-            <textarea type="text" class="form-control" id="description" placeholder="Описание" rows="4"></textarea>
-            <label class="form-check-label" for="description"></label>
-        </div>
+        <p class="fw-bold my-2">
+            Клинико-лабораторные данные при поступлении
+        </p>
+        <hr class="mb-3">
         Пол *
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="gender" id="male" value="female" required>
@@ -159,7 +159,7 @@
     <div class="row">
         <div class="col-12">
             <div class="border border-2 rounded shadow p-3 mt-3 d-none">
-                Эндоскопческое заключение
+                Эндоскопическое заключение
                 <div class="postConclusion"></div>
             </div>
         </div>
