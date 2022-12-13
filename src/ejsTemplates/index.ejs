@@ -8,7 +8,7 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        #question {
+        .question {
             color: var(--bs-indigo);
             font-weight: bold;
             background-color: #CFD8DC !important;
@@ -147,10 +147,8 @@
                 Рекомендация
                 <div class="d-block">
                     <div class="col-12 mt-2" id="adviceLine"></div>
-                    <div id="questionBlock" class="d-inline-flex justify-content-end w-100 mt-2">
-                        <div id="question" class="d-inline-flex question badge bg-light fs-6"></div>
-                        <button id="yes" class="btn btn-sm btn-secondary me-1">Да</button>
-                        <button id="no" class="btn btn-sm btn-secondary me-1">Нет</button>
+                    <div id="questions">
+
                     </div>
                 </div>
             </div>
@@ -213,10 +211,10 @@
         return conclusion;
     }
 
-    $('#yes').click(function () {
+    $(document).on('click', '#yes', function () {
         shiftSequence(1)
     })
-    $('#no').click(function () {
+    $(document).on('click', '#no', function () {
         shiftSequence(2)
     })
 
