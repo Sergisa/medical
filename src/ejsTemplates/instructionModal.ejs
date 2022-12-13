@@ -1,15 +1,9 @@
 <div class="modal fade" id="<%= id %>" tabindex="-1" aria-labelledby="Окно инструкций" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">
-                    Последовательность выбора действий в лечебной тактике ведения пациентов с ЖКК
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
-            </div>
             <div class="modal-body">
                 <p class="fs-6">
-                    Выберите опции, в связи с которыми, будет настроен список рекомендаций
+                    Выберите признаки, найденные у пациента
                 </p>
                 <%- include('src/ejsTemplates/checkbox',{item: tacticsCheckboxes.bleedContinue,classList: "tacticsSelection form-check-inline"}); %>
                 <%- include('src/ejsTemplates/checkbox',{item: tacticsCheckboxes.repeat,classList: "tacticsSelection form-check-inline"}); %>
