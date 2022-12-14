@@ -147,9 +147,6 @@
                 Рекомендация
                 <div class="d-block">
                     <div class="col-12 mt-2" id="adviceLine"></div>
-                    <div id="questions">
-
-                    </div>
                 </div>
             </div>
         </div>
@@ -218,6 +215,9 @@
     $(document).on('click', '#no', function () {
         shiftSequence(2)
     })
+    $(document).on('click', '#back', function () {
+
+    })
 
     function startHelpSequence() {
         $('#helpSequence').removeClass('d-none')
@@ -255,9 +255,11 @@
         $('.status-label').addClass('d-none')
         console.log("before send", conclusion);
         conclusion.reason = getJoinedReasons(conclusion.reason, ",");
+        let collectedData = collectData();
+        collectedData['history'] = JSON.stringify(globalHistory);
         $.post("http://sergisa.smrtp.ru/medical/save.php", {
             conclusion: conclusion.getConclusion(),
-            data: collectData()
+            data: collectedData
         }).done(function (data) {
             console.log(data);
             $('#good').removeClass('d-none')

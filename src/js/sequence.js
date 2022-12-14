@@ -1,9 +1,10 @@
 let linkPattern = `<a href="#" type="button" class="text-black" data-bs-toggle="modal" data-bs-target="#additionalResearch">Ввести данные эндоскопического исследования</a>`;
-let advicePattern = $(`<div class="alert alert-info align-items-baseline justify-content-between flex-wrap d-flex mb-0 mt-1" role="alert" id="text">EMPTY</div>`)
+let advicePattern = $(`<div class="adviceBlock alert alert-info align-items-baseline justify-content-between flex-wrap d-flex mb-0 mt-2" role="alert" id="text">EMPTY</div>`)
 let questionBlock = $(`<div class="questionBlock d-inline-flex justify-content-end w-100 mt-2">
      <div class="question d-inline-flex question badge bg-light fs-6"></div>
      <button id="yes" class="btn btn-sm btn-secondary me-1">Да</button>
      <button id="no" class="btn btn-sm btn-secondary me-1">Нет</button>
+     <button id="back" class="btn btn-sm btn-secondary me-1">Назад</button>
 </div>`)
 
 function adviceResearch(researchName, needDataModal, additionalInfo) {
@@ -15,7 +16,7 @@ function adviceResearch(researchName, needDataModal, additionalInfo) {
 }
 
 function showQuestion(question) {
-    questionBlock.clone().appendTo($('#questions')).find('.question').html(question)
+    questionBlock.clone().appendTo($('#adviceLine')).find('.question').html(question)
 }
 
 function logStage(num) {
