@@ -183,6 +183,7 @@
     let sequenceStage, conclusion, sequence;
     const paramsFromUrl = new URLSearchParams(window.location.search)
     let reasonsList = {};
+    let globalHistory = [];
 
     $.getJSON("signs.json", function (data) {
         console.log(data)
@@ -239,8 +240,6 @@
             if (collectData().hasResearchData() || !sequenceStage.needsResearchData) {
                 console.log("Данные исследования не нужны")
                 sequenceStage = sequenceStage.yes();
-                $.moveBottom()
-
                 if (sequenceStage) sequenceStage.run();
             } else if (sequenceStage.needsResearchData && !collectData().hasResearchData()) {
                 alert("Введите данные исследования")
@@ -249,6 +248,7 @@
             sequenceStage = sequenceStage.no();
             if (sequenceStage) sequenceStage.run();
         }
+        $.moveBottom()
     }
 
     function saveData() {

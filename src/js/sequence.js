@@ -18,6 +18,11 @@ function showQuestion(question) {
     questionBlock.clone().appendTo($('#questions')).find('.question').html(question)
 }
 
+function logStage(num) {
+    info(`STAGE ${num}`)
+    globalHistory.push(num)
+}
+
 function getJoinedReasons(reasons, delim) {
     return reasons.map(function (reasonCode) {
         return reasonsList[reasonCode]
@@ -66,7 +71,7 @@ function getSequence(conclusion, signs) {
     return {
         step1: {
             run: function () {
-                info("STAGE 1")
+                logStage("1")
             },
             yes: () => sequence.step2,
             no: () => sequence.step4,
@@ -74,7 +79,7 @@ function getSequence(conclusion, signs) {
         },
         step2: {
             run: function () {
-                info("STAGE 2")
+                logStage("2")
             },
             yes: () => sequence.step3,
             no: () => sequence.step4,
@@ -88,7 +93,7 @@ function getSequence(conclusion, signs) {
                     "Европейские рекомендации 2021 г. по диагностике и лечению явного кровотечения из нижних отделов ЖКТ гласят, что пациентам с нестабильной гемодинамикой и подозрением на продолжающееся кровотечение необходимо пройти компьютерную томографическую ангиографию перед эндоскопическим или рентгенологическим лечением, чтобы определить место кровотечения."
                 )
                 showQuestion('Источник найден?')
-                info("STAGE 3")
+                logStage("3")
             },
             yes: () => sequence.step5,
             no: () => sequence.step4,
@@ -98,7 +103,7 @@ function getSequence(conclusion, signs) {
             run: function () {
                 adviceResearch('Эзофагогастродуоденоскопия', true)
                 showQuestion('Источник найден?')
-                info("STAGE 4")
+                logStage("4")
             },
             yes: () => sequence.step5,
             no: () => sequence.step6,
@@ -107,7 +112,7 @@ function getSequence(conclusion, signs) {
         step5: {
             run: function () {
                 showQuestion('В верхнем отделе?')
-                info("STAGE 5")
+                logStage("5")
             },
             yes: () => result(1),
             no: () => sequence.step9,
@@ -120,7 +125,7 @@ function getSequence(conclusion, signs) {
                     true,
                     "Если в анамнезе или при объективном обследовании выявлены патологические изменения панкреато-билиарной зоны, то рекомендуется исключить гемобилию и спленопанкреатическую фистулу (\"hemosuccus pancreaticus\")"
                 )
-                info("STAGE 6")
+                logStage("6")
                 showQuestion('Источник найден?')
             },
             yes: () => sequence.step8,
@@ -130,7 +135,7 @@ function getSequence(conclusion, signs) {
         step7: {
             run: function () {
                 showQuestion('Кровотечение продолжается клинически?')
-                info("STAGE 7")
+                logStage("7")
             },
             yes: () => sequence.step12,
             no: () => sequence.step13,
@@ -139,7 +144,7 @@ function getSequence(conclusion, signs) {
         step8: {
             run: function () {
                 showQuestion('В нижнем отделе?');
-                info("STAGE 8")
+                logStage("8")
             },
             yes: () => result(3),
             no: () => sequence.step9,
@@ -148,7 +153,7 @@ function getSequence(conclusion, signs) {
         step9: {
             run: function () {
                 showQuestion('В среднем отделе?');
-                info("STAGE 9")
+                logStage("9")
             },
             yes: () => result(2),
             no: () => sequence.step10,
@@ -157,7 +162,7 @@ function getSequence(conclusion, signs) {
         step10: {
             run: function () {
                 showQuestion('В нижнем отделе?');
-                info("STAGE 10")
+                logStage("10")
             },
             yes: () => result(3),
             no: () => sequence.step11,
@@ -166,7 +171,7 @@ function getSequence(conclusion, signs) {
         step11: {
             run: function () {
                 showQuestion('В верхнем отделе?');
-                info("STAGE 11")
+                logStage("11")
             },
             yes: () => result(1),
             no: () => result(-1),
@@ -178,7 +183,7 @@ function getSequence(conclusion, signs) {
                     true,
                     signs.aorticProsthesis || signs.heartDefects || signs.heartValvesProsthesis ? "Нельзя исключить ЖКК из фистулы или ангиоэктазии" : undefined)
                 showQuestion('В среднем отделе?');
-                info("STAGE 12")
+                logStage("12")
             },
             yes: () => result(2),
             no: () => sequence.step10,
@@ -192,7 +197,7 @@ function getSequence(conclusion, signs) {
                     false,
                     "Рекомендуется провести видеокапсульную эндоскопию, предварительно исключив клинико-инструментальные признаки нарушения пассажа содержимого по кишке")
                 showQuestion('Проведена видеокапсульная эндоскопия?');
-                info("STAGE 13")
+                logStage("13")
             },
             yes: () => sequence.step14,
             no: () => sequence.step17,
@@ -201,7 +206,7 @@ function getSequence(conclusion, signs) {
         step14: {
             run: function () {
                 showQuestion('Источник найден?');
-                info("STAGE 14")
+                logStage("14")
             },
             yes: () => sequence.step15,
             no: () => sequence.step16,
@@ -210,7 +215,7 @@ function getSequence(conclusion, signs) {
         step15: {
             run: function () {
                 showQuestion('Достоверно (без сомнений)?');
-                info("STAGE 15")
+                logStage("15")
             },
             yes: () => sequence.step9,
             no: () => sequence.step17,
@@ -219,7 +224,7 @@ function getSequence(conclusion, signs) {
         step16: {
             run: function () {
                 showQuestion('Гемодинамика стабильна?');
-                info("STAGE 16")
+                logStage("16")
             },
             yes: () => result(0),
             no: () => sequence.step17,
@@ -236,7 +241,7 @@ function getSequence(conclusion, signs) {
                     if (signs.ASA4) adviceResearch('Операция отчаяния только при рецидиве кровотечения', true)
                 }
                 showQuestion('В среднем отделе?');
-                info("STAGE 17")
+                logStage("17")
             },
             yes: () => result(2),
             no: () => sequence.step10,
