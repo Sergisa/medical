@@ -10,13 +10,14 @@ let questionBlock = $(`<div class="questionBlock justify-content-end w-100 mt-2"
 function adviceResearch(researchName, needDataModal, additionalInfo) {
     advicePattern.clone()
         .html(`<div class="lead d-inline me-2">${researchName}</div>`)
+        .addClass(`stage${sequenceStage.index}`)
         .append(needDataModal ? linkPattern : null)
         .append(additionalInfo ? `<div class="d-block text-dark"><i class='bi bi-info-lg'></i>${additionalInfo}</div>` : null)
         .appendTo($('#adviceLine'))
 }
 
 function showQuestion(question) {
-    questionBlock.clone().appendTo($('#adviceLine')).find('.question').html(question)
+    questionBlock.clone().appendTo($('#adviceLine')).addClass(`stage${sequenceStage.index}`).find('.question').html(question)
 }
 
 function logStage(num) {
@@ -71,6 +72,7 @@ function result(localizationIndex) {
 function getSequence(conclusion, signs) {
     return {
         step1: {
+            index: 1,
             run: function () {
                 logStage("1")
             },
@@ -79,6 +81,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step2: {
+            index: 2,
             run: function () {
                 logStage("2")
             },
@@ -87,6 +90,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step3: {
+            index: 3,
             run: function () {
                 adviceResearch(
                     'КТ-ангиография',
@@ -101,6 +105,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step4: {
+            index: 4,
             run: function () {
                 adviceResearch('Эзофагогастродуоденоскопия', true)
                 showQuestion('Источник найден?')
@@ -111,6 +116,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: true,
         },
         step5: {
+            index: 5,
             run: function () {
                 showQuestion('В верхнем отделе?')
                 logStage("5")
@@ -120,6 +126,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step6: {
+            index: 6,
             run: function () {
                 adviceResearch(
                     'Колоноскопия',
@@ -134,6 +141,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: true,
         },
         step7: {
+            index: 7,
             run: function () {
                 showQuestion('Кровотечение продолжается клинически?')
                 logStage("7")
@@ -143,6 +151,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step8: {
+            index: 8,
             run: function () {
                 showQuestion('В нижнем отделе?');
                 logStage("8")
@@ -152,6 +161,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step9: {
+            index: 9,
             run: function () {
                 showQuestion('В среднем отделе?');
                 logStage("9")
@@ -161,6 +171,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step10: {
+            index: 10,
             run: function () {
                 showQuestion('В нижнем отделе?');
                 logStage("10")
@@ -170,6 +181,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step11: {
+            index: 11,
             run: function () {
                 showQuestion('В верхнем отделе?');
                 logStage("11")
@@ -179,6 +191,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step12: {
+            index: 12,
             run: function () {
                 adviceResearch('КТ-ангиография и/или Инструментально-ассистированная энтероскопия, Ангиография, Диагностическая лапароскопия/лапаротомия, Сцинтиграфия',
                     true,
@@ -191,6 +204,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step13: {
+            index: 13,
             run: function () {
                 //⚫⚪
                 adviceResearch(
@@ -205,6 +219,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step14: {
+            index: 14,
             run: function () {
                 showQuestion('Источник найден?');
                 logStage("14")
@@ -214,6 +229,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step15: {
+            index: 15,
             run: function () {
                 showQuestion('Требуется продолжение диагностического поиска?');
                 logStage("15")
@@ -223,6 +239,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step16: {
+            index: 16,
             run: function () {
                 showQuestion('Гемодинамика стабильна?');
                 logStage("16")
@@ -232,6 +249,7 @@ function getSequence(conclusion, signs) {
             needsResearchData: false,
         },
         step17: {
+            index: 17,
             run: function () {
                 if (!conclusion.explicit) {
                     adviceResearch('Инструментально-ассистированная энтероскопия', true)

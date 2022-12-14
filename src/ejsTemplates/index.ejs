@@ -222,7 +222,19 @@
         shiftSequence(2)
     })
     $(document).on('click', '#back', function () {
+        let prevSequenceStage = globalHistory[globalHistory.length - 2]
+        $(`.adviceBlock.stage${globalHistory[globalHistory.length - 1]}`).remove()
+        $(`.questionBlock.stage${globalHistory[globalHistory.length - 1]}`).remove()
 
+        $(`.adviceBlock.stage${prevSequenceStage}`).remove()
+        $(`.questionBlock.stage${prevSequenceStage}`).remove()
+
+        sequence[`step${prevSequenceStage}`].run();
+        sequenceStage = sequence[`step${prevSequenceStage}`]
+
+        globalHistory.pop()
+        console.log("prevStage ", sequence[`step${prevSequenceStage}`])
+        console.info(`reverted to %c ${prevSequenceStage} `, 'color:#2ECC71; background-color:#2C3E50; font-size:14px; font-weight: bolder')
     })
 
     function startHelpSequence() {
