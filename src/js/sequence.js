@@ -1,6 +1,6 @@
 let linkPattern = `<a href="#" type="button" class="text-black" data-bs-toggle="modal" data-bs-target="#additionalResearch">Ввести данные эндоскопического исследования</a>`;
 let advicePattern = $(`<div class="adviceBlock alert alert-info align-items-baseline justify-content-between flex-wrap d-flex mb-0 mt-2" role="alert" id="text">EMPTY</div>`)
-let questionBlock = $(`<div class="questionBlock d-inline-flex justify-content-end w-100 mt-2">
+let questionBlock = $(`<div class="questionBlock justify-content-end w-100 mt-2">
      <div class="question d-inline-flex question badge bg-light fs-6"></div>
      <button id="yes" class="btn btn-sm btn-secondary me-1">Да</button>
      <button id="no" class="btn btn-sm btn-secondary me-1">Нет</button>
@@ -215,7 +215,7 @@ function getSequence(conclusion, signs) {
         },
         step15: {
             run: function () {
-                showQuestion('Достоверно (без сомнений)?');
+                showQuestion('Требуется продолжение диагностического поиска?');
                 logStage("15")
             },
             yes: () => sequence.step9,
@@ -236,7 +236,7 @@ function getSequence(conclusion, signs) {
                 if (!conclusion.explicit) {
                     adviceResearch('Инструментально-ассистированная энтероскопия', true)
                 } else if (conclusion.explicit && !conclusion.hard) {
-                    adviceResearch('Инструментально-ассистированная энтероскопия; диагностическая лапароскопия/лапаротомия, в том числе с интраоперационной энтероскопией', true)
+                    adviceResearch('Инструментально-ассистированная энтероскопия<br> диагностическая лапароскопия/лапаротомия, в том числе с интраоперационной энтероскопией', true)
                 } else if (conclusion.explicit && conclusion.hard) {
                     if (signs.ASA1 || signs.ASA2 || signs.ASA3) adviceResearch('Инструментально-ассистированная энтероскопия', true)
                     if (signs.ASA4) adviceResearch('Операция отчаяния только при рецидиве кровотечения', true)

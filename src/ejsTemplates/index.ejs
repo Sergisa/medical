@@ -24,7 +24,7 @@
     <div class="row">
         <div class="col-12 my-auto">
             <h1 class="text-danger fw-bold text-center">
-                Система поддержки принятия клинических решений при ведении пациентов с желудочно-кишечными
+                Сервис поддержки принятия врачебных решений при ведении пациентов с желудочно-кишечными
                 кровотечениями
             </h1>
         </div>
@@ -133,10 +133,16 @@
                 Предварительное заключение
             </button>
         </div>
-        <div class="preConclusion">
-            <div></div>
-        </div>
     </form>
+    <div class="row">
+        <div class="col-12">
+            <div class="border border-2 rounded p-3 mt-3">
+                <div class="preConclusion">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-12">
         </div>
@@ -204,7 +210,7 @@
             .andResolveReason(collectData())
             .andResolveRocalRiskLevel(collectData())
             .andResolveHardness(collectData())
-        $('.preConclusion div').html("Предварительное заключение").append(conclusion.getTag().clone())
+        $('.preConclusion div').html("<b>Предварительное заключение</b>").append(conclusion.getTag().clone())
         window.conclusion = conclusion;
         return conclusion;
     }
@@ -237,6 +243,9 @@
 
     function shiftSequence(answer) {
         if (answer === 1) {//yes
+            $('.questionBlock').last().find('#no, #back').remove()
+            $('.questionBlock').last().find('#yes').replaceWith(`<span class="badge bg-primary">Да</span>`)
+
             if (collectData().hasResearchData() || !sequenceStage.needsResearchData) {
                 console.log("Данные исследования не нужны")
                 sequenceStage = sequenceStage.yes();
@@ -245,6 +254,8 @@
                 alert("Введите данные исследования")
             }
         } else if (answer === 2) { //no
+            $('.questionBlock').last().find('#yes, #back').remove()
+            $('.questionBlock').last().find('#no').replaceWith(`<span class="badge bg-primary">Нет</span>`)
             sequenceStage = sequenceStage.no();
             if (sequenceStage) sequenceStage.run();
         }
