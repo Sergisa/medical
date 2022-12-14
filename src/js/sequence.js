@@ -239,7 +239,7 @@ function getSequence(conclusion, signs) {
                     adviceResearch('Инструментально-ассистированная энтероскопия<br> диагностическая лапароскопия/лапаротомия, в том числе с интраоперационной энтероскопией', true)
                 } else if (conclusion.explicit && conclusion.hard) {
                     if (signs.ASA1 || signs.ASA2 || signs.ASA3) adviceResearch('Инструментально-ассистированная энтероскопия', true)
-                    if (signs.ASA4) adviceResearch('Операция отчаяния только при рецидиве кровотечения', true)
+                    if (signs.ASA4) adviceResearch('Консервативное ведение <br> Операция "отчаяния" (при рецидиве кровотечения)', true)
                 }
                 showQuestion('В среднем отделе?');
                 logStage("17")
