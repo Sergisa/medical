@@ -4,7 +4,7 @@ let questionBlock = $(`<div class="questionBlock justify-content-end w-100 mt-2"
      <div class="question d-inline-flex question badge bg-light fs-6"></div>
      <button id="yes" class="btn btn-sm btn-secondary me-1">Да</button>
      <button id="no" class="btn btn-sm btn-secondary me-1">Нет</button>
-     <button id="back" class="btn btn-sm btn-secondary me-1">Назад</button>
+     
 </div>`)
 
 function adviceResearch(researchName, needDataModal, additionalInfo) {
@@ -17,7 +17,12 @@ function adviceResearch(researchName, needDataModal, additionalInfo) {
 }
 
 function showQuestion(question) {
-    questionBlock.clone().appendTo($('#adviceLine')).addClass(`stage${sequenceStage.index}`).find('.question').html(question)
+    questionBlock.clone()
+        .append(globalHistory.length > 1 ? `<button id="back" class="btn btn-sm btn-secondary me-1">Назад</button>` : null)
+        .appendTo($('#adviceLine'))
+        .addClass(`stage${sequenceStage.index}`)
+        .find('.question')
+        .html(question)
 }
 
 function logStage(num) {

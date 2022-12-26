@@ -223,16 +223,18 @@
     })
     $(document).on('click', '#back', function () {
         let prevSequenceStage = globalHistory[globalHistory.length - 2]
+
         $(`.adviceBlock.stage${globalHistory[globalHistory.length - 1]}`).remove()
         $(`.questionBlock.stage${globalHistory[globalHistory.length - 1]}`).remove()
 
         $(`.adviceBlock.stage${prevSequenceStage}`).remove()
         $(`.questionBlock.stage${prevSequenceStage}`).remove()
 
-        globalHistory.pop()
+        let curStage = globalHistory.pop()
+        let prevStage = globalHistory.pop()
+        sequenceStage = sequence[`step${prevSequenceStage}`]
         sequence[`step${prevSequenceStage}`].run();
 
-        sequenceStage = sequence[`step${prevSequenceStage}`]
         console.log("prevStage ", sequence[`step${prevSequenceStage}`])
         console.info(`reverted to %c ${prevSequenceStage} `, 'color:#2ECC71; background-color:#2C3E50; font-size:14px; font-weight: bolder')
     })
@@ -255,11 +257,10 @@
 
     function shiftSequence(answer) {
         if (answer === 1) {//yes
-            $('.questionBlock').last().find('#no, #back').remove()
-            $('.questionBlock').last().find('#yes').replaceWith(`<span class="badge bg-primary">Да</span>`)
-
             if (collectData().hasResearchData() || !sequenceStage.needsResearchData) {
                 console.log("Данные исследования не нужны")
+                $('.questionBlock').last().find('#no, #back').remove()
+                $('.questionBlock').last().find('#yes').replaceWith(`<span class="badge bg-primary">Да</span>`)
                 sequenceStage = sequenceStage.yes();
                 if (sequenceStage) sequenceStage.run();
             } else if (sequenceStage.needsResearchData && !collectData().hasResearchData()) {
