@@ -8,6 +8,14 @@
     <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+        .searchResult {
+            margin: .5rem 1rem;
+            background-color: #bdc3c773;
+            color: #2c3e50;
+            padding: .25rem .5rem;
+            border-radius: 7px;
+        }
+
         .question {
             color: var(--bs-indigo);
             font-weight: bold;
@@ -30,10 +38,13 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
-            <a href="#" class="btn btn-primary btn-sm float-end" data-bs-toggle="modal"
+        <div class="col-md-12 d-flex justify-content-end">
+            <a href="#" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
                data-bs-target="#dateSelectionModal">
                 Скачать все данные
+            </a>
+            <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#searchModal">
+                Поиск пациента
             </a>
         </div>
     </div>
@@ -173,6 +184,7 @@
 <%- include('src/ejsTemplates/researchModal', {id:"additionalResearch"}); %>
 <%- include('src/ejsTemplates/instructionModal', {id:"instructionModal"}); %>
 <%- include('src/ejsTemplates/dateSelectionModal', {id:"dateSelectionModal"}); %>
+<%- include('src/ejsTemplates/searchModal'); %>
 
 
 </body>
@@ -181,6 +193,7 @@
 <script src="dist/js/jquery3.6.0.min.js"></script>
 <script src="dist/js/bundle.min.js"></script>
 <script>
+    const modalSearch = new bootstrap.Modal('#searchModal');
     const modalAdditionalResearch = new bootstrap.Modal('#additionalResearch');
     const instructionModal = new bootstrap.Modal('#instructionModal');
     let sequenceStage, conclusion, sequence;
@@ -245,7 +258,7 @@
         if (conclusion.explicit) {
             if (conclusion.hard) {
                 sequenceStage = collectData().hematohesia ? sequence.step3 : sequence.step4;
-                adviceResearch('Начало интенсивной терапии/реанимационных мероприятий', false)
+                adviceResearch('Начало интенсивной терапии', false)
             } else {
                 sequenceStage = sequence.step4
             }
@@ -364,6 +377,19 @@
             showInstructions()
         })
     }
+
+    $('#search').on('click', function () {
+        $('#searchResult').empty()
+        $.getJSON('search.php', {keyword: $('#searchKeyword').val()}, function (data) {
+            if (data.length > 0) {
+                data.forEach(function (patient) {
+                    $('#searchResult').append(`<a class="d-block searchResult" href="?id=${patient.ID}">${patient.identifier}</a>`)
+                })
+            }
+        })
+
+
+    })
 
 </script>
 
