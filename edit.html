@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Система поддержки</title>
+    <link href="dist/css/output.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="dist/css/bs-icons.min.css">
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .searchResult {
+            margin: .5rem 1rem;
+            background-color: #bdc3c773;
+            color: #2c3e50;
+            padding: .25rem .5rem;
+            border-radius: 7px;
+        }
+
+        .question {
+            color: var(--bs-indigo);
+            font-weight: bold;
+            background-color: #CFD8DC !important;
+        }
+
+        .ASAClass div {
+            font-family: "Times New Roman", serif;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-12 my-auto">
+            <h1 class="text-danger fw-bold text-center">
+                Сервис поддержки принятия врачебных решений при ведении пациентов с желудочно-кишечными
+                кровотечениями
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 d-flex justify-content-end">
+            <a href="#" class="btn btn-primary btn-sm me-2" data-bs-toggle="modal"
+               data-bs-target="#dateSelectionModal">
+                Скачать все данные
+            </a>
+            <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#searchModal">
+                Поиск пациента
+            </a>
+        </div>
+    </div>
+    <form action="" class="p-3 needs-validation mt-3" id="aprioriForm" name="signsForm" novalidate>
+        <div class="row">
+            <div class="col-lg-6">
+    
+    <input class="form-control" type="text" id="identifier"
+           placeholder="Идентификатор"
+            >
+    
+        <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    
+</div>
+
+            <div class="col-lg-6">
+    
+    <input class="form-control" type="text" id="IIC"
+           placeholder="Код МКБ"
+            >
+    
+        <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    
+</div>
+
+        </div>
+        <p class="fw-bold my-2">
+            Клинико-лабораторные данные при поступлении
+        </p>
+        <hr class="mb-3">
+        Пол *
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="male" value="female" required>
+            <label class="form-check-label" for="male">Мужской</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="gender" id="female" value="male">
+            <label class="form-check-label" for="female">Женский</label>
+        </div>
+        <div class="row mt-1">
+            <div class="col-auto">
+    
+        <label class="form-label" for="age">Возраст, лет *</label>
+    
+    <input class="form-control" type="text" id="age"
+           placeholder=""
+            required>
+    
+        <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    
+</div>
+
+        </div>
+        <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="paleSkin" value="option2">
+    
+    <label class="form-check-label" for="paleSkin">Бледность кожных покровов</label>
+    
+</div>
+
+        <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="stickySweat" value="option2">
+    
+    <label class="form-check-label" for="stickySweat">Холодный липкий пот</label>
+    
+</div>
+
+        <div class="row">
+            <div class="col-auto">
+    
+        <label class="form-label" for="bloodArterialPressure">АД сист., мм.рт.ст. *</label>
+    
+    <input class="form-control" type="text" id="bloodArterialPressure"
+           placeholder="АД сист., мм.рт.ст. *"
+            required>
+    
+        <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    
+</div>
+
+            <div class="col-auto">
+    
+        <label class="form-label" for="pulse">Пульс, уд/мин *</label>
+    
+    <input class="form-control" type="text" id="pulse"
+           placeholder="Пульс, уд/мин *"
+            required>
+    
+        <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="collaptoidState" value="option2">
+    
+    <label class="form-check-label" for="collaptoidState">Коллаптоидное состояние</label>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="lossConsciousness" value="option2">
+    
+    <label class="form-check-label" for="lossConsciousness">Потеря сознания</label>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="coffeeVomit" value="option2">
+    
+    <label class="form-check-label" for="coffeeVomit">Рвота содержимым по типу «кофейной гущи»</label>
+    
+</div>
+
+                <div class="form-check " title="Рвота кровью">
+    <input class="form-check-input" type="checkbox" id="bloodVomit" value="option2">
+    
+    <label class="form-check-label" for="bloodVomit">Гематемезис</label>
+    
+        <div class="form-text d-inline">Рвота кровью</div>
+    
+</div>
+
+                <div class="form-check " title="Черный дегтеобразный стул">
+    <input class="form-check-input" type="checkbox" id="melena" value="option2">
+    
+    <label class="form-check-label" for="melena">Мелена</label>
+    
+        <div class="form-text d-inline">Черный дегтеобразный стул</div>
+    
+</div>
+
+                <div class="form-check " title="Кровь в стуле">
+    <input class="form-check-input" type="checkbox" id="hematohesia" value="option2">
+    
+    <label class="form-check-label" for="hematohesia">Гематохезия</label>
+    
+        <div class="form-text d-inline">Кровь в стуле</div>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="blackFeces" value="option2">
+    
+    <label class="form-check-label" for="blackFeces">Черный оформленный кал при пальцевом исследовании прямой кишки</label>
+    
+</div>
+
+            </div>
+            <div class="col-md-6">
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="gastrointestinalUcler" value="option2">
+    
+    <label class="form-check-label" for="gastrointestinalUcler">Язвы в ЖКТ в анамнезе</label>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="anamnesisGastrointestinalUpperBleeding" value="option2">
+    
+    <label class="form-check-label" for="anamnesisGastrointestinalUpperBleeding">ЖКК в анамнезе в верхнем отделе ЖКТ</label>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="anamnesisGastrointestinalUndefinedBleeding" value="option2">
+    
+    <label class="form-check-label" for="anamnesisGastrointestinalUndefinedBleeding">ЖКК в анамнезе в неустановленном отделе ЖКТ</label>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="additionalIllness" value="option2">
+    
+    <label class="form-check-label" for="additionalIllness">Сопутствующие заболевания в стадии суб- и декомпенсации, требующие неотложных лечебных мероприятий или непосредственно угрожающие жизни больного</label>
+    
+</div>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-auto">
+    
+        <label class="form-label" for="hematocrit">Гематокрит, % *</label>
+    
+    <input class="form-control" type="text" id="hematocrit"
+           placeholder="Гематокрит, % *"
+            required>
+    
+        <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    
+</div>
+
+            <div class="col-auto">
+    
+        <label class="form-label" for="hemoglobin">Гемоглобин, г/л *</label>
+    
+    <input class="form-control" type="text" id="hemoglobin"
+           placeholder="Гемоглобин, г/л *"
+            required>
+    
+        <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    
+</div>
+
+            <div class="col-auto">
+    
+        <label class="form-label" for="erythrocytes">Эритроциты, 10^12/л *</label>
+    
+    <input class="form-control" type="text" id="erythrocytes"
+           placeholder="Эритроциты, 10^12/л *"
+            required>
+    
+        <div class="invalid-feedback">
+            Необходимо ввести значение.
+        </div>
+    
+</div>
+
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="hiddenBleeding" value="option2">
+    
+        <div class="invalid-feedback">true</div>
+    
+    <label class="form-check-label" for="hiddenBleeding">Положительный тест на скрытую кровь в кале</label>
+    
+</div>
+
+            </div>
+        </div>
+        <div class="row riskFactors">
+            <p class="fw-bold my-2">
+                Факторы риска (сопутствующие заболевания)
+            </p>
+            <hr class="mb-3">
+            <div class="col-md-12">
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="chronicHeartFailure" value="option2">
+    
+    <label class="form-check-label" for="chronicHeartFailure">Хроническая сердечная недостаточность</label>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="cardiacIschemia" value="option2">
+    
+    <label class="form-check-label" for="cardiacIschemia">Ишемическая болезнь сердца</label>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="kidneyFailure" value="option2">
+    
+    <label class="form-check-label" for="kidneyFailure">Почечная недостаточность</label>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="liverFailure" value="option2">
+    
+    <label class="form-check-label" for="liverFailure">Печеночная недостаточность</label>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="metastaticCancer" value="option2">
+    
+    <label class="form-check-label" for="metastaticCancer">Метастатический рак</label>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="pathologicalChanges" value="option2">
+    
+    <label class="form-check-label" for="pathologicalChanges">Патологические изменения панкреато-билиарной зоны в анамнезе или при объективном обследовании</label>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="aorticProsthesis" value="option2">
+    
+    <label class="form-check-label" for="aorticProsthesis">Протезирование аорты по поводу аневризмы</label>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="heartDefects" value="option2">
+    
+    <label class="form-check-label" for="heartDefects">Пороки развития сердца</label>
+    
+</div>
+
+                <div class="form-check " title="">
+    <input class="form-check-input" type="checkbox" id="heartValvesProsthesis" value="option2">
+    
+    <label class="form-check-label" for="heartValvesProsthesis">Протезирование сердечных клапанов</label>
+    
+</div>
+
+            </div>
+        </div>
+        <div class="row ASAClass">
+            <p class="fw-bold my-2">
+                Физический статус пациента по классификации ASA
+            </p>
+            <hr class="mb-3">
+            <div class="col-md-4">
+                <div class="form-check">
+    <input class="form-check-input" type="radio" id="ASA1" name="ASA" required>
+    
+    <label class="form-check-label" for="ASA1">ASA I</label>
+    
+        <div class="form-text">Здоровый пациент</div>
+    
+</div>
+                <div class="form-check">
+    <input class="form-check-input" type="radio" id="ASA2" name="ASA" required>
+    
+    <label class="form-check-label" for="ASA2">ASA II</label>
+    
+        <div class="form-text">Пациент с легким системным заболеванием</div>
+    
+</div>
+                <div class="form-check">
+    <input class="form-check-input" type="radio" id="ASA3" name="ASA" required>
+    
+    <label class="form-check-label" for="ASA3">ASA III</label>
+    
+        <div class="form-text">Пациент с тяжелым системным заболеванием</div>
+    
+</div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-check">
+    <input class="form-check-input" type="radio" id="ASA4" name="ASA" required>
+    
+    <label class="form-check-label" for="ASA4">ASA IV</label>
+    
+        <div class="form-text">Пациент с тяжелым системным заболеванием, которое представляет собой постоянную угрозу для жизни</div>
+    
+</div>
+                <div class="form-check">
+    <input class="form-check-input" type="radio" id="ASA5" name="ASA" required>
+    
+    <label class="form-check-label" for="ASA5">ASA V</label>
+    
+        <div class="form-text">Умирающий пациент. Операция по жизненным показаниям.</div>
+    
+</div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-check">
+    <input class="form-check-input" type="radio" id="ASA6" name="ASA" required>
+    
+    <label class="form-check-label" for="ASA6">ASA VI</label>
+    
+        <div class="form-text">Констатирована смерть мозга</div>
+    
+</div>
+                <div class="form-check " title="Неотложность хирургического вмешательства">
+    <input class="form-check-input" type="checkbox" id="E" value="option2">
+    
+    <label class="form-check-label" for="E">E</label>
+    
+        <div class="form-text d-inline">Неотложность хирургического вмешательства</div>
+    
+</div>
+
+            </div>
+        </div>
+        <div class="control-bottom d-flex align-items-end justify-content-end">
+            <button type="reset" class="btn btn-outline-dark me-2">Очистить</button>
+            <button type="submit" class="btn btn-primary text-break" id="preConclusion">
+                Предварительное заключение
+            </button>
+        </div>
+    </form>
+    <div class="row">
+        <div class="col-12">
+            <div class="border border-2 rounded p-3 mt-3">
+                <div class="preConclusion">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="border border-2 rounded p-3 mt-3 d-none" id="helpSequence">
+                Рекомендация
+                <div class="d-block">
+                    <div class="col-12 mt-2" id="adviceLine"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="border border-2 rounded shadow p-3 mt-3 d-none">
+                Заключение
+                <div class="postConclusion"></div>
+            </div>
+        </div>
+    </div>
+    <button type="button" class="btn btn-secondary me-auto float-end d-none" id="saveFinalData">Сохранить</button>
+    <i class="status-label bi fs-2 float-end me-auto d-none text-success bi-check-lg" id="good"></i>
+    <i class="status-label bi fs-2 float-end me-auto d-none text-danger bi-x-lg" id="error"></i>
+</div>
+
+<div class="modal fade" id="additionalResearch" tabindex="-1" aria-labelledby="Данные эндоскопического исследования" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Эндоскопические признаки
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <form action="" id="endoscopicResearch">
+                <div class="modal-body">
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign32" value="option1">
+    
+    <label class="form-check-label" for="sign32">
+        Поверхностный дефект (эрозия) слизистой оболочки
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign33" value="option1">
+    
+    <label class="form-check-label" for="sign33">
+        Локальная атрофия ворсинок тонкой кишки
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign34" value="option1">
+    
+    <label class="form-check-label" for="sign34">
+        Локальные воспалительные изменения слизистой оболочки
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign35" value="option1">
+    
+    <label class="form-check-label" for="sign35">
+        Анастомоз ЖКТ
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign36" value="option1">
+    
+    <label class="form-check-label" for="sign36">
+        Задержка видеокапсулы
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign37" value="option1">
+    
+    <label class="form-check-label" for="sign37">
+        Нерегулярность поверхности слизистой оболочки (подозрение на наличие опухоли)
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign38" value="option1">
+    
+    <label class="form-check-label" for="sign38">
+        Дивертикулы кишки
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign39" value="option1">
+    
+    <label class="form-check-label" for="sign39">
+        Посткоагуляционный струп
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign40" value="option1">
+    
+    <label class="form-check-label" for="sign40">
+        Сосудистые мальформации
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign41" value="option1">
+    
+    <label class="form-check-label" for="sign41">
+        Стриктура кишки
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign42" value="option1">
+    
+    <label class="form-check-label" for="sign42">
+        Тотальная атрофия ворсинок тонкой кишки
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign43" value="option1">
+    
+    <label class="form-check-label" for="sign43">
+        Тотальные воспалительные изменения слизистой оболочки
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign44" value="option1">
+    
+    <label class="form-check-label" for="sign44">
+        Глубокий дефект (язва) слизистой оболочки
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign45" value="option1">
+    
+    <label class="form-check-label" for="sign45">
+        Кровотечение из геморроидального узла
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign46" value="option1">
+    
+    <label class="form-check-label" for="sign46">
+        Варикозно-расширенные вены
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign47" value="option1">
+    
+    <label class="form-check-label" for="sign47">
+        Кровотечение из фистулы
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign48" value="option1">
+    
+    <label class="form-check-label" for="sign48">
+        Разрыв слизистой оболочки брюшного отдела пищевода и/или кардиального отдела желудка
+    </label>
+    
+</div>
+                    
+                        <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="sign49" value="option1">
+    
+    <label class="form-check-label" for="sign49">
+        Наличие крови, фиксированный тромб или сгусток, кровоточащий сосуд
+    </label>
+    
+</div>
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-outline-dark" id="clearAdditionalResearch">Очистить</button>
+                    <button type="button" class="btn btn-primary" id="additionalResearchSave">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="instructionModal" tabindex="-1" aria-labelledby="Окно инструкций" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p class="fs-6">
+                    Выберите признаки, найденные у пациента
+                </p>
+                <div class="form-check tacticsSelection form-check-inline" title="">
+    <input class="form-check-input" type="checkbox" id="bleedContinue-checkbox" value="option2">
+    
+    <label class="form-check-label" for="bleedContinue-checkbox">Кровотечение продолжается</label>
+    
+</div>
+
+                <div class="form-check tacticsSelection form-check-inline" title="">
+    <input class="form-check-input" type="checkbox" id="repeat-checkbox" value="option2">
+    
+    <label class="form-check-label" for="repeat-checkbox">Зафиксирован рецидив</label>
+    
+</div>
+
+                <div class="form-check tacticsSelection form-check-inline" title="">
+    <input class="form-check-input" type="checkbox" id="thrombosed-vessel-checkbox" value="option2">
+    
+    <label class="form-check-label" for="thrombosed-vessel-checkbox">Имеется тромбированный сосуд</label>
+    
+</div>
+
+                <div class="form-check tacticsSelection form-check-inline" title="">
+    <input class="form-check-input" type="checkbox" id="diverticulitis-checkbox" value="option2">
+    
+    <label class="form-check-label" for="diverticulitis-checkbox">Имеется дивертикулит</label>
+    
+</div>
+
+                <hr>
+                <div id="instructions">
+                    
+                        <div id="1">
+                            <h6 class="fw-bold">Лечебная тактика ведения пациентов с ЖКК при геморрое неуточненном</h6>
+<ol>
+        
+                <li class="illnessRecommendation bleed">Хирургическое лечение (при обильных профузных кровотечениях рекомендовано прошивание сосуда или склеротерапия или лигирование кровоточащего узла) + консервативная терапия.</li>
+        
+                <li class="illnessRecommendation no-bleed">Консервативная терапия.</li>
+        
+</ol>
+
+                        </div>
+                    
+                        <div id="2">
+                            <h6 class="fw-bold">Лечебная тактика ведения пациентов с ЖКК при дивертикуле Меккеля</h6>
+<ol>
+        
+                <li class="illnessRecommendation ">Хирургическое лечение.</li>
+        
+</ol>
+
+                        </div>
+                    
+                        <div id="3">
+                            <h6 class="fw-bold">Лечебная тактика ведения пациентов с ЖКК при эрозивно-язвенных поражениях тонкой/толстой кишки</h6>
+<ol>
+        
+                <li class="illnessRecommendation bleed">Эндоскопический гемостаз/хирургическое лечение (при неэффективности/невозможности эндоскопического лечения) + консервативная терапия.</li>
+        
+                <li class="illnessRecommendation no-bleed">Консервативная терапия.</li>
+        
+</ol>
+
+                        </div>
+                    
+                        <div id="4">
+                            <h6 class="fw-bold">Лечебная тактика ведения пациентов с ЖКК при эрозивно-язвенных поражениях верхних отделов ЖКТ</h6>
+<ol>
+        
+                <li class="illnessRecommendation bleed has-repeat">Эндоскопическое лечение/эндоваскулярный гемостаз/хирургическое лечение (при невозможности эндоскопического лечения/эндоваскулярного гемостаза).</li>
+        
+                <li class="illnessRecommendation no-bleed low-repeat-risk">Эндоскопическое лечение и/или консервативная терапия (в зависимости от наличия в нем сосудистых структур) + консервативная терапия.</li>
+        
+                <li class="illnessRecommendation high-repeat-risk">Динамический эндоскопический контроль или ангиографическое вмешательство.</li>
+        
+</ol>
+
+                        </div>
+                    
+                        <div id="5">
+                            <h6 class="fw-bold">Лечебная тактика ведения пациентов с ЖКК при ангиоэктазиях/телеангиоэктазиях/венозных мальформациях</h6>
+<ol>
+        
+                <li class="illnessRecommendation bleed">Эндоскопическое лечение/ангиографическое лечение/хирургическое лечение (при неэффективности эндоскопического или ангиографического лечения) + консервативная терапия.</li>
+        
+                <li class="illnessRecommendation no-bleed"> Консервативная терапия/эндоскопическое/хирургическое (в зависимости от формы, размера,
+      количества).</li>
+        
+</ol>
+
+                        </div>
+                    
+                        <div id="7">
+                            <h6 class="fw-bold">Лечебная тактика ведения пациентов с ЖКК при свище между крупным сосудом и просветом ЖКТ</h6>
+<ol>
+        
+                <li class="illnessRecommendation ">Эндоваскулярное лечение/хирургическое лечение.</li>
+        
+</ol>
+
+                        </div>
+                    
+                        <div id="8">
+                            <h6 class="fw-bold">Лечебная тактика ведения пациентов с ЖКК при синдроме Меллори-Вейса</h6>
+<ol>
+        
+                <li class="illnessRecommendation ">Эндоскопическое лечение + консервативная терапия.</li>
+        
+                <li class="illnessRecommendation ">Хирургическое лечение (при неэффективности эндоскопического лечения + консервативной терапии).</li>
+        
+</ol>
+
+                        </div>
+                    
+                        <div id="9">
+                            <h6 class="fw-bold">Лечебная тактика ведения пациентов с ЖКК при опухолевых заболеваний ЖКТ</h6>
+<ol>
+        
+                <li class="illnessRecommendation bleed">Эндоскопический гемостаз/эндоваскулярная эмболизация/хирургическое лечение (при невозможности/неэффективности эндоскопического/эндоваскулярного гемостаза).</li>
+        
+                <li class="illnessRecommendation no-bleed">Консервативная терапия и/или эндоскопическое лечение.</li>
+        
+</ol>
+
+                        </div>
+                    
+                        <div id="10">
+                            <h6 class="fw-bold">Лечебная тактика ведения пациентов с ЖКК при варикозно расширенных венах пищевода и/или желудка</h6>
+<ol>
+        
+                <li class="illnessRecommendation bleed">Установка зонда Блэкмора + консервативная терапия.</li>
+        
+                <li class="illnessRecommendation no-bleed">Консервативная терапия + эндоскопическое лечение (на вторые сутки от появления симптомов кровотечения).</li>
+        
+</ol>
+
+                        </div>
+                    
+                        <div id="11">
+                            <h6 class="fw-bold">Лечебная тактика ведения пациентов с ЖКК при дивертикулярной болезни толстой кишки</h6>
+<ol>
+        
+                <li class="illnessRecommendation ">Хирургическое лечение (при невозможности/неэффективности эндоскопического гемостаза).</li>
+        
+                <li class="illnessRecommendation bleed">Эндоскопическое лечение.</li>
+        
+                <li class="illnessRecommendation no-bleed+thromobsedVessel">Эндоскопическое лечение.</li>
+        
+                <li class="illnessRecommendation no-bleed+diverticulitis">Консервативная терапия.</li>
+        
+</ol>
+
+                        </div>
+                    
+                </div>
+                <button type="button" class="btn btn-primary float-end" data-bs-dismiss="modal"
+                        id="instructionModal__close">
+                    Закрыть
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="dateSelectionModal" tabindex="-1" aria-labelledby="Данные эндоскопического исследования" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">
+                    Выбор диапазона дат
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <div class="modal-body">
+                <form action="download.php">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="date" class="form-control" name="dateStart" id="dateStart" placeholder="дата начала">
+                            <label class="form-label" for="dateStart">Дата начала</label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="date" class="form-control" name="dateEnd" id="dateEnd" placeholder="дата окончания">
+                            <label class="form-label" for="dateEnd">Дата окончания</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-outline-dark float-end" id="download">Скачать</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="Поиск пациента" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    Поиск пациента
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+            </div>
+            <form action="" id="searchForm">
+                <div class="modal-body">
+                    <div class="col-auto my-1">
+                        <label for="searchKeyword" class="form-label">Введите описание или ID пациента</label>
+                        <input type="text" class="form-control" id="searchKeyword">
+                    </div>
+                    <div class="col-auto text-end my-1">
+                        <button type="button" class="btn btn-outline-primary" id="search">Поиск</button>
+                    </div>
+                </div>
+            </form>
+            <div id="searchResult"></div>
+        </div>
+    </div>
+</div>
+
+
+
+</body>
+<script src="dist/js/popper.min.js"></script>
+<script src="dist/js/bootstrap.min.js"></script>
+<script src="dist/js/jquery3.6.0.min.js"></script>
+<script src="dist/js/bundle.min.js"></script>
+<script>
+    const modalSearch = new bootstrap.Modal('#searchModal');
+    const modalAdditionalResearch = new bootstrap.Modal('#additionalResearch');
+    const instructionModal = new bootstrap.Modal('#instructionModal');
+    let sequenceStage, conclusion, sequence;
+    const paramsFromUrl = new URLSearchParams(window.location.search)
+    let reasonsList = {};
+    let globalHistory = [];
+
+    $.getJSON("signs.json", function (data) {
+        console.log(data)
+        data.reasons.forEach(function (element) {
+            reasonsList[element.id] = element.name;
+        })
+    });
+    initHandlers()
+    if (paramsFromUrl.has('id')) {
+        $.getJSON('view.php', {id: paramsFromUrl.get('id')}, function (data) {
+            console.log(data)
+            fillData(data)
+        })
+    }
+
+    function makeConclusion() {
+        let conclusion = conclusionBuilder()
+            .andBloodLossHardnessLevel(collectData())
+            .andExplicit(collectData())
+            .predictLocalization(collectData())
+            .andResolveReason(collectData())
+            .andResolveRocalRiskLevel(collectData())
+            .andResolveHardness(collectData())
+        $('.preConclusion div').html("<b>Предварительное заключение</b>").append(conclusion.getTag().clone())
+        window.conclusion = conclusion;
+        return conclusion;
+    }
+
+    $(document).on('click', '#yes', function () {
+        shiftSequence(1)
+    })
+    $(document).on('click', '#no', function () {
+        shiftSequence(2)
+    })
+    $(document).on('click', '#back', function () {
+        let prevSequenceStage = globalHistory[globalHistory.length - 2]
+
+        $(`.adviceBlock.stage${globalHistory[globalHistory.length - 1]}`).remove()
+        $(`.questionBlock.stage${globalHistory[globalHistory.length - 1]}`).remove()
+
+        $(`.adviceBlock.stage${prevSequenceStage}`).remove()
+        $(`.questionBlock.stage${prevSequenceStage}`).remove()
+
+        let curStage = globalHistory.pop()
+        let prevStage = globalHistory.pop()
+        sequenceStage = sequence[`step${prevSequenceStage}`]
+        sequence[`step${prevSequenceStage}`].run();
+
+        console.log("prevStage ", sequence[`step${prevSequenceStage}`])
+        console.info(`reverted to %c ${prevSequenceStage} `, 'color:#2ECC71; background-color:#2C3E50; font-size:14px; font-weight: bolder')
+    })
+
+    function startHelpSequence() {
+        $('#helpSequence').removeClass('d-none')
+        $('#adviceLine').empty()
+        if (conclusion.explicit) {
+            if (conclusion.hard) {
+                sequenceStage = collectData().hematohesia ? sequence.step3 : sequence.step4;
+                adviceResearch('Начало интенсивной терапии', false)
+            } else {
+                sequenceStage = sequence.step4
+            }
+        } else {
+            sequenceStage = sequence.step4;
+        }
+        if (sequenceStage) sequenceStage.run()
+    }
+
+    function shiftSequence(answer) {
+        if (answer === 1) {//yes
+            if (collectData().hasResearchData() || !sequenceStage.needsResearchData) {
+                console.log("Данные исследования не нужны")
+                $('.questionBlock').last().find('#no, #back').remove()
+                $('.questionBlock').last().find('#yes').replaceWith(`<span class="badge bg-primary">Да</span>`)
+                sequenceStage = sequenceStage.yes();
+                if (sequenceStage) sequenceStage.run();
+            } else if (sequenceStage.needsResearchData && !collectData().hasResearchData()) {
+                alert("Введите данные исследования")
+            }
+        } else if (answer === 2) { //no
+            $('.questionBlock').last().find('#yes, #back').remove()
+            $('.questionBlock').last().find('#no').replaceWith(`<span class="badge bg-primary">Нет</span>`)
+            sequenceStage = sequenceStage.no();
+            if (sequenceStage) sequenceStage.run();
+        }
+        $.moveBottom()
+    }
+
+    function saveData() {
+        $('.status-label').addClass('d-none')
+        console.log("before send", conclusion);
+        conclusion.reason = getJoinedReasons(conclusion.reason, ",");
+        let collectedData = collectData();
+        collectedData['history'] = JSON.stringify(globalHistory);
+        $.post("http://sergisa.smrtp.ru/medical/save.php", {
+            conclusion: conclusion.getConclusion(),
+            data: collectedData
+        }).done(function (data) {
+            console.log(data);
+            $('#good').removeClass('d-none')
+        }).fail(function () {
+            $('#error').removeClass('d-none')
+        })
+    }
+
+    function toggleInstructionBlocks() {
+        const continueBleeding = $('#bleedContinue-checkbox').is(':checked')
+        const hasRepeat = $('#repeat-checkbox').is(':checked')
+        const thrombosedVessel = $('#thrombosed-vessel-checkbox').is(':checked')
+        const diverticulitis = $('#diverticulitis-checkbox').is(':checked')
+
+        $('#instructions .bleed, #instructions .no-bleed, .has-repeat, .high-repeat-risk, .low-repeat-risk, .no-bleed\\+thromobsedVessel, .no-bleed\\+diverticulitis').hide();
+        if (continueBleeding) {
+            $('#instructions .bleed').show();
+        } else {
+            $('#instructions .no-bleed').show();
+        }
+        if (hasRepeat) {
+            $('#instructions .has-repeat').show();
+        }
+        if (thrombosedVessel && !continueBleeding) {
+            $('#instructions .no-bleed\\+thromobsedVessel').show();
+        }
+        if (diverticulitis && !continueBleeding) {
+            $('#instructions .no-bleed\\+diverticulitis').show();
+        }
+        if (conclusion.risk >= 0 && conclusion.risk <= 2) {
+            $('#instructions .low-repeat-risk').show();
+        } else if (conclusion.risk >= 3 && conclusion.risk <= 7) {
+            $('#instructions .high-repeat-risk').show();
+        }
+        $('#instructions').show()
+    }
+
+    function showInstructions() {
+        console.log("SHOWING instructions", conclusion)
+        if (!conclusion.reason.includes(11)) {
+            $('#diverticulitis-checkbox').parent().hide();
+            $('#thrombosed-vessel-checkbox').parent().hide();
+        }
+        if (!conclusion.reason.includes(4)) {
+            $('#repeat-checkbox').parent().hide();
+        }
+        $('#instructions > div').hide();
+        $(`#instructionModal #${conclusion.reason.join(' ,#')}`).show();
+        toggleInstructionBlocks()
+    }
+
+    function initHandlers() {
+        document.getElementById('additionalResearchSave').addEventListener('click', function () {
+            conclusion = makeConclusion();
+            modalAdditionalResearch.hide();
+        });
+        document.getElementById('saveFinalData').addEventListener('click', function () {
+            saveData();
+        });
+        document.getElementById('aprioriForm').addEventListener('submit', function (event) {
+            event.preventDefault()
+            event.stopPropagation()
+            $('#helpSequence').addClass('d-none')
+            if (this.checkValidity()) {
+                conclusion = makeConclusion();
+                sequence = getSequence(conclusion, collectData())
+                startHelpSequence();
+                $.moveBottom()
+                $('#saveFinalData').removeClass('d-none')
+            }
+            return false;
+        })
+        document.getElementById('aprioriForm').addEventListener('reset', function () {
+            $('form.was-validated').removeClass('was-validated')
+        })
+        $('.tacticsSelection').on('change', function () {
+            console.log('Changed', $(this).is(':checked'))
+            showInstructions()
+        })
+    }
+
+    $('#search').on('click', function () {
+        $('#searchResult').empty()
+        $.getJSON('search.php', {keyword: $('#searchKeyword').val()}, function (data) {
+            if (data.length > 0) {
+                data.forEach(function (patient) {
+                    $('#searchResult').append(`<a class="d-block searchResult" href="?id=${patient.ID}">${patient.identifier}</a>`)
+                })
+            }
+        })
+
+
+    })
+
+</script>
+
+</html>
