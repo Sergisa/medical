@@ -14,6 +14,21 @@
         }
     }
 
+    function checkNonPairValidity(ECheckbox, ASA6Checkbox, event) {
+        if (ECheckbox.checked && ASA6Checkbox.checked) {
+            console.error("Нельзя выбрать параметр ASA6 и параметр E одновременно")
+            ECheckbox.setCustomValidity("Нельзя выбрать параметр ASA6 и параметр E одновременно")
+            ASA6Checkbox.setCustomValidity("Нельзя выбрать параметр ASA6 и параметр E одновременно")
+            event.preventDefault()
+            event.stopPropagation()
+            return false
+        }else{
+            console.log("Нет ошибки")
+            ECheckbox.setCustomValidity("");
+            ASA6Checkbox.setCustomValidity("");
+        }
+    }
+
     const forms = document.querySelectorAll('.needs-validation')
     Array.from(forms).forEach(form => {
         form.addEventListener('submit', event => {
@@ -28,6 +43,15 @@
                 })
                 checkDecimalValidity(field, event)
             }
+            const ECheckbox = form.querySelector('input#E')
+            const ASA6Radio = form.querySelector('input#ASA6')
+            checkNonPairValidity(ECheckbox,ASA6Radio, event)
+            ECheckbox.addEventListener('input', function(event){
+                checkNonPairValidity(ECheckbox,ASA6Radio, event)
+            });
+            ASA6Radio.addEventListener('input', function(event){
+                checkNonPairValidity(ECheckbox,ASA6Radio,event)
+            })
             form.classList.add('was-validated')
         }, false)
     })
