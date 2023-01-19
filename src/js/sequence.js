@@ -239,8 +239,8 @@ function getSequence(conclusion, signs) {
                 showQuestion('Требуется продолжение диагностического поиска?');
                 logStage("15")
             },
-            yes: () => sequence.step9,
-            no: () => sequence.step17,
+            yes: () => sequence.step17,
+            no: () => sequence.step9,
             needsResearchData: false,
         },
         step16: {
