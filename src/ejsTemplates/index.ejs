@@ -25,24 +25,43 @@
         .ASAClass div {
             font-family: "Times New Roman", serif;
         }
+
+        img.logo {
+            height: 40px;
+        }
+
+        .bottom {
+
+        }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="row">
+    <div class="row vh-100">
         <div class="col-md-12 mx-auto text-center">
-            <p class="display-6 text-center">
-                Приложение предназначено для поддержки принятия клинических решений при ведении пациентов с
-                желудочно-кишечными кровотечениями, за исключением пациентов, возраст которых не превышает 18 лет, и
-                находящихся в агональном состоянии с нестабильными показателями гемодинамики.
-            </p>
-
-            <img src="logo.png" class="img-fluid w-25" alt="Логотип РНИМУ им.Пирогова">
-
-            <p class="display-6 text-center">
-                Разработано на базе РНИМУ им. Н.И. Пирогова Минздрава России
-            </p>
-            <a href="edit.html" class="btn btn-lg btn-primary">Ввод данных</a>
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="display-6 text-center">
+                        Приложение предназначено для поддержки принятия клинических решений при ведении пациентов с
+                        желудочно-кишечными кровотечениями, за исключением пациентов, возраст которых не превышает 18
+                        лет,
+                        пациентов, находящихся в агональном состоянии с нестабильными показателями гемодинамики и
+                        пациентов,
+                        имеющих множественное кровотечение из различных участков желудочно-кишечного тракта.
+                    </p>
+                </div>
+            </div>
+            <div class="row bottom">
+                <div class="col-md-12">
+                    <div class="d-flex align-items-center">
+                        <img src="logo.png" class="img-fluid w-auto logo" alt="Логотип РНИМУ им.Пирогова">
+                        <p class="display-6 text-center">
+                            Разработано на базе РНИМУ им. Н.И. Пирогова Минздрава России
+                        </p>
+                    </div>
+                    <a href="edit.html" class="btn btn-lg btn-primary">Ввод данных</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>
