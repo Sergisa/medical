@@ -1,6 +1,14 @@
 (() => {
     'use strict'
 
+    function report_error(input, message) {
+        if ($(input).siblings('.invalid-feedback').length > 0) {
+            $(input).siblings('.invalid-feedback').html(message)
+        } else {
+            $(input).next('label').next().after(`<div class="invalid-feedback">${message}</div>`)
+        }
+    }
+
     function checkDecimalValidity(field, event) {
         if (!/^\d+([,.]+\d+)+$/.test(field.value)) {
             console.error("Неверное значение")
@@ -19,10 +27,12 @@
             console.error("Нельзя выбрать параметр ASA6 и параметр E одновременно")
             ECheckbox.setCustomValidity("Нельзя выбрать параметр ASA6 и параметр E одновременно")
             ASA6Checkbox.setCustomValidity("Нельзя выбрать параметр ASA6 и параметр E одновременно")
+            report_error(ECheckbox, "Нельзя выбрать параметр ASA6 и параметр E одновременно")
+            report_error(ASA6Checkbox, "Нельзя выбрать параметр ASA6 и параметр E одновременно")
             event.preventDefault()
             event.stopPropagation()
             return false
-        }else{
+        } else {
             console.log("Нет ошибки")
             ECheckbox.setCustomValidity("");
             ASA6Checkbox.setCustomValidity("");
@@ -45,12 +55,12 @@
             }
             const ECheckbox = form.querySelector('input#E')
             const ASA6Radio = form.querySelector('input#ASA6')
-            checkNonPairValidity(ECheckbox,ASA6Radio, event)
-            ECheckbox.addEventListener('input', function(event){
-                checkNonPairValidity(ECheckbox,ASA6Radio, event)
+            checkNonPairValidity(ECheckbox, ASA6Radio, event)
+            ECheckbox.addEventListener('input', function (event) {
+                checkNonPairValidity(ECheckbox, ASA6Radio, event)
             });
-            ASA6Radio.addEventListener('input', function(event){
-                checkNonPairValidity(ECheckbox,ASA6Radio,event)
+            ASA6Radio.addEventListener('input', function (event) {
+                checkNonPairValidity(ECheckbox, ASA6Radio, event)
             })
             form.classList.add('was-validated')
         }, false)
